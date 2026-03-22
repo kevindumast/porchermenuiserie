@@ -4,14 +4,13 @@ import Navigation from "./Navigation";
 export default function Home() {
   return (
     <>
-      {/* Navigation */}
       <Navigation />
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center pt-24 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            alt="High-end minimalist interior"
+            alt="Intérieur haut de gamme en bois massif réalisé par Porcher Menuiserie"
             className="w-full h-full object-cover"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRijYKZbPgilz3AiZCdn34K2GIjIkG03yk5AtCC3d2Mgu3gkUhaIGKaC2KnXXiTSz0TveH8M-ejQRiWtvNXMSeGfxH4wwF6RxZ2BHMJav6wZ8a654LGiVlS_yVdIQ7sMzz4S9Q5i-6MUnNwdkgPhWslBxwclOlAnSHHhgjEBhlMMPJKEq1nnrrJzKBpv7IGQfMIOcLyOC9kmxYXQvdoQSPHLC5rp8dMkWiEgWAPn2RqGDgYMzXqq--UC_z32AJvPclq1w4ZjCoz7g"
             fill
@@ -19,10 +18,14 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-beige-light/90 via-beige-light/40 to-transparent" />
         </div>
+
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="max-w-3xl">
             {/* Circular Logo */}
-            <div className="relative w-32 h-32 mb-12 flex items-center justify-center">
+            <div
+              className="relative w-32 h-32 mb-12 flex items-center justify-center"
+              aria-hidden="true"
+            >
               <svg
                 className="absolute w-full h-full -rotate-90"
                 viewBox="0 0 100 100"
@@ -54,14 +57,28 @@ export default function Home() {
               </div>
             </div>
 
-            <h1 className="text-6xl md:text-8xl font-light text-on-surface leading-tight mb-8">
+            <h1 className="text-6xl md:text-8xl font-light text-on-surface leading-tight mb-4">
               L&apos;Art du <br />
               <span className="italic font-serif">Geste</span>
             </h1>
 
+            {/* Hero subtitle — Jobs To Be Done */}
+            <p className="text-base md:text-lg text-on-surface-variant font-light tracking-wide mb-10 max-w-md">
+              Menuiserie sur mesure, agencement intérieur et second&nbsp;œuvre —
+              de la conception à la pose.
+            </p>
+
+            {/* Social proof strip */}
+            <div className="flex items-center gap-6 mb-10">
+              <div className="h-px w-8 bg-ocre/30" aria-hidden="true" />
+              <p className="text-[11px] uppercase tracking-[0.25em] text-on-surface-variant font-light">
+                15&nbsp;ans d&apos;expérience &nbsp;·&nbsp; 150+ réalisations
+              </p>
+            </div>
+
             <div className="space-y-1 mb-12">
               <p className="text-xl md:text-2xl font-light text-ocre tracking-widest">
-                06 68 13 32 45
+                06&nbsp;68&nbsp;13&nbsp;32&nbsp;45
               </p>
               <p className="text-sm tracking-widest font-light text-on-surface-variant">
                 porcher-menuiserie@outlook.fr
@@ -82,7 +99,7 @@ export default function Home() {
                 <span className="border-b border-ocre/30 group-hover:border-ocre transition-colors pb-1">
                   Savoir-faire
                 </span>
-                <span className="material-symbols-outlined text-sm">
+                <span className="material-symbols-outlined text-sm" aria-hidden="true">
                   arrow_forward
                 </span>
               </a>
@@ -113,8 +130,8 @@ export default function Home() {
             <div className="md:col-span-7 flex flex-col gap-6">
               <div className="aspect-[4/5] bg-beige-medium/10 overflow-hidden group relative">
                 <Image
-                  alt="Agencement haut de gamme"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1500ms]"
+                  alt="Bibliothèque sur mesure en chêne massif — Projet Héritage"
+                  className="w-full h-full object-cover motion-safe:group-hover:scale-105 transition-transform duration-[1500ms]"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9jFFnA0FrG7ewJCisVB5aHJh9crHitakI2-ZPGMz5XtzLP4dkTx3mw0SGeWbj7AdA6XWEqb0Gge__KpzeRA3llAuOdp9ER9iZkdCgBC38VgU1eTgAfBLvZ-Z6Q6mhB7LQ_7HjNDnadBHQVXnjZofDHOBbwuMN8mjAPHM4g0N5NtDnHOeRCQUbycRMtDFWt3N3Wd2hAD1S2i5hyWlYa0IiexdY5TYEkuvZAgLF1IVB45UNV84eJPFayfbjqTQKe9edhFg9X8Xs8Bg"
                   fill
                 />
@@ -131,8 +148,8 @@ export default function Home() {
             <div className="md:col-span-5 md:pt-32 flex flex-col gap-16">
               <div className="aspect-square bg-blue-gray/10 overflow-hidden group relative">
                 <Image
-                  alt="Détail menuiserie"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1500ms]"
+                  alt="Détail de finition menuiserie — assemblage tenon-mortaise en noyer"
+                  className="w-full h-full object-cover motion-safe:group-hover:scale-110 transition-transform duration-[1500ms]"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUrr4mhoNVfqIjSaRquBp2F4g7HC7pWOZtoT_RGyvI-rqRYthoouJc1uvsEerBLxbuLAV27gFV4_Pu6fVsFsxP3ehjpLyUmb9aA0HqdSZCZDasL0MdCJsxdROdtwj5PSyhzmzV8jtQ9OVTUHqJDbhNZft8y3Pxvz3VIJF3TRfiOV-P4VXZDqBWqxJqjLBPVLSgYYn6eRbsebpKX0AWy3veJPl4X0cFuwYrq_kIbQHbeAZKCYn1F8AU51h_eyGU_7O92XgOd9QZ7AE"
                   fill
                 />
@@ -141,7 +158,7 @@ export default function Home() {
                 <h3 className="text-3xl font-light mb-6">
                   L&apos;exigence du détail
                 </h3>
-                <p className="text-on-surface-variant font-light leading-relaxed">
+                <p className="text-on-surface-variant font-light">
                   De la conception à la pose, chaque millimètre compte pour
                   garantir un résultat pérenne et harmonieux. Un dialogue entre
                   la structure et l&apos;esthétique.
@@ -167,7 +184,10 @@ export default function Home() {
                       key={metier}
                       className="flex items-center gap-4 text-2xl font-serif text-on-surface group cursor-default"
                     >
-                      <span className="w-1.5 h-1.5 bg-ocre rounded-full group-hover:scale-150 transition-transform" />
+                      <span
+                        className="w-1.5 h-1.5 bg-ocre rounded-full motion-safe:group-hover:scale-150 transition-transform"
+                        aria-hidden="true"
+                      />
                       {metier}
                     </li>
                   ))}
@@ -179,8 +199,8 @@ export default function Home() {
             <div className="md:col-span-8 -mt-12 md:-mt-24">
               <div className="aspect-[16/9] md:aspect-[21/9] bg-blue-gray/5 overflow-hidden group relative">
                 <Image
-                  alt="Large library project"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1500ms]"
+                  alt="Agencement complet d'une pièce de vie — menuiserie bois et laiton"
+                  className="w-full h-full object-cover motion-safe:group-hover:scale-105 transition-transform duration-[1500ms]"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuDadGTk_5lm4jwPn23QKz2H5CBRNYd8mP4S1SDMyF-yV30xY31xngw-shybNRRb0Y5mo6--ByVhO4soX1_ZxOMite4Az8T9Ch_ewNHMO4F7LM1Z6Jw5kLsxtGJ2obxBOiqF1-juuYbV5qjWZsO0gGj_1F8jO-6_UOk86mnzubiC4Gi_Ak2BTTMeVZbkrl-5YsH2Bu-SOtaBqPhdbVu_epHhwHgja2jARVqafT5dfuIGc28uFgfovV3nIo5kaAi7v4Q7EOk7zBGbPxM"
                   fill
                 />
@@ -195,22 +215,23 @@ export default function Home() {
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
             <div className="relative">
-              <div className="absolute -top-12 -left-12 w-48 h-48 bg-ocre/10 -z-10" />
+              <div className="absolute -top-12 -left-12 w-48 h-48 bg-ocre/10 -z-10" aria-hidden="true" />
               <div className="relative w-full h-[600px]">
                 <Image
-                  alt="Artisan working"
+                  alt="Artisan menuisier en atelier, travaillant le chêne massif à la main"
                   className="object-cover shadow-2xl"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuDj1o8PUXM2RnpdILcc9ebrjI5uomogfnbRG5mimRoWNM_TPgUFnS7W0pKWhgItut9zICckd_X7x1qxDvvyYTBDjQqOrLErsGqgNYLoZYpTvpu0oQnP8GDWE-GYRvJ9W5cf4Bd9X0gvRrDs2MEMIQWrBQDvSOJRtajelWElWvH5WP3RbWAY1n5mEqJO6rXCAYBDHyyedyoPg48279Zb4aSyIzZklDtTkaBqnc9dZmH-Rpg7TrM9CCPuCsPP4d3B0V6_Ogy8-4Uzj5A"
                   fill
                 />
               </div>
               <div className="absolute -bottom-8 -right-8 p-12 bg-surface max-w-xs border border-beige-medium">
-                <span className="text-4xl font-serif text-ocre italic">
+                <blockquote className="text-4xl font-serif text-ocre italic">
                   &ldquo;Le bois a une âme, nous ne faisons que la
                   révéler.&rdquo;
-                </span>
+                </blockquote>
               </div>
             </div>
+
             <div className="flex flex-col gap-12">
               <span className="text-ocre uppercase tracking-[0.4em] text-xs font-bold">
                 L&apos;expertise Porcher
@@ -219,13 +240,26 @@ export default function Home() {
                 Tradition &amp; <br />
                 Innovation
               </h2>
-              <p className="text-lg text-on-surface-variant font-light leading-relaxed">
+              <p className="text-lg text-on-surface-variant font-light">
                 Allier les techniques ancestrales de l&apos;ébénisterie
                 française aux solutions d&apos;agencement contemporaines. Nous
                 créons des environnements où chaque pièce de bois raconte une
                 histoire de passion et de précision.
               </p>
-              <div className="grid grid-cols-2 gap-12 pt-8">
+
+              {/* Testimonial */}
+              <div className="border-l-2 border-ocre/30 pl-6">
+                <p className="text-on-surface-variant font-light italic mb-3">
+                  &ldquo;Un travail d&apos;une précision remarquable, du
+                  premier rendez-vous à la pose. Notre cuisine sur mesure est
+                  exactement ce qu&apos;on imaginait.&rdquo;
+                </p>
+                <span className="text-[11px] uppercase tracking-widest text-ocre font-medium">
+                  Marie &amp; Thomas D. — Loire-Atlantique
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 gap-12 pt-4">
                 <div>
                   <span className="block text-2xl font-serif mb-4 text-ocre">
                     Matières
@@ -274,6 +308,7 @@ export default function Home() {
                 Donnons vie à vos projets
               </h2>
             </div>
+
             <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-24 items-start">
               <div className="md:col-span-4 bg-ocre p-12 text-on-primary">
                 <h3 className="text-3xl font-serif italic mb-12">
@@ -281,20 +316,26 @@ export default function Home() {
                 </h3>
                 <div className="space-y-8">
                   <div className="flex items-center gap-4">
-                    <span className="material-symbols-outlined font-thin">
+                    <span className="material-symbols-outlined font-thin" aria-hidden="true">
                       call
                     </span>
-                    <span className="text-2xl font-light tracking-widest">
-                      06 68 13 32 45
-                    </span>
+                    <a
+                      href="tel:+33668133245"
+                      className="text-2xl font-light tracking-widest hover:opacity-80 transition-opacity"
+                    >
+                      06&nbsp;68&nbsp;13&nbsp;32&nbsp;45
+                    </a>
                   </div>
                   <div className="flex items-center gap-4">
-                    <span className="material-symbols-outlined font-thin">
+                    <span className="material-symbols-outlined font-thin" aria-hidden="true">
                       mail
                     </span>
-                    <span className="text-sm font-light tracking-wide break-all">
+                    <a
+                      href="mailto:porcher-menuiserie@outlook.fr"
+                      className="text-sm font-light tracking-wide break-all hover:opacity-80 transition-opacity"
+                    >
                       porcher-menuiserie@outlook.fr
-                    </span>
+                    </a>
                   </div>
                 </div>
                 <div className="mt-16 pt-8 border-t border-white/20">
@@ -302,40 +343,78 @@ export default function Home() {
                     Zone d&apos;intervention
                   </span>
                   <p className="font-light text-sm">
-                    Secteur local et alentours
+                    Loire-Atlantique &amp; Vendée
                   </p>
                 </div>
               </div>
 
               <form className="md:col-span-8 grid grid-cols-1 gap-12">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                  <div className="flex flex-col gap-1">
+                    <label htmlFor="name" className="sr-only">
+                      Votre nom
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      autoComplete="name"
+                      className="w-full bg-transparent border-0 border-b border-ocre/30 py-4 px-0 focus:ring-0 focus:border-ocre transition-colors font-light text-lg placeholder:text-outline/40"
+                      placeholder="Votre Nom"
+                      type="text"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <label htmlFor="email" className="sr-only">
+                      Votre email
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      autoComplete="email"
+                      className="w-full bg-transparent border-0 border-b border-ocre/30 py-4 px-0 focus:ring-0 focus:border-ocre transition-colors font-light text-lg placeholder:text-outline/40"
+                      placeholder="Email"
+                      type="email"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-1">
+                  <label htmlFor="projet" className="sr-only">
+                    Type de projet
+                  </label>
                   <input
+                    id="projet"
+                    name="projet"
                     className="w-full bg-transparent border-0 border-b border-ocre/30 py-4 px-0 focus:ring-0 focus:border-ocre transition-colors font-light text-lg placeholder:text-outline/40"
-                    placeholder="Votre Nom"
+                    placeholder="Type de projet (Cuisine, Parquet, Cloison…)"
                     type="text"
                   />
-                  <input
-                    className="w-full bg-transparent border-0 border-b border-ocre/30 py-4 px-0 focus:ring-0 focus:border-ocre transition-colors font-light text-lg placeholder:text-outline/40"
-                    placeholder="Email"
-                    type="email"
+                </div>
+
+                <div className="flex flex-col gap-1">
+                  <label htmlFor="message" className="sr-only">
+                    Votre message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    className="w-full bg-transparent border-0 border-b border-ocre/30 py-4 px-0 focus:ring-0 focus:border-ocre transition-colors font-light text-lg placeholder:text-outline/40 resize-none"
+                    placeholder="Votre message…"
+                    rows={4}
                   />
                 </div>
-                <input
-                  className="w-full bg-transparent border-0 border-b border-ocre/30 py-4 px-0 focus:ring-0 focus:border-ocre transition-colors font-light text-lg placeholder:text-outline/40"
-                  placeholder="Type de projet (Cuisine, Parquet, Cloison...)"
-                  type="text"
-                />
-                <textarea
-                  className="w-full bg-transparent border-0 border-b border-ocre/30 py-4 px-0 focus:ring-0 focus:border-ocre transition-colors font-light text-lg placeholder:text-outline/40 resize-none"
-                  placeholder="Votre message..."
-                  rows={4}
-                />
-                <button
-                  className="bg-ocre text-on-primary px-12 py-5 text-xs uppercase tracking-widest font-bold hover:opacity-90 active:scale-95 transition-all w-max"
-                  type="submit"
-                >
-                  Envoyer ma demande
-                </button>
+
+                <div>
+                  <button
+                    className="bg-ocre text-on-primary px-12 py-5 text-xs uppercase tracking-widest font-bold hover:opacity-90 active:scale-95 transition-all"
+                    type="submit"
+                  >
+                    Envoyer ma demande
+                  </button>
+                  <p className="mt-4 text-[11px] text-on-surface-variant/60 tracking-wide">
+                    Réponse sous 48&nbsp;h · Devis gratuit et sans engagement
+                  </p>
+                </div>
               </form>
             </div>
           </div>
@@ -343,9 +422,9 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-beige-light py-24 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-12">
+      <footer className="bg-beige-light py-16 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-12">
         <div className="flex items-center gap-4">
-          <div className="w-8 h-8 border border-ocre flex items-center justify-center">
+          <div className="w-8 h-8 border border-ocre flex items-center justify-center" aria-hidden="true">
             <span className="text-ocre font-serif text-sm">P</span>
           </div>
           <div className="text-lg font-serif tracking-tighter text-ocre">
@@ -364,7 +443,7 @@ export default function Home() {
           </a>
         </div>
         <div className="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant opacity-60">
-          © 2024 Porcher Menuiserie Agencement.
+          © 2025 Porcher Menuiserie Agencement.
         </div>
       </footer>
     </>

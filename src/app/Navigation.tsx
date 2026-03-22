@@ -50,9 +50,18 @@ export default function Navigation() {
         ))}
       </div>
 
-      <button className="bg-ocre text-on-primary px-8 py-3 text-[10px] uppercase tracking-widest font-medium hover:opacity-90 active:scale-95 transition-all">
+      <a
+        href="#contact"
+        onClick={(e) => {
+          e.preventDefault();
+          setActive("contact");
+          document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+        }}
+        className="bg-ocre text-on-primary px-8 py-3 text-[10px] uppercase tracking-widest font-medium hover:opacity-90 active:scale-95 transition-all"
+        aria-label="Demander un devis — accéder au formulaire de contact"
+      >
         Demander un devis
-      </button>
+      </a>
     </nav>
   );
 }

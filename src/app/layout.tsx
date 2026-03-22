@@ -24,7 +24,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-surface text-on-surface selection:bg-ocre/20 selection:text-ocre">
+      <body className="bg-surface text-on-surface selection:bg-ocre/20 selection:text-ocre" suppressHydrationWarning>
         {children}
       </body>
     </html>

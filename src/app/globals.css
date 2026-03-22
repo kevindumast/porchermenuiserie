@@ -33,6 +33,18 @@ h1,
 h2,
 h3 {
   font-family: "Noto Serif", serif;
+  text-wrap: balance;
+}
+
+p {
+  line-height: 1.75;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
 
 .no-scrollbar::-webkit-scrollbar {
