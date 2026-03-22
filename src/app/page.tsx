@@ -1,42 +1,11 @@
 import Image from "next/image";
+import Navigation from "./Navigation";
 
 export default function Home() {
   return (
     <>
       {/* Navigation */}
-      <nav className="fixed top-0 w-full flex justify-between items-center px-6 md:px-12 py-6 bg-surface/70 backdrop-blur-xl z-50">
-        <div className="flex items-center gap-4">
-          <div className="w-10 h-10 border border-ocre flex items-center justify-center">
-            <span className="text-ocre font-serif text-xl">P</span>
-          </div>
-          <div className="hidden md:block text-xl font-serif tracking-tighter text-ocre">
-            PORCHER
-          </div>
-        </div>
-        <div className="hidden md:flex gap-12 items-center">
-          <a
-            className="text-ocre border-b border-ocre/30 pb-1 font-serif font-light tracking-wide hover:border-ocre transition-colors"
-            href="#projets"
-          >
-            Projets
-          </a>
-          <a
-            className="text-on-surface-variant hover:text-ocre transition-colors font-serif font-light tracking-wide"
-            href="#services"
-          >
-            Savoir-faire
-          </a>
-          <a
-            className="text-on-surface-variant hover:text-ocre transition-colors font-serif font-light tracking-wide"
-            href="#contact"
-          >
-            Contact
-          </a>
-        </div>
-        <button className="bg-ocre text-on-primary px-8 py-3 text-[10px] uppercase tracking-widest font-medium hover:opacity-90 transition-all">
-          Demander un devis
-        </button>
-      </nav>
+      <Navigation />
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center pt-24 overflow-hidden">
@@ -60,7 +29,7 @@ export default function Home() {
               >
                 <defs>
                   <path
-                    d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"
+                    d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"
                     id="circlePath"
                   />
                 </defs>
