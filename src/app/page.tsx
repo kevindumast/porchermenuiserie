@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Navigation from "./Navigation";
 import ContactForm from "./ContactForm";
 
@@ -121,9 +122,9 @@ export default function Home() {
                 nos réalisations.
               </p>
             </div>
-            <div className="text-ocre text-xs uppercase tracking-widest border-b border-ocre/20 pb-2">
-              Archives 2023-2024
-            </div>
+            <Link href="/archives" className="text-ocre text-xs uppercase tracking-widest border-b border-ocre/20 pb-2 hover:border-ocre transition-colors">
+              Archives 2025 — Aujourd&apos;hui
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-start">

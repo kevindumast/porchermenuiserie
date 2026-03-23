@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 const NAV_LINKS = [
   { id: "projets", label: "Projets" },
@@ -13,14 +14,14 @@ export default function Navigation() {
 
   return (
     <nav className="fixed top-0 w-full flex justify-between items-center px-6 md:px-12 py-6 bg-surface/70 backdrop-blur-xl z-50">
-      <div className="flex items-center gap-4">
+      <Link href="/" className="flex items-center gap-4">
         <div className="w-10 h-10 border border-ocre flex items-center justify-center">
           <span className="text-ocre font-serif text-xl">P</span>
         </div>
         <div className="hidden md:block text-xl font-serif tracking-tighter text-ocre">
           PORCHER
         </div>
-      </div>
+      </Link>
 
       <div className="hidden md:flex gap-12 items-center">
         {NAV_LINKS.map(({ id, label }) => (
