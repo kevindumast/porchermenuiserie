@@ -57,18 +57,21 @@ export default async function ArchivesPage() {
       <Navigation />
 
       <main className="min-h-screen bg-surface pt-24">
-        <div className="container mx-auto px-6 md:px-12 py-16 md:py-24">
+        <div className="container mx-auto px-6 md:px-12 py-12 md:py-16">
           {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-24">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
             <div>
-              <span className="text-ocre uppercase tracking-[0.3em] text-xs font-bold mb-4 block">
+              <span className="text-ocre uppercase tracking-[0.3em] text-xs font-bold mb-3 block">
                 Le Book
               </span>
-              <h1 className="text-5xl md:text-7xl font-light leading-tight">
-                Archives
-                <br />
-                <span className="font-serif italic">2025 — Aujourd&apos;hui</span>
+              <h1 className="text-3xl md:text-4xl font-light leading-tight">
+                Archives —{" "}
+                <span className="font-serif italic">2025 à aujourd&apos;hui</span>
               </h1>
+              <p className="text-on-surface-variant text-sm font-light mt-2">
+                {projects.reduce((acc, p) => acc + p.images.length, 0)} photos
+                &nbsp;·&nbsp; {projects.length} projet{projects.length > 1 ? "s" : ""}
+              </p>
             </div>
             <Link
               href="/"

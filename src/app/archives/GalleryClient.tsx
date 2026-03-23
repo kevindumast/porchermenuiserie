@@ -6,6 +6,8 @@ import { useCallback, useEffect, useState } from "react";
 type Photo = {
   public_id: string;
   secure_url: string;
+  width: number;
+  height: number;
 };
 
 type Project = {
@@ -46,35 +48,70 @@ export default function GalleryClient({ projects }: { projects: Project[] }) {
 
   return (
     <>
-      {projects.map((project) => (
-        <section key={project.name} className="mb-24">
-          <div className="flex items-center gap-6 mb-8">
-            <div className="h-px w-8 bg-ocre/30" aria-hidden="true" />
-            <h2 className="text-xs uppercase tracking-[0.3em] text-ocre font-bold">
-              {project.name}
-            </h2>
-          </div>
+      {projects.map((project) => {
+        const [hero, ...rest] = project.images;
+        return (
+          <section key={project.name} className="mb-20">
+            {/* Project header */}
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-4">
+                <div className="h-px w-6 bg-ocre/40" aria-hidden="true" />
+                <h2 className="text-[11px] uppercase tracking-[0.3em] text-ocre font-bold">
+                  {project.name}
+                </h2>
+              </div>
+              <span className="text-[10px] uppercase tracking-widest text-on-surface-variant/50">
+                {project.images.length} photo{project.images.length > 1 ? "s" : ""}
+              </span>
+            </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3">
-            {project.images.map((image, i) => (
-              <button
-                key={image.public_id}
-                onClick={() => setLightbox({ photos: project.images, index: i })}
-                className="aspect-square overflow-hidden group relative bg-beige-medium/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-ocre"
-                aria-label={`Agrandir la photo ${i + 1} — ${project.name}`}
-              >
-                <Image
-                  src={image.secure_url}
-                  alt={`${project.name} — réalisation Porcher Menuiserie`}
-                  fill
-                  className="object-cover motion-safe:group-hover:scale-105 transition-transform duration-700"
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                />
-              </button>
-            ))}
-          </div>
-        </section>
-      ))}
+            {/* Editorial grid: hero + masonry */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-3">
+              {/* Hero image — prend 7 colonnes, hauteur généreuse */}
+              {hero && (
+                <button
+                  onClick={() => setLightbox({ photos: project.images, index: 0 })}
+                  className="md:col-span-7 overflow-hidden group relative bg-beige-medium/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-ocre cursor-pointer"
+                  style={{ aspectRatio: hero.width && hero.height ? `${hero.width}/${hero.height}` : "4/3" }}
+                  aria-label={`Agrandir la photo 1 — ${project.name}`}
+                >
+                  <Image
+                    src={hero.secure_url}
+                    alt={`${project.name} — réalisation Porcher Menuiserie`}
+                    fill
+                    className="object-cover motion-safe:group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 768px) 100vw, 58vw"
+                    priority
+                  />
+                </button>
+              )}
+
+              {/* Remaining images — colonne masonry de 5 */}
+              {rest.length > 0 && (
+                <div className="md:col-span-5 columns-2 gap-2 md:gap-3">
+                  {rest.map((image, i) => (
+                    <button
+                      key={image.public_id}
+                      onClick={() => setLightbox({ photos: project.images, index: i + 1 })}
+                      className="break-inside-avoid mb-2 md:mb-3 block w-full overflow-hidden group relative bg-beige-medium/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-ocre cursor-pointer"
+                      aria-label={`Agrandir la photo ${i + 2} — ${project.name}`}
+                    >
+                      <Image
+                        src={image.secure_url}
+                        alt={`${project.name} — réalisation Porcher Menuiserie`}
+                        width={image.width || 400}
+                        height={image.height || 400}
+                        className="w-full h-auto object-cover motion-safe:group-hover:scale-105 transition-transform duration-700"
+                        sizes="(max-width: 768px) 50vw, 20vw"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </section>
+        );
+      })}
 
       {/* Lightbox */}
       {lightbox && (

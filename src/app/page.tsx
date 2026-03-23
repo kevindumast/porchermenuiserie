@@ -253,11 +253,11 @@ export default function Home() {
               <div className="border-l-2 border-ocre/30 pl-6">
                 <p className="text-on-surface-variant font-light italic mb-3">
                   &ldquo;Un travail d&apos;une précision remarquable, du
-                  premier rendez-vous à la pose. Notre cuisine sur mesure est
+                  premier rendez-vous à la pose. Notre agencement sur mesure est
                   exactement ce qu&apos;on imaginait.&rdquo;
                 </p>
                 <span className="text-[11px] uppercase tracking-widest text-ocre font-medium">
-                  Marie &amp; Thomas D. — Loire-Atlantique
+                  Ophélie &amp; Kévin D. — ille &amp; Vilaine
                 </span>
               </div>
 
