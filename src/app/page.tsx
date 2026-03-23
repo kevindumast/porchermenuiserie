@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Navigation from "./Navigation";
+import ContactForm from "./ContactForm";
 
 export default function Home() {
   return (
@@ -135,12 +136,6 @@ export default function Home() {
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9jFFnA0FrG7ewJCisVB5aHJh9crHitakI2-ZPGMz5XtzLP4dkTx3mw0SGeWbj7AdA6XWEqb0Gge__KpzeRA3llAuOdp9ER9iZkdCgBC38VgU1eTgAfBLvZ-Z6Q6mhB7LQ_7HjNDnadBHQVXnjZofDHOBbwuMN8mjAPHM4g0N5NtDnHOeRCQUbycRMtDFWt3N3Wd2hAD1S2i5hyWlYa0IiexdY5TYEkuvZAgLF1IVB45UNV84eJPFayfbjqTQKe9edhFg9X8Xs8Bg"
                   fill
                 />
-                <div className="absolute bottom-0 left-0 p-10 bg-surface/80 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <span className="text-[10px] uppercase tracking-[0.3em] text-ocre mb-2 block">
-                    Agencement Résidentiel
-                  </span>
-                  <h3 className="text-2xl font-serif">Projet Héritage</h3>
-                </div>
               </div>
             </div>
 
@@ -168,11 +163,17 @@ export default function Home() {
 
             {/* Services List */}
             <div className="md:col-span-4 flex flex-col gap-6">
-              <div className="aspect-square bg-beige-light p-12 flex flex-col justify-center">
-                <span className="text-ocre uppercase tracking-[0.4em] text-[10px] mb-8 block font-bold">
-                  Nos Métiers
-                </span>
-                <ul className="space-y-5">
+              <div className="aspect-square bg-beige-light p-10 flex flex-col justify-start gap-6">
+                <div>
+                  <span className="text-ocre uppercase tracking-[0.3em] text-xs block font-bold mb-3">
+                    Nos Métiers
+                  </span>
+                  <h3 className="text-2xl font-serif text-on-surface leading-tight whitespace-nowrap">
+                    Ce que nous faisons
+                  </h3>
+                  <div className="w-8 h-px bg-ocre/40 mt-4" aria-hidden="true" />
+                </div>
+                <ul className="space-y-3">
                   {[
                     "Agencement",
                     "Menuiserie",
@@ -182,10 +183,10 @@ export default function Home() {
                   ].map((metier) => (
                     <li
                       key={metier}
-                      className="flex items-center gap-4 text-2xl font-serif text-on-surface group cursor-default"
+                      className="flex items-center gap-3 text-lg font-serif text-on-surface group cursor-default"
                     >
                       <span
-                        className="w-1.5 h-1.5 bg-ocre rounded-full motion-safe:group-hover:scale-150 transition-transform"
+                        className="w-1 h-1 bg-ocre rounded-full flex-shrink-0 motion-safe:group-hover:scale-150 transition-transform"
                         aria-hidden="true"
                       />
                       {metier}
@@ -310,112 +311,45 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-24 items-start">
-              <div className="md:col-span-4 bg-ocre p-12 text-on-primary">
-                <h3 className="text-3xl font-serif italic mb-12">
+              <div className="md:col-span-4 bg-ocre p-8 text-on-primary">
+                <h3 className="text-xl font-serif italic mb-8">
                   Contact Direct
                 </h3>
-                <div className="space-y-8">
-                  <div className="flex items-center gap-4">
-                    <span className="material-symbols-outlined font-thin" aria-hidden="true">
+                <div className="space-y-5">
+                  <div className="flex items-center gap-3">
+                    <span className="material-symbols-outlined text-base font-thin" aria-hidden="true">
                       call
                     </span>
                     <a
                       href="tel:+33668133245"
-                      className="text-2xl font-light tracking-widest hover:opacity-80 transition-opacity"
+                      className="text-base font-light tracking-widest hover:opacity-80 transition-opacity"
                     >
                       06&nbsp;68&nbsp;13&nbsp;32&nbsp;45
                     </a>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <span className="material-symbols-outlined font-thin" aria-hidden="true">
+                  <div className="flex items-center gap-3">
+                    <span className="material-symbols-outlined text-base font-thin" aria-hidden="true">
                       mail
                     </span>
                     <a
                       href="mailto:porcher-menuiserie@outlook.fr"
-                      className="text-sm font-light tracking-wide break-all hover:opacity-80 transition-opacity"
+                      className="text-xs font-light tracking-wide break-all hover:opacity-80 transition-opacity"
                     >
                       porcher-menuiserie@outlook.fr
                     </a>
                   </div>
                 </div>
-                <div className="mt-16 pt-8 border-t border-white/20">
-                  <span className="block text-[10px] uppercase tracking-widest opacity-70 mb-2">
+                <div className="mt-10 pt-6 border-t border-white/20">
+                  <span className="block text-[10px] uppercase tracking-widest opacity-70 mb-1">
                     Zone d&apos;intervention
                   </span>
                   <p className="font-light text-sm">
-                    Loire-Atlantique &amp; Vendée
+                    Ille-et-Vilaine
                   </p>
                 </div>
               </div>
 
-              <form className="md:col-span-8 grid grid-cols-1 gap-12">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                  <div className="flex flex-col gap-1">
-                    <label htmlFor="name" className="sr-only">
-                      Votre nom
-                    </label>
-                    <input
-                      id="name"
-                      name="name"
-                      autoComplete="name"
-                      className="w-full bg-transparent border-0 border-b border-ocre/30 py-4 px-0 focus:ring-0 focus:border-ocre transition-colors font-light text-lg placeholder:text-outline/40"
-                      placeholder="Votre Nom"
-                      type="text"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-1">
-                    <label htmlFor="email" className="sr-only">
-                      Votre email
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      autoComplete="email"
-                      className="w-full bg-transparent border-0 border-b border-ocre/30 py-4 px-0 focus:ring-0 focus:border-ocre transition-colors font-light text-lg placeholder:text-outline/40"
-                      placeholder="Email"
-                      type="email"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-1">
-                  <label htmlFor="projet" className="sr-only">
-                    Type de projet
-                  </label>
-                  <input
-                    id="projet"
-                    name="projet"
-                    className="w-full bg-transparent border-0 border-b border-ocre/30 py-4 px-0 focus:ring-0 focus:border-ocre transition-colors font-light text-lg placeholder:text-outline/40"
-                    placeholder="Type de projet (Cuisine, Parquet, Cloison…)"
-                    type="text"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-1">
-                  <label htmlFor="message" className="sr-only">
-                    Votre message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    className="w-full bg-transparent border-0 border-b border-ocre/30 py-4 px-0 focus:ring-0 focus:border-ocre transition-colors font-light text-lg placeholder:text-outline/40 resize-none"
-                    placeholder="Votre message…"
-                    rows={4}
-                  />
-                </div>
-
-                <div>
-                  <button
-                    className="bg-ocre text-on-primary px-12 py-5 text-xs uppercase tracking-widest font-bold hover:opacity-90 active:scale-95 transition-all"
-                    type="submit"
-                  >
-                    Envoyer ma demande
-                  </button>
-                  <p className="mt-4 text-[11px] text-on-surface-variant/60 tracking-wide">
-                    Réponse sous 48&nbsp;h · Devis gratuit et sans engagement
-                  </p>
-                </div>
-              </form>
+              <ContactForm />
             </div>
           </div>
         </div>
@@ -443,7 +377,7 @@ export default function Home() {
           </a>
         </div>
         <div className="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant opacity-60">
-          © 2025 Porcher Menuiserie Agencement.
+          © 2026 Porcher Menuiserie Agencement.
         </div>
       </footer>
     </>
