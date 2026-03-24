@@ -23,7 +23,7 @@ const LOCAL_BUSINESS_SCHEMA = {
   name: "Porcher Menuiserie",
   description:
     "Artisan menuisier spécialisé en agencement intérieur sur mesure, menuiserie, parquet, cloison sèche et faux plafond en Ille-et-Vilaine.",
-  url: "https://porcher-menuiserie.fr",
+  url: "https://porchermenuiserie.vercel.app",
   telephone: "+33668133245",
   email: "porcher-menuiserie@outlook.fr",
   areaServed: {
@@ -43,7 +43,7 @@ const LOCAL_BUSINESS_SCHEMA = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://porcher-menuiserie.fr"),
+  metadataBase: new URL("https://porchermenuiserie.vercel.app"),
   title: "Porcher Menuiserie — Menuisier sur mesure en Ille-et-Vilaine",
   description:
     "Artisan menuisier en Ille-et-Vilaine. Agencement intérieur, menuiserie sur mesure, parquet, cloison sèche et faux plafond. 15 ans d'expérience, 150+ réalisations.",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title: "Porcher Menuiserie — Menuisier sur mesure, Ille-et-Vilaine",
     description:
       "Menuiserie et agencement intérieur sur mesure. 15 ans d'expérience, 150+ réalisations en Ille-et-Vilaine.",
-    url: "https://porcher-menuiserie.fr",
+    url: "https://porchermenuiserie.vercel.app",
     siteName: "Porcher Menuiserie",
     locale: "fr_FR",
     type: "website",
