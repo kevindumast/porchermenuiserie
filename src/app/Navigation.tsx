@@ -27,6 +27,7 @@ export default function Navigation() {
   }
 
   return (
+    <>
     <nav className="fixed top-0 w-full flex justify-between items-center px-6 md:px-12 py-6 bg-surface/70 backdrop-blur-xl z-50">
       <Link href="/" className="flex items-center gap-4">
         <div className="w-10 h-10 border border-ocre flex items-center justify-center">
@@ -114,5 +115,6 @@ export default function Navigation() {
         </a>
       </div>
     </nav>
+    </>
   );
 }
