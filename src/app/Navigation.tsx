@@ -5,9 +5,9 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 const NAV_LINKS = [
-  { id: "projets", label: "Projets" },
-  { id: "services", label: "Savoir-faire" },
-  { id: "contact", label: "Contact" },
+  { id: "projets", label: "Projets", icon: "grid_view" },
+  { id: "services", label: "Savoir-faire", icon: "handyman" },
+  { id: "contact", label: "Contact", icon: "mail" },
 ];
 
 export default function Navigation() {
@@ -69,6 +69,50 @@ export default function Navigation() {
       >
         Demander un devis
       </a>
+    </nav>
+
+    {/* Barre de navigation mobile — visible uniquement sur téléphone */}
+    <nav
+      className="fixed bottom-0 w-full md:hidden bg-surface/90 backdrop-blur-xl border-t border-ocre/20 z-50"
+      style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+    >
+      <div className="flex justify-around items-center py-2">
+        {NAV_LINKS.map(({ id, label, icon }) => (
+          <a
+            key={id}
+            href={isHome ? `#${id}` : `/#${id}`}
+            onClick={(e) => handleNavClick(e, id)}
+            className="flex flex-col items-center gap-0.5 px-4 py-1 group"
+          >
+            <span
+              className={`material-symbols-outlined text-[22px] transition-colors duration-200 ${
+                active === id ? "text-ocre" : "text-on-surface-variant"
+              }`}
+              style={{ fontVariationSettings: active === id ? "'FILL' 1" : "'FILL' 0" }}
+            >
+              {icon}
+            </span>
+            <span
+              className={`text-[10px] tracking-wide transition-colors duration-200 ${
+                active === id ? "text-ocre" : "text-on-surface-variant"
+              }`}
+            >
+              {label}
+            </span>
+          </a>
+        ))}
+        <a
+          href={isHome ? "#contact" : "/#contact"}
+          onClick={(e) => handleNavClick(e, "contact")}
+          className="flex flex-col items-center gap-0.5 px-4 py-1"
+          aria-label="Demander un devis"
+        >
+          <span className="material-symbols-outlined text-[22px] text-on-surface-variant" style={{ fontVariationSettings: "'FILL' 0" }}>
+            request_quote
+          </span>
+          <span className="text-[10px] tracking-wide text-on-surface-variant">Devis</span>
+        </a>
+      </div>
     </nav>
   );
 }

@@ -60,8 +60,13 @@ export default function Home() {
             </div>
 
             <h1 className="text-6xl md:text-8xl font-light text-on-surface leading-tight mb-4">
-              L&apos;Art du <br />
-              <span className="italic font-serif">Geste</span>
+              <span className="sr-only">
+                Menuisier sur mesure — Porcher Menuiserie, Ille-et-Vilaine.{" "}
+              </span>
+              <span aria-hidden="true">
+                L&apos;Art du <br />
+                <span className="italic font-serif">Geste</span>
+              </span>
             </h1>
 
             {/* Hero subtitle — Jobs To Be Done */}
@@ -299,7 +304,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-24 md:py-48 bg-surface" id="contact">
+      <section className="py-24 pb-36 md:py-48 md:pb-48 bg-surface" id="contact">
         <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-24">

@@ -12,9 +12,9 @@
   --color-on-primary: #ffffff;
   --color-outline: #7f7669;
 
-  --font-headline: "Noto Serif", serif;
-  --font-body: "Manrope", sans-serif;
-  --font-label: "Manrope", sans-serif;
+  --font-headline: var(--font-noto-serif), serif;
+  --font-body: var(--font-manrope), sans-serif;
+  --font-label: var(--font-manrope), sans-serif;
 
   --radius: 0px;
   --radius-lg: 0px;
@@ -31,13 +31,13 @@
 }
 
 body {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--font-manrope), sans-serif;
 }
 
 h1,
 h2,
 h3 {
-  font-family: "Noto Serif", serif;
+  font-family: var(--font-noto-serif), serif;
   text-wrap: balance;
 }
 

@@ -1,9 +1,25 @@
 import { v2 as cloudinary } from "cloudinary";
+import type { Metadata } from "next";
 import Link from "next/link";
 import Navigation from "../Navigation";
 import GalleryClient from "./GalleryClient";
 
-export const revalidate = 0;
+export const revalidate = 3600;
+
+export const metadata: Metadata = {
+  title: "Book & Réalisations — Porcher Menuiserie, Ille-et-Vilaine",
+  description:
+    "Galerie des réalisations Porcher Menuiserie : bibliothèques sur mesure, agencement intérieur, parquet, cloisons sèches et faux plafonds en Ille-et-Vilaine.",
+  alternates: {
+    canonical: "/archives",
+  },
+  openGraph: {
+    title: "Book & Réalisations — Porcher Menuiserie",
+    description:
+      "Découvrez nos réalisations : agencement sur mesure, menuiserie, parquet en Ille-et-Vilaine.",
+    url: "https://porcher-menuiserie.fr/archives",
+  },
+};
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
