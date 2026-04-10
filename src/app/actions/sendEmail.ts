@@ -115,7 +115,7 @@ export async function sendDevisEmail(formData: FormData) {
               <table width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td>
-                    <p style="margin:0;font-size:11px;color:#4d463a;letter-spacing:0.1em;">Porcher Menuiserie · Loire-Atlantique &amp; Vendée</p>
+                    <p style="margin:0;font-size:11px;color:#4d463a;letter-spacing:0.1em;">Porcher Menuiserie · Ille-et-Vilaine</p>
                     <p style="margin:4px 0 0 0;font-size:11px;color:#A48654;letter-spacing:0.1em;">06 68 13 32 45 · porcher-menuiserie@outlook.fr</p>
                   </td>
                   <td align="right">

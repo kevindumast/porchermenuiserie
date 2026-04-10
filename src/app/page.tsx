@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Navigation from "./Navigation";
 import ContactForm from "./ContactForm";
+import CopyableContact from "./CopyableContact";
 
 export default function Home() {
   return (
@@ -14,8 +15,9 @@ export default function Home() {
           <Image
             alt="Intérieur haut de gamme en bois massif réalisé par Porcher Menuiserie"
             className="w-full h-full object-cover"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRijYKZbPgilz3AiZCdn34K2GIjIkG03yk5AtCC3d2Mgu3gkUhaIGKaC2KnXXiTSz0TveH8M-ejQRiWtvNXMSeGfxH4wwF6RxZ2BHMJav6wZ8a654LGiVlS_yVdIQ7sMzz4S9Q5i-6MUnNwdkgPhWslBxwclOlAnSHHhgjEBhlMMPJKEq1nnrrJzKBpv7IGQfMIOcLyOC9kmxYXQvdoQSPHLC5rp8dMkWiEgWAPn2RqGDgYMzXqq--UC_z32AJvPclq1w4ZjCoz7g"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRijYKZbPgilz3AiZCdn34K2GIjIkG03yk5AtCC3d2Mgu3gkUhaIGKaC2KnXXiTSz0TveH8M-ejQRiWtvNXMSeGfxH4wwF6RxZ2BHMJav6wZ8a654LGiVlS_yVdIQ7sMzz4S9Q5i-6MUnNwdkgPhWslBxwclOlAnSHHhgjEBhlMMPJKEq1nnrrJzKBpv7IGQfMIOcLyOC9kmxYXQvdoQSPHLC5rp8dMkWiEgWAPn2RqGDgYMzXqq--UC_z32AJvPclq1w4ZjCoz7g=w2400"
             fill
+            sizes="100vw"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-beige-light/90 via-beige-light/40 to-transparent" />
@@ -262,7 +264,7 @@ export default function Home() {
                   exactement ce qu&apos;on imaginait.&rdquo;
                 </p>
                 <span className="text-[11px] uppercase tracking-widest text-ocre font-medium">
-                  Ophélie &amp; Kévin D. — ille &amp; Vilaine
+                  Ophélie &amp; Kévin D. — Ille-et-Vilaine
                 </span>
               </div>
 
@@ -322,28 +324,7 @@ export default function Home() {
                   Contact Direct
                 </h3>
                 <div className="space-y-5">
-                  <div className="flex items-center gap-3">
-                    <span className="material-symbols-outlined text-base font-thin" aria-hidden="true">
-                      call
-                    </span>
-                    <a
-                      href="tel:+33668133245"
-                      className="text-base font-light tracking-widest hover:opacity-80 transition-opacity"
-                    >
-                      06&nbsp;68&nbsp;13&nbsp;32&nbsp;45
-                    </a>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="material-symbols-outlined text-base font-thin" aria-hidden="true">
-                      mail
-                    </span>
-                    <a
-                      href="mailto:porcher-menuiserie@outlook.fr"
-                      className="text-xs font-light tracking-wide break-all hover:opacity-80 transition-opacity"
-                    >
-                      porcher-menuiserie@outlook.fr
-                    </a>
-                  </div>
+                  <CopyableContact />
                 </div>
                 <div className="mt-10 pt-6 border-t border-white/20">
                   <span className="block text-[10px] uppercase tracking-widest opacity-70 mb-1">
