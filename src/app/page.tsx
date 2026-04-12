@@ -3,8 +3,64 @@ import Link from "next/link";
 import Navigation from "./Navigation";
 import ContactForm from "./ContactForm";
 import CopyableContact from "./CopyableContact";
+import { supabase, PROJECTS_BUCKET } from "@/lib/supabase";
 
-export default function Home() {
+// Pas de cache - regenère à chaque visite pour récupérer les images fraîches
+export const revalidate = 0;
+
+// Noms des images attendues dans le dossier landing/ du bucket
+// Accepte n'importe quel format (.jpg, .png, .webp, etc.)
+const LANDING_IMAGE_NAMES = ["hero", "book_main", "book_detail", "book_wide", "savoir_faire"] as const;
+
+type LandingImages = Record<(typeof LANDING_IMAGE_NAMES)[number], string>;
+
+async function getLandingImages(): Promise<LandingImages> {
+  // Liste tous les fichiers du dossier landing/
+  const { data: files, error: listError } = await supabase.storage
+    .from(PROJECTS_BUCKET)
+    .list("landing", { limit: 100 });
+
+  if (listError || !files) {
+    console.warn("Erreur listage landing/:", listError);
+    return LANDING_IMAGE_NAMES.reduce((acc, name) => ({ ...acc, [name]: "" }), {} as LandingImages);
+  }
+
+  // Crée un map des fichiers par nom (sans extension)
+  const fileMap = new Map<string, string>();
+  for (const file of files) {
+    if (file.metadata?.mimetype?.startsWith("image/")) {
+      const nameWithoutExt = file.name.split(".")[0];
+      fileMap.set(nameWithoutExt, file.name);
+    }
+  }
+
+  // Génère les URLs signées pour chaque image
+  const images: Partial<LandingImages> = {};
+
+  for (const imageName of LANDING_IMAGE_NAMES) {
+    const filename = fileMap.get(imageName);
+    if (filename) {
+      const { data, error } = await supabase.storage
+        .from(PROJECTS_BUCKET)
+        .createSignedUrl(`landing/${filename}`, 60 * 60 * 24 * 7);
+
+      if (data?.signedUrl) {
+        images[imageName] = data.signedUrl;
+      } else {
+        console.warn(`Erreur URL signée pour landing/${filename}:`, error);
+        images[imageName] = "";
+      }
+    } else {
+      console.warn(`Image "${imageName}" introuvable dans le dossier landing/`);
+      images[imageName] = "";
+    }
+  }
+
+  return images as LandingImages;
+}
+
+export default async function Home() {
+  const img = await getLandingImages();
   return (
     <>
       <Navigation />
@@ -15,7 +71,7 @@ export default function Home() {
           <Image
             alt="Intérieur haut de gamme en bois massif réalisé par Porcher Menuiserie"
             className="w-full h-full object-cover"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRijYKZbPgilz3AiZCdn34K2GIjIkG03yk5AtCC3d2Mgu3gkUhaIGKaC2KnXXiTSz0TveH8M-ejQRiWtvNXMSeGfxH4wwF6RxZ2BHMJav6wZ8a654LGiVlS_yVdIQ7sMzz4S9Q5i-6MUnNwdkgPhWslBxwclOlAnSHHhgjEBhlMMPJKEq1nnrrJzKBpv7IGQfMIOcLyOC9kmxYXQvdoQSPHLC5rp8dMkWiEgWAPn2RqGDgYMzXqq--UC_z32AJvPclq1w4ZjCoz7g=w2400"
+            src={img.hero}
             fill
             sizes="100vw"
             priority
@@ -141,7 +197,7 @@ export default function Home() {
                 <Image
                   alt="Bibliothèque sur mesure en chêne massif — Projet Héritage"
                   className="w-full h-full object-cover motion-safe:group-hover:scale-105 transition-transform duration-[1500ms]"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9jFFnA0FrG7ewJCisVB5aHJh9crHitakI2-ZPGMz5XtzLP4dkTx3mw0SGeWbj7AdA6XWEqb0Gge__KpzeRA3llAuOdp9ER9iZkdCgBC38VgU1eTgAfBLvZ-Z6Q6mhB7LQ_7HjNDnadBHQVXnjZofDHOBbwuMN8mjAPHM4g0N5NtDnHOeRCQUbycRMtDFWt3N3Wd2hAD1S2i5hyWlYa0IiexdY5TYEkuvZAgLF1IVB45UNV84eJPFayfbjqTQKe9edhFg9X8Xs8Bg"
+                  src={img.book_main}
                   fill
                 />
               </div>
@@ -153,7 +209,7 @@ export default function Home() {
                 <Image
                   alt="Détail de finition menuiserie — assemblage tenon-mortaise en noyer"
                   className="w-full h-full object-cover motion-safe:group-hover:scale-110 transition-transform duration-[1500ms]"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUrr4mhoNVfqIjSaRquBp2F4g7HC7pWOZtoT_RGyvI-rqRYthoouJc1uvsEerBLxbuLAV27gFV4_Pu6fVsFsxP3ehjpLyUmb9aA0HqdSZCZDasL0MdCJsxdROdtwj5PSyhzmzV8jtQ9OVTUHqJDbhNZft8y3Pxvz3VIJF3TRfiOV-P4VXZDqBWqxJqjLBPVLSgYYn6eRbsebpKX0AWy3veJPl4X0cFuwYrq_kIbQHbeAZKCYn1F8AU51h_eyGU_7O92XgOd9QZ7AE"
+                  src={img.book_detail}
                   fill
                 />
               </div>
@@ -210,7 +266,7 @@ export default function Home() {
                 <Image
                   alt="Agencement complet d'une pièce de vie — menuiserie bois et laiton"
                   className="w-full h-full object-cover motion-safe:group-hover:scale-105 transition-transform duration-[1500ms]"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDadGTk_5lm4jwPn23QKz2H5CBRNYd8mP4S1SDMyF-yV30xY31xngw-shybNRRb0Y5mo6--ByVhO4soX1_ZxOMite4Az8T9Ch_ewNHMO4F7LM1Z6Jw5kLsxtGJ2obxBOiqF1-juuYbV5qjWZsO0gGj_1F8jO-6_UOk86mnzubiC4Gi_Ak2BTTMeVZbkrl-5YsH2Bu-SOtaBqPhdbVu_epHhwHgja2jARVqafT5dfuIGc28uFgfovV3nIo5kaAi7v4Q7EOk7zBGbPxM"
+                  src={img.book_wide}
                   fill
                 />
               </div>
@@ -229,7 +285,7 @@ export default function Home() {
                 <Image
                   alt="Artisan menuisier en atelier, travaillant le chêne massif à la main"
                   className="object-cover shadow-2xl"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDj1o8PUXM2RnpdILcc9ebrjI5uomogfnbRG5mimRoWNM_TPgUFnS7W0pKWhgItut9zICckd_X7x1qxDvvyYTBDjQqOrLErsGqgNYLoZYpTvpu0oQnP8GDWE-GYRvJ9W5cf4Bd9X0gvRrDs2MEMIQWrBQDvSOJRtajelWElWvH5WP3RbWAY1n5mEqJO6rXCAYBDHyyedyoPg48279Zb4aSyIzZklDtTkaBqnc9dZmH-Rpg7TrM9CCPuCsPP4d3B0V6_Ogy8-4Uzj5A"
+                  src={img.savoir_faire}
                   fill
                 />
               </div>

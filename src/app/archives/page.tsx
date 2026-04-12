@@ -1,10 +1,10 @@
-import { v2 as cloudinary } from "cloudinary";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Navigation from "../Navigation";
 import GalleryClient from "./GalleryClient";
+import { supabase, PROJECTS_BUCKET } from "@/lib/supabase";
 
-export const revalidate = 3600;
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "Book & Réalisations — Porcher Menuiserie, Ille-et-Vilaine",
@@ -21,13 +21,7 @@ export const metadata: Metadata = {
   },
 };
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
-
-type CloudinaryResource = {
+type Photo = {
   public_id: string;
   secure_url: string;
   width: number;
@@ -36,32 +30,88 @@ type CloudinaryResource = {
 
 type Project = {
   name: string;
-  images: CloudinaryResource[];
+  images: Photo[];
 };
 
 async function getProjects(): Promise<Project[]> {
-  const { folders } = (await cloudinary.api.sub_folders(
-    "porchermenuiserie/projects"
-  )) as { folders: { name: string; path: string }[] };
+  // Liste les dossiers dans porchermenuiserie/projects/
+  const { data: files, error } = await supabase.storage
+    .from(PROJECTS_BUCKET)
+    .list("projects", {
+      limit: 1000,
+    });
+
+  console.log("📁 Listing porchermenuiserie/projects/");
+  console.log("Erreur:", error);
+  console.log("Fichiers/dossiers:", files?.map((f) => ({ name: f.name, type: f.id?.endsWith("/") ? "dossier" : "fichier" })));
+
+  if (error || !files) {
+    console.error("Erreur Supabase:", error);
+    return [];
+  }
+
+  // Extrait les noms de dossiers uniques (projets)
+  // Un dossier Supabase n'a pas de metadata ou pas de mimetype
+  const projectFolders = new Set<string>();
+  for (const file of files) {
+    if (!file.metadata?.mimetype) {
+      projectFolders.add(file.name);
+    }
+  }
+
+  console.log("📂 Dossiers trouvés:", Array.from(projectFolders));
 
   const projects: Project[] = [];
 
-  for (const folder of folders) {
-    const result = (await cloudinary.api.resources_by_asset_folder(
-      folder.path,
-      { max_results: 200, resource_type: "image" }
-    )) as { resources: CloudinaryResource[] };
+  // Pour chaque projet, récupère les images
+  for (const projectFolder of Array.from(projectFolders).sort()) {
+    const { data: images, error: imageError } = await supabase.storage
+      .from(PROJECTS_BUCKET)
+      .list(`projects/${projectFolder}`, {
+        limit: 500,
+      });
 
-    if (result.resources.length > 0) {
+    console.log(`📸 Listing ${projectFolder}:`, images?.length, "fichiers");
+
+    if (imageError || !images) {
+      console.log(`❌ Erreur pour ${projectFolder}:`, imageError);
+      continue;
+    }
+
+    const photoList: Photo[] = [];
+    for (const image of images) {
+      if (image.metadata?.mimetype?.startsWith("image/")) {
+        const path = `projects/${projectFolder}/${image.name}`;
+        const { data, error: signError } = await supabase.storage
+          .from(PROJECTS_BUCKET)
+          .createSignedUrl(path, 60 * 60 * 24 * 7); // 7 jours
+
+        console.log(`URL pour ${image.name}:`, data?.signedUrl, signError);
+
+        if (data?.signedUrl) {
+          photoList.push({
+            public_id: path,
+            secure_url: data.signedUrl,
+            width: image.metadata.width || 400,
+            height: image.metadata.height || 400,
+          });
+        }
+      }
+    }
+
+    console.log(`✅ ${projectFolder}: ${photoList.length} images`);
+
+    if (photoList.length > 0) {
       projects.push({
-        name: folder.name
+        name: projectFolder
           .replace(/[-_]/g, " ")
           .replace(/\b\w/g, (c) => c.toUpperCase()),
-        images: result.resources,
+        images: photoList,
       });
     }
   }
 
+  console.log("🎉 Total projets:", projects.length);
   return projects;
 }
 
