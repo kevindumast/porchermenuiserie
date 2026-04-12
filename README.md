@@ -114,6 +114,30 @@ Le site est accessible sur `http://localhost:3000`
    - `Project URL` → `NEXT_PUBLIC_SUPABASE_URL`
    - `Publishable key` → `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
 
+#### Configuration pour Next.js Image
+
+⚠️ **IMPORTANT** : Lors de la creation d'un nouveau projet Supabase, vous devez ajouter le hostname dans `next.config.ts` pour que les images s'affichent correctement.
+
+1. Recuperer l'URL de votre projet Supabase (ex: `https://xxxxx.supabase.co`)
+2. Extraire le hostname (ex: `xxxxx.supabase.co`)
+3. L'ajouter dans `next.config.ts` :
+
+```typescript
+const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "xxxxx.supabase.co",  // Remplacer par votre hostname
+      },
+      // ... autres hostname ...
+    ],
+  },
+};
+```
+
+Sans cette configuration, vous aurez une erreur : `hostname is not configured under images in your next.config.js`
+
 #### Creer le bucket Storage
 
 1. Aller dans **Storage** (menu de gauche)
