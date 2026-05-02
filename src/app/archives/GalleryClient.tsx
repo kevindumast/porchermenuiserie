@@ -84,50 +84,28 @@ export default function GalleryClient({ projects }: { projects: Project[] }) {
               </span>
             </div>
 
-            {/* Editorial grid: hero + masonry */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-3">
-              {/* Hero image — prend 7 colonnes, hauteur généreuse */}
-              {hero && (
+            {/* Compact grid — 4 colonnes */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+              {[hero, ...rest].map((image, i) => (
                 <button
-                  onClick={() => setLightbox({ photos: project.images, index: 0 })}
-                  className="md:col-span-7 overflow-hidden group relative bg-beige-medium/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-ocre cursor-pointer"
-                  style={{ aspectRatio: hero.width && hero.height ? `${hero.width}/${hero.height}` : "4/3" }}
-                  aria-label={`Agrandir la photo 1 — ${project.name}`}
+                  key={image.public_id}
+                  onClick={() => setLightbox({ photos: project.images, index: i })}
+                  className="overflow-hidden group relative bg-beige-medium/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-ocre cursor-pointer rounded"
+                  style={{ aspectRatio: "1" }}
+                  aria-label={`Agrandir la photo ${i + 1} — ${project.name}`}
                 >
                   <Image
-                    src={hero.secure_url}
+                    src={image.secure_url}
                     alt={`${project.name} — réalisation Porcher Menuiserie`}
                     fill
                     className="object-cover motion-safe:group-hover:scale-105 transition-transform duration-700"
-                    sizes="(max-width: 768px) 100vw, 58vw"
-                    priority
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                    loading={i === 0 ? "eager" : "lazy"}
+                    priority={i === 0}
                   />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
                 </button>
-              )}
-
-              {/* Remaining images — colonne masonry de 5 */}
-              {rest.length > 0 && (
-                <div className="md:col-span-5 columns-2 gap-2 md:gap-3">
-                  {rest.map((image, i) => (
-                    <button
-                      key={image.public_id}
-                      onClick={() => setLightbox({ photos: project.images, index: i + 1 })}
-                      className="break-inside-avoid mb-2 md:mb-3 block w-full overflow-hidden group relative bg-beige-medium/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-ocre cursor-pointer"
-                      aria-label={`Agrandir la photo ${i + 2} — ${project.name}`}
-                    >
-                      <Image
-                        src={image.secure_url}
-                        alt={`${project.name} — réalisation Porcher Menuiserie`}
-                        width={image.width || 400}
-                        height={image.height || 400}
-                        className="w-full h-auto object-cover motion-safe:group-hover:scale-105 transition-transform duration-700"
-                        sizes="(max-width: 768px) 50vw, 20vw"
-                        loading="lazy"
-                      />
-                    </button>
-                  ))}
-                </div>
-              )}
+              ))}
             </div>
           </section>
         );
