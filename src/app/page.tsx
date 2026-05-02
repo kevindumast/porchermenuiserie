@@ -10,7 +10,7 @@ export const revalidate = 0;
 
 // Noms des images attendues dans le dossier landing/ du bucket
 // Accepte n'importe quel format (.jpg, .png, .webp, etc.)
-const LANDING_IMAGE_NAMES = ["hero", "book_main", "book_detail", "book_wide", "savoir_faire"] as const;
+const LANDING_IMAGE_NAMES = ["1", "2", "3", "4", "5"] as const;
 
 type LandingImages = Record<(typeof LANDING_IMAGE_NAMES)[number], string>;
 
@@ -71,7 +71,7 @@ export default async function Home() {
           <Image
             alt="Intérieur haut de gamme en bois massif réalisé par Porcher Menuiserie"
             className="w-full h-full object-cover"
-            src={img.hero}
+            src={img["1"]}
             fill
             sizes="100vw"
             priority
@@ -197,7 +197,7 @@ export default async function Home() {
                 <Image
                   alt="Bibliothèque sur mesure en chêne massif — Projet Héritage"
                   className="w-full h-full object-cover motion-safe:group-hover:scale-105 transition-transform duration-[1500ms]"
-                  src={img.book_main}
+                  src={img["2"]}
                   fill
                 />
               </div>
@@ -209,7 +209,7 @@ export default async function Home() {
                 <Image
                   alt="Détail de finition menuiserie — assemblage tenon-mortaise en noyer"
                   className="w-full h-full object-cover motion-safe:group-hover:scale-110 transition-transform duration-[1500ms]"
-                  src={img.book_detail}
+                  src={img["3"]}
                   fill
                 />
               </div>
@@ -266,7 +266,7 @@ export default async function Home() {
                 <Image
                   alt="Agencement complet d'une pièce de vie — menuiserie bois et laiton"
                   className="w-full h-full object-cover motion-safe:group-hover:scale-105 transition-transform duration-[1500ms]"
-                  src={img.book_wide}
+                  src={img["4"]}
                   fill
                 />
               </div>
@@ -285,7 +285,7 @@ export default async function Home() {
                 <Image
                   alt="Artisan menuisier en atelier, travaillant le chêne massif à la main"
                   className="object-cover shadow-2xl"
-                  src={img.savoir_faire}
+                  src={img["5"]}
                   fill
                 />
               </div>
