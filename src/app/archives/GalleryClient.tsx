@@ -82,7 +82,6 @@ export default function GalleryClient({ projects }: { projects: Project[] }) {
                     className="object-cover motion-safe:group-hover:scale-105 transition-transform duration-700"
                     sizes="(max-width: 768px) 100vw, 58vw"
                     priority
-                    unoptimized
                   />
                 </button>
               )}
@@ -104,7 +103,7 @@ export default function GalleryClient({ projects }: { projects: Project[] }) {
                         height={image.height || 400}
                         className="w-full h-auto object-cover motion-safe:group-hover:scale-105 transition-transform duration-700"
                         sizes="(max-width: 768px) 50vw, 20vw"
-                        unoptimized
+                        loading="lazy"
                       />
                     </button>
                   ))}
@@ -133,7 +132,6 @@ export default function GalleryClient({ projects }: { projects: Project[] }) {
               className="object-contain"
               sizes="100vw"
               priority
-              unoptimized
             />
           </div>
 
