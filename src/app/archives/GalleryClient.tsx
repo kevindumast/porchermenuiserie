@@ -46,6 +46,25 @@ export default function GalleryClient({ projects }: { projects: Project[] }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [lightbox, close, prev, next]);
 
+  useEffect(() => {
+    if (!lightbox) return;
+
+    const { photos, index } = lightbox;
+    const nextIndex = (index + 1) % photos.length;
+    const prevIndex = (index - 1 + photos.length) % photos.length;
+
+    const preloadImage = (url: string) => {
+      const link = document.createElement("link");
+      link.rel = "prefetch";
+      link.as = "image";
+      link.href = url;
+      document.head.appendChild(link);
+    };
+
+    preloadImage(photos[nextIndex].secure_url);
+    preloadImage(photos[prevIndex].secure_url);
+  }, [lightbox?.index, lightbox?.photos]);
+
   return (
     <>
       {projects.map((project) => {
