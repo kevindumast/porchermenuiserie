@@ -34,7 +34,7 @@ export default function CopyableContact() {
           call
         </span>
         <div className="flex-1 text-left">
-          <div className="text-base font-light tracking-widest">
+          <div className="text-xs font-light tracking-wide">
             06&nbsp;68&nbsp;13&nbsp;32&nbsp;45
           </div>
           <div className="text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
