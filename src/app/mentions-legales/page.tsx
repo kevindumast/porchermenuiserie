@@ -1,6 +1,10 @@
+import Navigation from "../Navigation";
+
 export default function MentionsLegales() {
   return (
-    <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
+    <>
+      <Navigation />
+      <div className="min-h-screen bg-surface py-12 px-4 sm:px-6 lg:px-8 pt-24">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-3xl font-bold text-gray-900 mb-8">Mentions Légales</h1>
 
@@ -73,6 +77,7 @@ export default function MentionsLegales() {
           </p>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

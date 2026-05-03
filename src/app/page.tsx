@@ -417,9 +417,6 @@ export default async function Home() {
           <a className="hover:text-ocre transition-colors" href="#">
             Pinterest
           </a>
-          <a className="hover:text-ocre transition-colors" href="#">
-            Mentions Légales
-          </a>
         </div>
         <div className="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant opacity-60">
           © 2026 Porcher Menuiserie Agencement.
