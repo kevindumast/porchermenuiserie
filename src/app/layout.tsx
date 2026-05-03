@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Serif, Manrope } from "next/font/google";
 import "./globals.css";
+import Footer from "./Footer";
 
 const notoSerif = Noto_Serif({
   subsets: ["latin"],
@@ -103,7 +104,12 @@ export default function RootLayout({
         className="bg-surface text-on-surface selection:bg-ocre/20 selection:text-ocre"
         suppressHydrationWarning
       >
-        {children}
+        <div className="flex flex-col min-h-screen">
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
