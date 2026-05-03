@@ -306,10 +306,12 @@ export default async function Home() {
                 Innovation
               </h2>
               <p className="text-lg text-on-surface-variant font-light">
-                Allier les techniques ancestrales de l&apos;ébénisterie
-                française aux solutions d&apos;agencement contemporaines. Nous
-                créons des environnements où chaque pièce de bois raconte une
-                histoire de passion et de précision.
+                Fort de 15 années d&apos;expérience dans le milieu de la menuiserie
+                , le gérant de l&apos;entreprise Porcher Menuiserie Agencement saura 
+                mettre en œuvre toutes ses compétences pour répondre au mieux à vos 
+                attentes. Le sérieux ainsi que le travail minutieux sont les qualités 
+                principales de cette entreprise ! Faites appel à Porcher Menuiserie 
+                Agencement pour vos travaux de menuiserie intérieure et extérieure !
               </p>
 
               {/* Testimonial */}
