@@ -412,7 +412,7 @@ export default async function Home() {
         <div className="flex flex-wrap justify-center gap-12 text-on-surface-variant text-[10px] uppercase tracking-[0.2em]">
           <a
             className="hover:text-ocre transition-colors"
-            href="https://www.instagram.com/porcher.menuiserie.agencement"
+            href="https://www.instagram.com/porcher.menuiserie.agencement?igsh=NXh1cDltd3gxc2Vu"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Suivre Porcher Menuiserie sur Instagram"
