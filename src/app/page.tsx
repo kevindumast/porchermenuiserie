@@ -410,11 +410,14 @@ export default async function Home() {
           </div>
         </div>
         <div className="flex flex-wrap justify-center gap-12 text-on-surface-variant text-[10px] uppercase tracking-[0.2em]">
-          <a className="hover:text-ocre transition-colors" href="#">
+          <a
+            className="hover:text-ocre transition-colors"
+            href="https://www.instagram.com/porcher.menuiserie.agencement"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Suivre Porcher Menuiserie sur Instagram"
+          >
             Instagram
-          </a>
-          <a className="hover:text-ocre transition-colors" href="#">
-            Pinterest
           </a>
         </div>
         <div className="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant opacity-60">
