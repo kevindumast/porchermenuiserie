@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
+import Reveal from "../Reveal";
+import { BLUR_BEIGE_MEDIUM } from "@/lib/blur";
 
 type Photo = {
   public_id: string;
@@ -70,44 +72,48 @@ export default function GalleryClient({ projects }: { projects: Project[] }) {
       {projects.map((project) => {
         const [hero, ...rest] = project.images;
         return (
-          <section key={project.name} className="mb-20">
-            {/* Project header */}
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-4">
-                <div className="h-px w-6 bg-ocre/40" aria-hidden="true" />
-                <h2 className="text-[11px] uppercase tracking-[0.3em] text-ocre font-bold">
-                  {project.name}
-                </h2>
+          <Reveal key={project.name} className="mb-20">
+            <section>
+              {/* Project header */}
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-4">
+                  <div className="h-px w-6 bg-ocre/40" aria-hidden="true" />
+                  <h2 className="text-[11px] uppercase tracking-[0.3em] text-ocre font-bold">
+                    {project.name}
+                  </h2>
+                </div>
+                <span className="text-[10px] uppercase tracking-widest text-on-surface-variant/50">
+                  {project.images.length} photo{project.images.length > 1 ? "s" : ""}
+                </span>
               </div>
-              <span className="text-[10px] uppercase tracking-widest text-on-surface-variant/50">
-                {project.images.length} photo{project.images.length > 1 ? "s" : ""}
-              </span>
-            </div>
 
-            {/* Compact grid — 4 colonnes */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-              {[hero, ...rest].map((image, i) => (
-                <button
-                  key={image.public_id}
-                  onClick={() => setLightbox({ photos: project.images, index: i })}
-                  className="overflow-hidden group relative bg-beige-medium/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-ocre cursor-pointer rounded"
-                  style={{ aspectRatio: "1" }}
-                  aria-label={`Agrandir la photo ${i + 1} — ${project.name}`}
-                >
-                  <Image
-                    src={image.secure_url}
-                    alt={`${project.name} — réalisation Porcher Menuiserie`}
-                    fill
-                    className="object-cover motion-safe:group-hover:scale-105 transition-transform duration-700"
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                    loading={i === 0 ? "eager" : "lazy"}
-                    priority={i === 0}
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
-                </button>
-              ))}
-            </div>
-          </section>
+              {/* Compact grid — 4 colonnes */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                {[hero, ...rest].map((image, i) => (
+                  <button
+                    key={image.public_id}
+                    onClick={() => setLightbox({ photos: project.images, index: i })}
+                    className="overflow-hidden group relative bg-beige-medium/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-ocre cursor-pointer rounded"
+                    style={{ aspectRatio: "1" }}
+                    aria-label={`Agrandir la photo ${i + 1} — ${project.name}`}
+                  >
+                    <Image
+                      src={image.secure_url}
+                      alt={`${project.name} — réalisation Porcher Menuiserie`}
+                      fill
+                      className="object-cover motion-safe:group-hover:scale-105 transition-transform duration-700"
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                      loading={i === 0 ? "eager" : "lazy"}
+                      priority={i === 0}
+                      placeholder="blur"
+                      blurDataURL={BLUR_BEIGE_MEDIUM}
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                  </button>
+                ))}
+              </div>
+            </section>
+          </Reveal>
         );
       })}
 

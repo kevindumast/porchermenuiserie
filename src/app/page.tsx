@@ -3,7 +3,9 @@ import Link from "next/link";
 import Navigation from "./Navigation";
 import ContactForm from "./ContactForm";
 import CopyableContact from "./CopyableContact";
+import Reveal from "./Reveal";
 import { supabase, PROJECTS_BUCKET } from "@/lib/supabase";
+import { BLUR_BEIGE_MEDIUM, BLUR_BLUE_GRAY } from "@/lib/blur";
 
 // Pas de cache - regenère à chaque visite pour récupérer les images fraîches
 export const revalidate = 0;
@@ -176,7 +178,7 @@ export default async function Home() {
       {/* The Book (Asymmetric Grid) */}
       <section className="py-24 md:py-48 bg-surface" id="projets">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
+          <Reveal className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
             <div className="max-w-xl">
               <h2 className="text-5xl font-light mb-6">Le Book</h2>
               <p className="text-on-surface-variant font-light text-lg">
@@ -188,29 +190,33 @@ export default async function Home() {
             <Link href="/archives" className="text-ocre text-xs uppercase tracking-widest border-b border-ocre/20 pb-2 hover:border-ocre transition-colors">
               Archives 2025 — Aujourd&apos;hui
             </Link>
-          </div>
+          </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-start">
             {/* Main Piece */}
-            <div className="md:col-span-7 flex flex-col gap-6">
+            <Reveal className="md:col-span-7 flex flex-col gap-6">
               <div className="aspect-[4/5] bg-beige-medium/10 overflow-hidden group relative">
                 <Image
                   alt="Bibliothèque sur mesure en chêne massif — Projet Héritage"
                   className="w-full h-full object-cover motion-safe:group-hover:scale-105 transition-transform duration-[1500ms]"
                   src={img["2"]}
                   fill
+                  placeholder="blur"
+                  blurDataURL={BLUR_BEIGE_MEDIUM}
                 />
               </div>
-            </div>
+            </Reveal>
 
             {/* Detail & Text */}
-            <div className="md:col-span-5 md:pt-32 flex flex-col gap-16">
+            <Reveal delay={150} className="md:col-span-5 md:pt-32 flex flex-col gap-16">
               <div className="aspect-square bg-blue-gray/10 overflow-hidden group relative">
                 <Image
                   alt="Détail de finition menuiserie — assemblage tenon-mortaise en noyer"
                   className="w-full h-full object-cover motion-safe:group-hover:scale-110 transition-transform duration-[1500ms]"
                   src={img["3"]}
                   fill
+                  placeholder="blur"
+                  blurDataURL={BLUR_BLUE_GRAY}
                 />
               </div>
               <div className="pr-12">
@@ -223,10 +229,10 @@ export default async function Home() {
                   la structure et l&apos;esthétique.
                 </p>
               </div>
-            </div>
+            </Reveal>
 
             {/* Services List */}
-            <div className="md:col-span-4 flex flex-col gap-6">
+            <Reveal delay={300} className="md:col-span-4 flex flex-col gap-6">
               <div className="aspect-square bg-beige-light p-10 flex flex-col justify-start gap-6">
                 <div>
                   <span className="text-ocre uppercase tracking-[0.3em] text-xs block font-bold mb-3">
@@ -258,19 +264,21 @@ export default async function Home() {
                   ))}
                 </ul>
               </div>
-            </div>
+            </Reveal>
 
             {/* Wide view */}
-            <div className="md:col-span-8 -mt-12 md:-mt-24">
+            <Reveal className="md:col-span-8 -mt-12 md:-mt-24">
               <div className="aspect-[16/9] md:aspect-[21/9] bg-blue-gray/5 overflow-hidden group relative">
                 <Image
                   alt="Agencement complet d'une pièce de vie — menuiserie bois et laiton"
                   className="w-full h-full object-cover motion-safe:group-hover:scale-105 transition-transform duration-[1500ms]"
                   src={img["4"]}
                   fill
+                  placeholder="blur"
+                  blurDataURL={BLUR_BLUE_GRAY}
                 />
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -279,7 +287,7 @@ export default async function Home() {
       <section className="py-24 md:py-48 bg-beige-light" id="services">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
-            <div className="relative">
+            <Reveal className="relative">
               <div className="absolute -top-12 -left-12 w-48 h-48 bg-ocre/10 -z-10" aria-hidden="true" />
               <div className="relative w-full h-[600px]">
                 <Image
@@ -287,6 +295,8 @@ export default async function Home() {
                   className="object-cover shadow-2xl"
                   src={img["5"]}
                   fill
+                  placeholder="blur"
+                  blurDataURL={BLUR_BEIGE_MEDIUM}
                 />
               </div>
               <div className="absolute -bottom-8 -right-8 p-12 bg-surface max-w-xs border border-beige-medium">
@@ -295,9 +305,9 @@ export default async function Home() {
                   révéler.&rdquo;
                 </blockquote>
               </div>
-            </div>
+            </Reveal>
 
-            <div className="flex flex-col gap-12">
+            <Reveal delay={150} className="flex flex-col gap-12">
               <span className="text-ocre uppercase tracking-[0.4em] text-xs font-bold">
                 L&apos;expertise Porcher
               </span>
@@ -357,7 +367,7 @@ export default async function Home() {
                   </div>
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -366,17 +376,17 @@ export default async function Home() {
       <section className="py-24 pb-36 md:py-48 md:pb-48 bg-surface" id="contact">
         <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-24">
+            <Reveal className="text-center mb-24">
               <span className="text-ocre uppercase tracking-[0.3em] text-xs font-bold mb-4 block">
                 Entrer en contact
               </span>
               <h2 className="text-5xl md:text-6xl font-light">
                 Donnons vie à vos projets
               </h2>
-            </div>
+            </Reveal>
 
             <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-24 items-start">
-              <div className="md:col-span-4 bg-ocre p-8 text-on-primary">
+              <Reveal className="md:col-span-4 bg-ocre p-8 text-on-primary">
                 <h3 className="text-xl font-serif italic mb-8">
                   Contact Direct
                 </h3>
@@ -391,9 +401,11 @@ export default async function Home() {
                     Ille-et-Vilaine
                   </p>
                 </div>
-              </div>
+              </Reveal>
 
-              <ContactForm />
+              <Reveal delay={150} className="md:col-span-8">
+                <ContactForm />
+              </Reveal>
             </div>
           </div>
         </div>

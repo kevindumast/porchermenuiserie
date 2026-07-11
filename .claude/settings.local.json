@@ -5,7 +5,9 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(npx tsc *)",
       "Bash(echo \"EXIT:$?\")",
-      "PowerShell(npx tsc --noEmit 2>&1)"
+      "PowerShell(npx tsc --noEmit 2>&1)",
+      "Bash(node -e ' *)",
+      "PowerShell(node \"C:\\\\Users\\\\KEVIN~1.DUM\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-kevin-dumast-Documents-porchermenuiserie\\\\7db6e0a3-09e0-4727-a1db-24238d39335d\\\\scratchpad\\\\gen-blur.js\")"
     ]
   }
 }
