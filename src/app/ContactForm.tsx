@@ -78,7 +78,7 @@ export default function ContactForm() {
 
       <div>
         <button
-          className="bg-ocre text-on-primary px-12 py-5 text-xs uppercase tracking-widest font-bold hover:opacity-90 active:scale-95 transition-all disabled:opacity-50"
+          className="bg-ocre text-on-primary px-12 py-5 text-xs uppercase tracking-widest font-bold hover:bg-ocre-dark active:scale-95 transition-[background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-surface disabled:opacity-50"
           type="submit"
           disabled={status === "loading"}
         >
