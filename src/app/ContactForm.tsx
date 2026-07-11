@@ -25,7 +25,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form ref={formRef} className="md:col-span-8 grid grid-cols-1 gap-12" onSubmit={handleSubmit}>
+    <form ref={formRef} className="grid grid-cols-1 gap-12" onSubmit={handleSubmit}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div className="flex flex-col gap-1">
           <label htmlFor="name" className="sr-only">Votre nom</label>
