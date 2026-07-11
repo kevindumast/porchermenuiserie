@@ -12,12 +12,14 @@ export async function GET() {
       .single();
 
     if (error) {
-      console.error("Cron error:", error);
+      console.error(`[cron/keep-alive] ${new Date().toISOString()} - FAILED:`, error);
       return NextResponse.json(
         { error: error.message },
         { status: 500 }
       );
     }
+
+    console.log(`[cron/keep-alive] ${new Date().toISOString()} - OK, project id=${data?.id ?? "n/a"}`);
 
     return NextResponse.json(
       { success: true, message: "Supabase kept alive" },
