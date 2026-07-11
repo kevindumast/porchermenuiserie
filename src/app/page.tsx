@@ -4,6 +4,7 @@ import Navigation from "./Navigation";
 import ContactForm from "./ContactForm";
 import CopyableContact from "./CopyableContact";
 import Reveal from "./Reveal";
+import Counter from "./Counter";
 import { supabase, PROJECTS_BUCKET } from "@/lib/supabase";
 import { BLUR_BEIGE_MEDIUM, BLUR_BLUE_GRAY } from "@/lib/blur";
 
@@ -139,7 +140,7 @@ export default async function Home() {
             <div className="flex items-center gap-6 mb-10">
               <div className="h-px w-8 bg-ocre/30" aria-hidden="true" />
               <p className="text-[11px] uppercase tracking-[0.25em] text-on-surface-variant font-light">
-                15&nbsp;ans d&apos;expérience &nbsp;·&nbsp; 150+ réalisations
+                <Counter to={15} />&nbsp;ans d&apos;expérience &nbsp;·&nbsp; <Counter to={150} />+ réalisations
               </p>
             </div>
 
@@ -154,19 +155,22 @@ export default async function Home() {
 
             <div className="flex items-center gap-8">
               <a
-                className="bg-ocre text-on-primary px-10 py-5 text-xs uppercase tracking-widest font-bold hover:opacity-90 transition-opacity"
+                className="bg-ocre text-on-primary px-10 py-5 text-xs uppercase tracking-widest font-bold hover:bg-ocre-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                 href="#projets"
               >
                 Explorer le book
               </a>
               <a
-                className="group flex items-center gap-3 text-ocre font-medium tracking-wide"
+                className="group flex items-center gap-3 text-ocre font-medium tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                 href="#services"
               >
                 <span className="border-b border-ocre/30 group-hover:border-ocre transition-colors pb-1">
                   Savoir-faire
                 </span>
-                <span className="material-symbols-outlined text-sm" aria-hidden="true">
+                <span
+                  className="material-symbols-outlined text-sm transition-transform duration-300 group-hover:translate-x-1"
+                  aria-hidden="true"
+                >
                   arrow_forward
                 </span>
               </a>

@@ -1,23 +1,28 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Reveal from "../Reveal";
 import { BLUR_BEIGE_MEDIUM } from "@/lib/blur";
-
-type Photo = {
-  public_id: string;
-  secure_url: string;
-  width: number;
-  height: number;
-};
+import { loadProjectPhotos, type Photo, type ProjectFolder } from "./actions";
 
 type Project = {
   name: string;
   images: Photo[];
 };
 
-export default function GalleryClient({ projects }: { projects: Project[] }) {
+export default function GalleryClient({
+  initialProjects,
+  pending,
+}: {
+  initialProjects: Project[];
+  pending: ProjectFolder[];
+}) {
+  const [projects, setProjects] = useState<Project[]>(initialProjects);
+  const [queue, setQueue] = useState<ProjectFolder[]>(pending);
+  const [loadingNext, setLoadingNext] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
   const [lightbox, setLightbox] = useState<{
     photos: Photo[];
     index: number;
@@ -66,6 +71,36 @@ export default function GalleryClient({ projects }: { projects: Project[] }) {
     preloadImage(photos[nextIndex].secure_url);
     preloadImage(photos[prevIndex].secure_url);
   }, [lightbox?.index, lightbox?.photos]);
+
+  // Charge le projet suivant quand le sentinel approche du viewport —
+  // effet relancé à chaque réduction de la queue, ce qui enchaîne les
+  // chargements en continu tant que le sentinel reste visible.
+  useEffect(() => {
+    if (queue.length === 0) return;
+    const el = sentinelRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      async ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+
+        const next = queue[0];
+        setLoadingNext(true);
+        const images = await loadProjectPhotos(next.slug);
+        setLoadingNext(false);
+
+        setProjects((prev) =>
+          images.length > 0 ? [...prev, { name: next.name, images }] : prev
+        );
+        setQueue((prev) => prev.slice(1));
+      },
+      { rootMargin: "800px 0px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [queue]);
 
   return (
     <>
@@ -116,6 +151,17 @@ export default function GalleryClient({ projects }: { projects: Project[] }) {
           </Reveal>
         );
       })}
+
+      {/* Sentinel — déclenche le chargement du projet suivant au scroll */}
+      {queue.length > 0 && (
+        <div ref={sentinelRef} className="flex justify-center py-12">
+          {loadingNext && (
+            <span className="text-[11px] uppercase tracking-widest text-on-surface-variant/50">
+              Chargement…
+            </span>
+          )}
+        </div>
+      )}
 
       {/* Lightbox */}
       {lightbox && (
