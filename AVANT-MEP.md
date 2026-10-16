@@ -4,7 +4,7 @@
 
 - [x] `robots.txt` créé (`public/robots.txt`)
 - [x] `sitemap.xml` auto-généré via `src/app/sitemap.ts`
-- [x] `metadataBase` configuré sur `https://porcher-menuiserie.fr`
+- [x] `metadataBase` configuré sur `https://www.porcher-menuiserie.com`
 - [x] Title tag géolocalisé : "Menuisier sur mesure en Ille-et-Vilaine"
 - [x] Description meta améliorée (géo + services + social proof)
 - [x] Open Graph complet (titre, description, image, locale fr_FR)
@@ -37,14 +37,14 @@
 
 ### Domaine & Hébergement
 
-- [ ] **Confirmer le nom de domaine** — `porcher-menuiserie.fr` est configuré dans les métadonnées. Vérifier qu'il est bien enregistré et pointé vers le serveur de production.
+- [ ] **Confirmer le nom de domaine** — `porcher-menuiserie.com` est configuré dans les métadonnées. Vérifier qu'il est bien enregistré et pointé vers le serveur de production.
 - [ ] **SSL / HTTPS actif** sur le domaine de production — vérifier que le certificat est valide et que HTTP redirige automatiquement vers HTTPS.
 - [ ] **Variables d'environnement sur le serveur de prod** — copier les clés Cloudinary (`CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`) et les clés d'envoi d'email dans les secrets de l'hébergeur (Vercel, Coolify, etc.).
 
 ### Email & Formulaire de contact
 
 - [ ] **Tester le formulaire de bout en bout** — remplir le formulaire en production, vérifier que l'email arrive bien sur `porcher-menuiserie@outlook.fr` (vérifier spam).
-- [ ] **Envisager un email professionnel** — `contact@porcher-menuiserie.fr` inspire plus confiance aux clients et à Google qu'une adresse Outlook. Possible via le registrar du domaine ou un service comme Zoho Mail (gratuit).
+- [ ] **Envisager un email professionnel** — `contact@porcher-menuiserie.com` inspire plus confiance aux clients et à Google qu'une adresse Outlook. Possible via le registrar du domaine ou un service comme Zoho Mail (gratuit).
 
 ### Tests qualité
 
@@ -54,12 +54,12 @@
 - [ ] **Vérifier le rendu Open Graph** — coller l'URL dans le [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) après mise en production.
 - [ ] **Valider le schema JSON-LD** — [Rich Results Test](https://search.google.com/test/rich-results) avec l'URL de prod.
 - [ ] **Tester la page 404** — accéder à une URL inexistante, vérifier que Next.js renvoie bien une page d'erreur.
-- [ ] **Vérifier le sitemap** — accéder à `https://porcher-menuiserie.fr/sitemap.xml` et confirmer que les URLs sont correctes.
-- [ ] **Vérifier robots.txt** — accéder à `https://porcher-menuiserie.fr/robots.txt`.
+- [ ] **Vérifier le sitemap** — accéder à `https://www.porcher-menuiserie.com/sitemap.xml` et confirmer que les URLs sont correctes.
+- [ ] **Vérifier robots.txt** — accéder à `https://www.porcher-menuiserie.com/robots.txt`.
 
 ### SEO post-lancement (à faire dans les 48h)
 
-- [ ] **Google Search Console** — ajouter le site, vérifier la propriété via DNS ou balise HTML, soumettre le sitemap (`https://porcher-menuiserie.fr/sitemap.xml`).
+- [ ] **Google Search Console** — ajouter le site, vérifier la propriété via DNS ou balise HTML, soumettre le sitemap (`https://www.porcher-menuiserie.com/sitemap.xml`).
 - [ ] **Google Business Profile (GMB)** — créer ou réclamer la fiche Google Business de Porcher Menuiserie. C'est le levier local SEO le plus puissant : apparition dans Google Maps, panneaux latéraux, recherches "menuisier près de moi". Ajouter photos, horaires, description, services.
 - [ ] **Bing Webmaster Tools** — moins prioritaire mais gratuit, soumettre le sitemap.
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://porchermenuiserie.vercel.app/sitemap.xml
+Sitemap: https://www.porcher-menuiserie.com/sitemap.xml

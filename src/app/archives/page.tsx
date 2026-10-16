@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     title: "Book & Réalisations — Porcher Menuiserie",
     description:
       "Découvrez nos réalisations : agencement sur mesure, menuiserie, parquet en Ille-et-Vilaine.",
-    url: "https://porchermenuiserie.vercel.app/archives",
+    url: "https://www.porcher-menuiserie.com/archives",
   },
 };
 
