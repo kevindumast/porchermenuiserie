@@ -25,7 +25,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form ref={formRef} className="md:col-span-8 grid grid-cols-1 gap-12" onSubmit={handleSubmit}>
+    <form ref={formRef} className="grid grid-cols-1 gap-12" onSubmit={handleSubmit}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div className="flex flex-col gap-1">
           <label htmlFor="name" className="sr-only">Votre nom</label>
@@ -78,7 +78,7 @@ export default function ContactForm() {
 
       <div>
         <button
-          className="bg-ocre text-on-primary px-12 py-5 text-xs uppercase tracking-widest font-bold hover:opacity-90 active:scale-95 transition-all disabled:opacity-50"
+          className="bg-ocre text-on-primary px-12 py-5 text-xs uppercase tracking-widest font-bold hover:bg-ocre-dark active:scale-95 transition-[background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-surface disabled:opacity-50"
           type="submit"
           disabled={status === "loading"}
         >

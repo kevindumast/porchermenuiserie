@@ -2,73 +2,55 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-surface mt-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* About */}
-          <div>
-            <h3 className="text-sm font-semibold text-gray-900 mb-4">
-              Porcher Menuiserie
-            </h3>
-            <p className="text-sm text-gray-600">
-              Artisan menuisier spécialisé en agencement intérieur sur mesure depuis 2011.
-            </p>
+    <footer className="bg-beige-light pt-16 pb-32 md:py-16 px-6 md:px-12">
+      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+        <div className="flex items-center gap-4">
+          <div className="w-8 h-8 border border-ocre flex items-center justify-center" aria-hidden="true">
+            <span className="text-ocre font-serif text-sm">P</span>
           </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="text-sm font-semibold text-gray-900 mb-4">Contact</h3>
-            <ul className="space-y-2 text-sm text-gray-600">
-              <li>
-                <a
-                  href="tel:0668133245"
-                  className="hover:text-gray-900 transition-colors"
-                >
-                  06 68 13 32 45
-                </a>
-              </li>
-              <li>
-                <a
-                  href="mailto:porcher-menuiserie@outlook.fr"
-                  className="hover:text-gray-900 transition-colors"
-                >
-                  porcher-menuiserie@outlook.fr
-                </a>
-              </li>
-              <li className="text-gray-600">
-                3 LE PATIS NOEL, 35580 SAINT-SENOUX
-              </li>
-            </ul>
-          </div>
-
-          {/* Legal */}
-          <div>
-            <h3 className="text-sm font-semibold text-gray-900 mb-4">Légal</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link
-                  href="/mentions-legales"
-                  className="text-gray-600 hover:text-gray-900 transition-colors"
-                >
-                  Mentions légales
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/politique-confidentialite"
-                  className="text-gray-600 hover:text-gray-900 transition-colors"
-                >
-                  Politique de confidentialité
-                </Link>
-              </li>
-            </ul>
+          <div className="text-lg font-serif tracking-tighter text-ocre">
+            PORCHER
           </div>
         </div>
 
-        <div className="border-t border-gray-200 mt-8 pt-8">
-          <p className="text-center text-sm text-gray-500">
-            © {new Date().getFullYear()} Porcher Menuiserie. Tous droits réservés.
-          </p>
+        <div className="flex flex-wrap justify-center gap-12 text-on-surface-variant text-[10px] uppercase tracking-[0.2em]">
+          <a
+            className="hover:text-ocre transition-colors"
+            href="tel:0668133245"
+          >
+            06 68 13 32 45
+          </a>
+          <a
+            className="hover:text-ocre transition-colors"
+            href="mailto:porcher-menuiserie@outlook.fr"
+          >
+            porcher-menuiserie@outlook.fr
+          </a>
+          <Link
+            className="hover:text-ocre transition-colors"
+            href="/mentions-legales"
+          >
+            Mentions légales
+          </Link>
+          <Link
+            className="hover:text-ocre transition-colors"
+            href="/politique-confidentialite"
+          >
+            Confidentialité
+          </Link>
+          <a
+            className="hover:text-ocre transition-colors"
+            href="https://www.instagram.com/porcher.menuiserie.agencement?igsh=NXh1cDltd3gxc2Vu"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Suivre Porcher Menuiserie sur Instagram"
+          >
+            Instagram
+          </a>
+        </div>
+
+        <div className="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant opacity-60">
+          © {new Date().getFullYear()} Porcher Menuiserie Agencement.
         </div>
       </div>
     </footer>

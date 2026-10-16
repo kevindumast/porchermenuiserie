@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navigation from "../Navigation";
 import GalleryClient from "./GalleryClient";
-import { supabase, PROJECTS_BUCKET } from "@/lib/supabase";
+import { getProjectFolders, loadProjectPhotos, type Photo } from "./actions";
 
 export const revalidate = 0;
 
@@ -21,102 +21,20 @@ export const metadata: Metadata = {
   },
 };
 
-type Photo = {
-  public_id: string;
-  secure_url: string;
-  width: number;
-  height: number;
-};
-
-type Project = {
+export type Project = {
   name: string;
   images: Photo[];
 };
 
-async function getProjects(): Promise<Project[]> {
-  // Liste les dossiers dans porchermenuiserie/projects/
-  const { data: files, error } = await supabase.storage
-    .from(PROJECTS_BUCKET)
-    .list("projects", {
-      limit: 1000,
-    });
-
-  console.log("📁 Listing porchermenuiserie/projects/");
-  console.log("Erreur:", error);
-  console.log("Fichiers/dossiers:", files?.map((f) => ({ name: f.name, type: f.id?.endsWith("/") ? "dossier" : "fichier" })));
-
-  if (error || !files) {
-    console.error("Erreur Supabase:", error);
-    return [];
-  }
-
-  // Extrait les noms de dossiers uniques (projets)
-  // Un dossier Supabase n'a pas de metadata ou pas de mimetype
-  const projectFolders = new Set<string>();
-  for (const file of files) {
-    if (!file.metadata?.mimetype) {
-      projectFolders.add(file.name);
-    }
-  }
-
-  console.log("📂 Dossiers trouvés:", Array.from(projectFolders));
-
-  const projects: Project[] = [];
-
-  // Pour chaque projet, récupère les images
-  for (const projectFolder of Array.from(projectFolders).sort()) {
-    const { data: images, error: imageError } = await supabase.storage
-      .from(PROJECTS_BUCKET)
-      .list(`projects/${projectFolder}`, {
-        limit: 500,
-      });
-
-    console.log(`📸 Listing ${projectFolder}:`, images?.length, "fichiers");
-
-    if (imageError || !images) {
-      console.log(`❌ Erreur pour ${projectFolder}:`, imageError);
-      continue;
-    }
-
-    const photoList: Photo[] = [];
-    for (const image of images) {
-      if (image.metadata?.mimetype?.startsWith("image/")) {
-        const path = `projects/${projectFolder}/${image.name}`;
-        const { data, error: signError } = await supabase.storage
-          .from(PROJECTS_BUCKET)
-          .createSignedUrl(path, 60 * 60 * 24 * 7); // 7 jours
-
-        console.log(`URL pour ${image.name}:`, data?.signedUrl, signError);
-
-        if (data?.signedUrl) {
-          photoList.push({
-            public_id: path,
-            secure_url: data.signedUrl,
-            width: image.metadata.width || 400,
-            height: image.metadata.height || 400,
-          });
-        }
-      }
-    }
-
-    console.log(`✅ ${projectFolder}: ${photoList.length} images`);
-
-    if (photoList.length > 0) {
-      projects.push({
-        name: projectFolder
-          .replace(/[-_]/g, " ")
-          .replace(/\b\w/g, (c) => c.toUpperCase()),
-        images: photoList,
-      });
-    }
-  }
-
-  console.log("🎉 Total projets:", projects.length);
-  return projects;
-}
-
 export default async function ArchivesPage() {
-  const projects = await getProjects();
+  const folders = await getProjectFolders();
+  const [first, ...rest] = folders;
+
+  // Seul le premier projet est chargé côté serveur pour un affichage rapide.
+  // Les suivants se chargent au fur et à mesure du scroll (voir GalleryClient).
+  const firstPhotos = first ? await loadProjectPhotos(first.slug) : [];
+  const initialProjects: Project[] =
+    first && firstPhotos.length > 0 ? [{ name: first.name, images: firstPhotos }] : [];
 
   return (
     <>
@@ -135,8 +53,7 @@ export default async function ArchivesPage() {
                 <span className="font-serif italic">2025 à aujourd&apos;hui</span>
               </h1>
               <p className="text-on-surface-variant text-sm font-light mt-2">
-                {projects.reduce((acc, p) => acc + p.images.length, 0)} photos
-                &nbsp;·&nbsp; {projects.length} projet{projects.length > 1 ? "s" : ""}
+                {folders.length} projet{folders.length > 1 ? "s" : ""}
               </p>
             </div>
             <Link
@@ -150,8 +67,8 @@ export default async function ArchivesPage() {
             </Link>
           </div>
 
-          {projects.length > 0 ? (
-            <GalleryClient projects={projects} />
+          {folders.length > 0 ? (
+            <GalleryClient initialProjects={initialProjects} pending={rest} />
           ) : (
             <p className="text-on-surface-variant font-light text-center py-24">
               Aucune réalisation pour le moment.

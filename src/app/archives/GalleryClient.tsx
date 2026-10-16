@@ -1,21 +1,28 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
-
-type Photo = {
-  public_id: string;
-  secure_url: string;
-  width: number;
-  height: number;
-};
+import { useCallback, useEffect, useRef, useState } from "react";
+import Reveal from "../Reveal";
+import { BLUR_BEIGE_MEDIUM } from "@/lib/blur";
+import { loadProjectPhotos, type Photo, type ProjectFolder } from "./actions";
 
 type Project = {
   name: string;
   images: Photo[];
 };
 
-export default function GalleryClient({ projects }: { projects: Project[] }) {
+export default function GalleryClient({
+  initialProjects,
+  pending,
+}: {
+  initialProjects: Project[];
+  pending: ProjectFolder[];
+}) {
+  const [projects, setProjects] = useState<Project[]>(initialProjects);
+  const [queue, setQueue] = useState<ProjectFolder[]>(pending);
+  const [loadingNext, setLoadingNext] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
   const [lightbox, setLightbox] = useState<{
     photos: Photo[];
     index: number;
@@ -65,51 +72,96 @@ export default function GalleryClient({ projects }: { projects: Project[] }) {
     preloadImage(photos[prevIndex].secure_url);
   }, [lightbox?.index, lightbox?.photos]);
 
+  // Charge le projet suivant quand le sentinel approche du viewport —
+  // effet relancé à chaque réduction de la queue, ce qui enchaîne les
+  // chargements en continu tant que le sentinel reste visible.
+  useEffect(() => {
+    if (queue.length === 0) return;
+    const el = sentinelRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      async ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+
+        const next = queue[0];
+        setLoadingNext(true);
+        const images = await loadProjectPhotos(next.slug);
+        setLoadingNext(false);
+
+        setProjects((prev) =>
+          images.length > 0 ? [...prev, { name: next.name, images }] : prev
+        );
+        setQueue((prev) => prev.slice(1));
+      },
+      { rootMargin: "800px 0px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [queue]);
+
   return (
     <>
       {projects.map((project) => {
         const [hero, ...rest] = project.images;
         return (
-          <section key={project.name} className="mb-20">
-            {/* Project header */}
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-4">
-                <div className="h-px w-6 bg-ocre/40" aria-hidden="true" />
-                <h2 className="text-[11px] uppercase tracking-[0.3em] text-ocre font-bold">
-                  {project.name}
-                </h2>
+          <Reveal key={project.name} className="mb-20">
+            <section>
+              {/* Project header */}
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-4">
+                  <div className="h-px w-6 bg-ocre/40" aria-hidden="true" />
+                  <h2 className="text-[11px] uppercase tracking-[0.3em] text-ocre font-bold">
+                    {project.name}
+                  </h2>
+                </div>
+                <span className="text-[10px] uppercase tracking-widest text-on-surface-variant/50">
+                  {project.images.length} photo{project.images.length > 1 ? "s" : ""}
+                </span>
               </div>
-              <span className="text-[10px] uppercase tracking-widest text-on-surface-variant/50">
-                {project.images.length} photo{project.images.length > 1 ? "s" : ""}
-              </span>
-            </div>
 
-            {/* Compact grid — 4 colonnes */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-              {[hero, ...rest].map((image, i) => (
-                <button
-                  key={image.public_id}
-                  onClick={() => setLightbox({ photos: project.images, index: i })}
-                  className="overflow-hidden group relative bg-beige-medium/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-ocre cursor-pointer rounded"
-                  style={{ aspectRatio: "1" }}
-                  aria-label={`Agrandir la photo ${i + 1} — ${project.name}`}
-                >
-                  <Image
-                    src={image.secure_url}
-                    alt={`${project.name} — réalisation Porcher Menuiserie`}
-                    fill
-                    className="object-cover motion-safe:group-hover:scale-105 transition-transform duration-700"
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                    loading={i === 0 ? "eager" : "lazy"}
-                    priority={i === 0}
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
-                </button>
-              ))}
-            </div>
-          </section>
+              {/* Compact grid — 4 colonnes */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                {[hero, ...rest].map((image, i) => (
+                  <button
+                    key={image.public_id}
+                    onClick={() => setLightbox({ photos: project.images, index: i })}
+                    className="overflow-hidden group relative bg-beige-medium/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-ocre cursor-pointer rounded"
+                    style={{ aspectRatio: "1" }}
+                    aria-label={`Agrandir la photo ${i + 1} — ${project.name}`}
+                  >
+                    <Image
+                      src={image.secure_url}
+                      alt={`${project.name} — réalisation Porcher Menuiserie`}
+                      fill
+                      className="object-cover motion-safe:group-hover:scale-105 transition-transform duration-700"
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                      loading={i === 0 ? "eager" : "lazy"}
+                      priority={i === 0}
+                      placeholder="blur"
+                      blurDataURL={BLUR_BEIGE_MEDIUM}
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                  </button>
+                ))}
+              </div>
+            </section>
+          </Reveal>
         );
       })}
+
+      {/* Sentinel — déclenche le chargement du projet suivant au scroll */}
+      {queue.length > 0 && (
+        <div ref={sentinelRef} className="flex justify-center py-12">
+          {loadingNext && (
+            <span className="text-[11px] uppercase tracking-widest text-on-surface-variant/50">
+              Chargement…
+            </span>
+          )}
+        </div>
+      )}
 
       {/* Lightbox */}
       {lightbox && (
