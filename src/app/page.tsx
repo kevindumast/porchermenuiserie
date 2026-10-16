@@ -303,8 +303,8 @@ export default async function Home() {
                   blurDataURL={BLUR_BEIGE_MEDIUM}
                 />
               </div>
-              <div className="absolute -bottom-8 -right-8 p-12 bg-surface max-w-xs border border-beige-medium">
-                <blockquote className="text-4xl font-serif text-ocre italic">
+              <div className="absolute -bottom-8 -left-6 md:-left-8 p-8 md:p-12 bg-surface max-w-[16rem] md:max-w-xs border border-beige-medium">
+                <blockquote className="text-3xl md:text-4xl font-serif text-ocre italic">
                   &ldquo;Le bois a une âme, nous ne faisons que la
                   révéler.&rdquo;
                 </blockquote>
