@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/kevindumast/porchermenuiserie/compare/v1.0.0...v1.1.0) (2026-10-16)
+
+
+### Features
+
+* **seo:** migration vers le domaine www.porcher-menuiserie.com ([e35a22f](https://github.com/kevindumast/porchermenuiserie/commit/e35a22f3f6253ca053c97357b979cacf7459e2e2))
+
 ## 1.0.0 (2026-07-11)
 
 
