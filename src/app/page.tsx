@@ -13,7 +13,7 @@ export const revalidate = 0;
 
 // Noms des images attendues dans le dossier landing/ du bucket
 // Accepte n'importe quel format (.jpg, .png, .webp, etc.)
-const LANDING_IMAGE_NAMES = ["1", "2", "3", "4", "5"] as const;
+const LANDING_IMAGE_NAMES = ["1", "2", "3", "4", "5", "6"] as const;
 
 type LandingImages = Record<(typeof LANDING_IMAGE_NAMES)[number], string>;
 
@@ -223,6 +223,18 @@ export default async function Home() {
                   blurDataURL={BLUR_BLUE_GRAY}
                 />
               </div>
+              {img["6"] && (
+                <div className="aspect-[4/3] bg-beige-medium/10 overflow-hidden group relative">
+                  <Image
+                    alt="Réalisation sur mesure Porcher Menuiserie — détail d'agencement bois"
+                    className="w-full h-full object-cover motion-safe:group-hover:scale-110 transition-transform duration-[1500ms]"
+                    src={img["6"]}
+                    fill
+                    placeholder="blur"
+                    blurDataURL={BLUR_BEIGE_MEDIUM}
+                  />
+                </div>
+              )}
               <div className="pr-12">
                 <h3 className="text-3xl font-light mb-6">
                   L&apos;exigence du détail
