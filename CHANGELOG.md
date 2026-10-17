@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/kevindumast/porchermenuiserie/compare/v1.1.0...v1.2.0) (2026-10-17)
+
+
+### Features
+
+* **hero:** sceau animé « Porcher Menuiserie » à droite du hero ([c8ad6b3](https://github.com/kevindumast/porchermenuiserie/commit/c8ad6b33c2053a9b0069b87c436852208cbbfb4d))
+* **hero:** sceau animé « Porcher Menuiserie » à droite du hero ([f1db303](https://github.com/kevindumast/porchermenuiserie/commit/f1db303c33b71c09c9e9f77bc0628c8f67cdceec))
+
 ## [1.1.0](https://github.com/kevindumast/porchermenuiserie/compare/v1.0.0...v1.1.0) (2026-10-16)
 
 
