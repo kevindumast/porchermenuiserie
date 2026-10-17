@@ -46,10 +46,40 @@ p {
   line-height: 1.75;
 }
 
+/* Sceau hero : la bibliothèque se trace comme un plan, puis le plateau est posé */
+@keyframes pm-draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes pm-drop {
+  0% { opacity: 0; transform: translateY(-16px); }
+  70% { opacity: 1; transform: translateY(1px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pm-fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.pm-draw {
+  stroke-dasharray: 1 2;
+  animation: pm-draw 0.6s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+.pm-drop { animation: pm-drop 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.pm-fade { animation: pm-fade 1s ease-out both; }
+
 @media (prefers-reduced-motion: reduce) {
   * {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+  }
+
+  .pm-draw,
+  .pm-drop,
+  .pm-fade {
+    animation-delay: 0s !important;
   }
 }
 
