@@ -83,43 +83,51 @@ export default async function Home() {
         </div>
 
         <div className="container mx-auto px-6 md:px-12 relative z-10">
-          <div className="max-w-3xl">
-            {/* Circular Logo */}
-            <div
-              className="relative w-32 h-32 mb-12 flex items-center justify-center"
-              aria-hidden="true"
-            >
-              <svg
-                className="absolute w-full h-full -rotate-90"
-                viewBox="0 0 100 100"
-              >
-                <defs>
-                  <path
-                    d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"
-                    id="circlePath"
-                  />
-                </defs>
-                <text className="fill-ocre text-[11px] font-serif tracking-widest uppercase">
-                  <textPath
-                    href="#circlePath"
-                    startOffset="50%"
-                    textAnchor="middle"
-                  >
+          {/* Sceau — une bibliothèque se trace puis s'assemble au chargement */}
+          <div
+            className="relative w-36 h-36 mb-10 ml-auto min-[420px]:absolute min-[420px]:mb-0 min-[420px]:right-6 min-[420px]:top-0 sm:w-40 sm:h-40 md:right-12 md:w-52 md:h-52 lg:top-1/2 lg:-translate-y-1/2 lg:w-80 lg:h-80 xl:right-24 rounded-full bg-surface/80 backdrop-blur-sm"
+            aria-hidden="true"
+          >
+            <svg className="w-full h-full" viewBox="0 0 200 200" fill="none">
+              <defs>
+                <path id="sealTop" d="M 22,100 A 78,78 0 0 1 178,100" />
+                <path id="sealBottom" d="M 15,100 A 85,85 0 0 0 185,100" />
+              </defs>
+
+              {/* Bande du sceau */}
+              <g className="stroke-ocre" strokeWidth="1">
+                <circle className="pm-draw" cx="100" cy="100" r="95" pathLength={1} style={{ animationDelay: "0s", animationDuration: "1.4s" }} />
+                <circle className="pm-draw opacity-50" cx="100" cy="100" r="69" pathLength={1} style={{ animationDelay: "0.2s", animationDuration: "1.4s" }} />
+              </g>
+              <g className="pm-fade" style={{ animationDelay: "0.5s" }}>
+                <text className="fill-ocre-dark font-headline uppercase" fontSize="13" letterSpacing="3.5">
+                  <textPath href="#sealTop" startOffset="50%" textAnchor="middle">
                     Porcher Menuiserie
                   </textPath>
                 </text>
-              </svg>
-              <div className="w-16 h-16 flex flex-col items-center justify-center border-t border-ocre/30 pt-1">
-                <div className="flex gap-0.5">
-                  <div className="w-px h-4 bg-ocre/40" />
-                  <div className="w-px h-4 bg-ocre/40" />
-                  <div className="w-px h-4 bg-ocre/40" />
-                  <div className="w-px h-4 bg-ocre/40" />
-                  <div className="w-px h-4 bg-ocre/40" />
-                </div>
-              </div>
-            </div>
+                <text className="fill-ocre-dark font-label uppercase" fontSize="8.5" letterSpacing="4.5">
+                  <textPath href="#sealBottom" startOffset="50%" textAnchor="middle">
+                    Artisan agenceur
+                  </textPath>
+                </text>
+                <circle className="fill-ocre" cx="18" cy="100" r="1.6" />
+                <circle className="fill-ocre" cx="182" cy="100" r="1.6" />
+              </g>
 
+              {/* Bibliothèque : socle, montants, séparation, tablettes, puis plateau posé */}
+              <g className="stroke-ocre-dark" strokeLinecap="butt">
+                <path className="pm-draw" d="M 64 132 H 136" strokeWidth="2" pathLength={1} style={{ animationDelay: "0.7s" }} />
+                <path className="pm-draw" d="M 72 132 V 68" strokeWidth="1.75" pathLength={1} style={{ animationDelay: "1s" }} />
+                <path className="pm-draw" d="M 128 132 V 68" strokeWidth="1.75" pathLength={1} style={{ animationDelay: "1.1s" }} />
+                <path className="pm-draw" d="M 100 132 V 68" strokeWidth="1.25" pathLength={1} style={{ animationDelay: "1.35s" }} />
+                <path className="pm-draw" d="M 72 90 H 100" strokeWidth="1.25" pathLength={1} style={{ animationDelay: "1.6s", animationDuration: "0.4s" }} />
+                <path className="pm-draw" d="M 128 101 H 100" strokeWidth="1.25" pathLength={1} style={{ animationDelay: "1.75s", animationDuration: "0.4s" }} />
+                <path className="pm-draw" d="M 72 111 H 100" strokeWidth="1.25" pathLength={1} style={{ animationDelay: "1.9s", animationDuration: "0.4s" }} />
+                <path className="pm-drop" d="M 64 67 H 136" strokeWidth="2" style={{ animationDelay: "2.25s" }} />
+              </g>
+            </svg>
+          </div>
+          <div className="max-w-3xl">
             <h1 className="text-6xl md:text-8xl font-light text-on-surface leading-tight mb-4">
               <span className="sr-only">
                 Menuisier sur mesure — Porcher Menuiserie, Ille-et-Vilaine.{" "}
