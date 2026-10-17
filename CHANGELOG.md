@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.1](https://github.com/kevindumast/porchermenuiserie/compare/v1.2.0...v1.2.1) (2026-10-17)
+
+
+### Bug Fixes
+
+* **hero:** sceau à droite du titre sur petit mobile ([ec83d80](https://github.com/kevindumast/porchermenuiserie/commit/ec83d808b919263d825b31a2d7cf31a42831f79b))
+* **hero:** sceau à droite du titre sur petit mobile ([ddb932f](https://github.com/kevindumast/porchermenuiserie/commit/ddb932f841d603b0ce3bb2d1be1df70391e48340))
+
 ## [1.2.0](https://github.com/kevindumast/porchermenuiserie/compare/v1.1.0...v1.2.0) (2026-10-17)
 
 
