@@ -85,7 +85,7 @@ export default async function Home() {
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           {/* Sceau — une bibliothèque se trace puis s'assemble au chargement */}
           <div
-            className="relative w-36 h-36 mb-10 ml-auto min-[420px]:absolute min-[420px]:mb-0 min-[420px]:right-6 min-[420px]:top-0 sm:w-40 sm:h-40 md:right-12 md:w-52 md:h-52 lg:top-1/2 lg:-translate-y-1/2 lg:w-80 lg:h-80 xl:right-24 rounded-full bg-surface/80 backdrop-blur-sm"
+            className="absolute right-6 top-0 w-32 h-32 min-[420px]:w-36 min-[420px]:h-36 sm:w-40 sm:h-40 md:right-12 md:w-52 md:h-52 lg:top-1/2 lg:-translate-y-1/2 lg:w-80 lg:h-80 xl:right-24 rounded-full bg-surface/80 backdrop-blur-sm"
             aria-hidden="true"
           >
             <svg className="w-full h-full" viewBox="0 0 200 200" fill="none">
@@ -128,7 +128,7 @@ export default async function Home() {
             </svg>
           </div>
           <div className="max-w-3xl">
-            <h1 className="text-6xl md:text-8xl font-light text-on-surface leading-tight mb-4">
+            <h1 className="text-5xl min-[420px]:text-6xl md:text-8xl font-light text-on-surface leading-tight mb-4">
               <span className="sr-only">
                 Menuisier sur mesure — Porcher Menuiserie, Ille-et-Vilaine.{" "}
               </span>
