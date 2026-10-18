@@ -19,7 +19,7 @@ const LANDING_IMAGE_NAMES = ["1", "2", "3", "4", "5"] as const;
 // Métiers affichés dans la carte « Nos métiers » de la section Book
 const METIERS = [
   { name: "Agencement", detail: "Dressings, bibliothèques, cuisines" },
-  { name: "Menuiserie", detail: "Portes, escaliers, habillages bois" },
+  { name: "Menuiserie", detail: "Menuiseries extérieures, portes de garage" },
   { name: "Parquet", detail: "Pose, ponçage et finitions" },
   { name: "Cloison sèche", detail: "Cloisons, doublages, isolation" },
   { name: "Faux plafond", detail: "Plafonds suspendus en plaque de plâtre, plafonds en dalles acoustiques" },
