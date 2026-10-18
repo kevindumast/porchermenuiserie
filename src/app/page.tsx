@@ -89,70 +89,82 @@ export default async function Home() {
             sizes="100vw"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-beige-light/90 via-beige-light/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-beige-light/90 via-beige-light/60 to-transparent" />
         </div>
 
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           {/* Logo animé sur médaillon beige */}
-          <div className="absolute right-6 top-0 w-32 h-32 min-[420px]:w-36 min-[420px]:h-36 sm:w-40 sm:h-40 md:right-12 md:w-52 md:h-52 lg:top-1/2 lg:-translate-y-1/2 lg:w-80 lg:h-80 xl:right-24 rounded-full bg-surface/80 backdrop-blur-sm">
+          <div className="absolute right-6 top-8 w-32 h-32 min-[420px]:w-36 min-[420px]:h-36 sm:w-40 sm:h-40 md:right-12 md:w-52 md:h-52 lg:top-1/2 lg:-translate-y-1/2 lg:w-80 lg:h-80 xl:right-24 rounded-full bg-surface/80 backdrop-blur-sm">
             <HeroLogo className="w-full h-full" />
           </div>
           <div className="max-w-3xl">
-            <h1 className="text-5xl min-[420px]:text-6xl md:text-8xl font-light text-on-surface leading-tight mb-4">
+            <p className="text-ocre uppercase tracking-[0.3em] text-[11px] font-bold mb-4" aria-hidden="true">
+              Menuisier · Bretagne et alentours
+            </p>
+            <h1 className="text-5xl min-[420px]:text-6xl md:text-8xl font-light text-on-surface leading-tight md:leading-[1.05] mb-6">
               <span className="sr-only">
                 Menuisier sur mesure — Porcher Menuiserie, Bretagne et alentours.{" "}
               </span>
               <span aria-hidden="true">
-                L&apos;Art du <br />
+                {/* Une ligne sur grand écran ; deux en dessous, à côté du médaillon */}
+                L&apos;Art du <br className="xl:hidden" />
                 <span className="italic font-serif">Geste</span>
               </span>
             </h1>
 
             {/* Hero subtitle — Jobs To Be Done */}
-            <p className="text-base md:text-lg text-on-surface-variant font-light tracking-wide mb-10 max-w-md">
+            <p className="text-base md:text-lg text-on-surface-variant font-light tracking-wide mb-8 max-w-md">
               Menuiserie sur mesure, agencement intérieur et second&nbsp;œuvre —
               de la conception à la pose.
             </p>
 
-            {/* Social proof strip */}
-            <div className="flex items-center gap-6 mb-10">
-              <div className="h-px w-8 bg-ocre/30" aria-hidden="true" />
-              <p className="text-[11px] uppercase tracking-[0.25em] text-on-surface-variant font-light">
-                <Counter to={15} />&nbsp;ans d&apos;expérience &nbsp;·&nbsp; <Counter to={150} />+ réalisations
-              </p>
-            </div>
-
-            <div className="space-y-1 mb-12">
-              <p className="text-xl md:text-2xl font-light text-ocre tracking-widest">
-                06&nbsp;68&nbsp;13&nbsp;32&nbsp;45
-              </p>
-              <p className="text-sm tracking-widest font-light text-on-surface-variant">
-                porcher-menuiserie@outlook.fr
-              </p>
-            </div>
-
-            <div className="flex items-center gap-8">
+            {/* Une action principale (devis), une secondaire (photos) */}
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-5">
               <a
-                className="bg-ocre text-on-primary px-10 py-5 text-xs uppercase tracking-widest font-bold hover:bg-ocre-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
-                href="#projets"
+                className="bg-ocre text-on-primary px-10 py-5 text-xs uppercase tracking-widest font-bold hover:bg-ocre-dark active:scale-95 transition-[background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                href="#contact"
               >
-                Explorer le book
+                Demander un devis
               </a>
-              <a
-                className="group flex items-center gap-3 text-ocre font-medium tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
-                href="#services"
+              <Link
+                className="group flex items-center gap-3 text-ocre-dark font-medium tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                href="/archives"
               >
                 <span className="border-b border-ocre/30 group-hover:border-ocre transition-colors pb-1">
-                  Savoir-faire
+                  Voir les réalisations
                 </span>
-                <span
-                  className="material-symbols-outlined text-sm transition-transform duration-300 group-hover:translate-x-1"
-                  aria-hidden="true"
-                >
-                  arrow_forward
-                </span>
-              </a>
+                <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                  <path d="M4 12h15M13 6l6 6-6 6" />
+                </svg>
+              </Link>
             </div>
+
+            <p className="mt-6 text-sm font-light text-on-surface-variant">
+              ou appelez le{" "}
+              <a
+                href="tel:+33668133245"
+                className="text-ocre-dark font-normal tracking-wider border-b border-ocre/30 hover:border-ocre transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre"
+              >
+                06&nbsp;68&nbsp;13&nbsp;32&nbsp;45
+              </a>
+            </p>
+
+            {/* Preuves : le socle du bloc */}
+            <dl className="mt-10 pt-5 border-t border-ocre/20 grid grid-cols-2 gap-6 max-w-sm">
+              {[
+                { value: <Counter to={15} />, label: "ans d'expérience" },
+                { value: <><Counter to={150} />+</>, label: "réalisations" },
+              ].map(({ value, label }) => (
+                <div key={label} className="flex flex-col-reverse justify-end">
+                  <dt className="mt-2 text-[11px] uppercase tracking-[0.2em] leading-relaxed text-on-surface-variant">
+                    {label}
+                  </dt>
+                  <dd className="font-serif text-4xl md:text-5xl font-light text-on-surface tabular-nums">
+                    {value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
       </section>
@@ -382,7 +394,7 @@ export default async function Home() {
               </h2>
             </Reveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-24 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-x-12 xl:gap-x-24 items-start">
               <Reveal className="md:col-span-4 bg-ocre p-8 text-on-primary">
                 <h3 className="text-xl font-serif italic mb-8">
                   Contact Direct
