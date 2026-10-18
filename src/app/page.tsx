@@ -106,7 +106,8 @@ export default async function Home() {
                 Menuisier sur mesure — Porcher Menuiserie, Bretagne et alentours.{" "}
               </span>
               <span aria-hidden="true">
-                L&apos;Art du <br />
+                {/* Une ligne sur grand écran ; deux en dessous, à côté du médaillon */}
+                L&apos;Art du <br className="xl:hidden" />
                 <span className="italic font-serif">Geste</span>
               </span>
             </h1>
@@ -149,11 +150,10 @@ export default async function Home() {
             </p>
 
             {/* Preuves : le socle du bloc */}
-            <dl className="mt-10 pt-5 border-t border-ocre/20 grid grid-cols-3 gap-6 max-w-lg">
+            <dl className="mt-10 pt-5 border-t border-ocre/20 grid grid-cols-2 gap-6 max-w-sm">
               {[
                 { value: <Counter to={15} />, label: "ans d'expérience" },
                 { value: <><Counter to={150} />+</>, label: "réalisations" },
-                { value: "1", label: "seul interlocuteur" },
               ].map(({ value, label }) => (
                 <div key={label} className="flex flex-col-reverse justify-end">
                   <dt className="mt-2 text-[11px] uppercase tracking-[0.2em] leading-relaxed text-on-surface-variant">
