@@ -15,11 +15,22 @@ const BOOK_LINK = { href: "/archives", label: "Book" };
 
 const PHONE = { href: "tel:+33668133245", label: "06 68 13 32 45" };
 
-// Onglets de la barre mobile (Contact est porté par le bouton Devis)
-const MOBILE_TABS = [
-  { id: "projets", label: "Projets", Icon: ShelfIcon },
+// Onglets de la barre mobile (Contact est porté par le bouton Devis) :
+// ancre de la page d'accueil, ou page dédiée quand href est fourni
+type MobileTab = {
+  id: string;
+  label: string;
+  Icon: (props: { active: boolean }) => React.ReactElement;
+  href?: string;
+};
+
+const MOBILE_TABS: MobileTab[] = [
+  { id: "photos", label: "Photos", Icon: PhotoIcon, href: BOOK_LINK.href },
   { id: "services", label: "Savoir-faire", Icon: SquareIcon },
-] as const;
+];
+
+const TAB_CLASS =
+  "group flex flex-col items-center justify-center gap-1 active:bg-ocre/5 focus-visible:outline-none focus-visible:bg-ocre/10";
 
 export default function Navigation() {
   const [active, setActive] = useState("");
@@ -62,8 +73,8 @@ export default function Navigation() {
     };
   }, []);
 
-  // « Projets » reste actif sur la page Book
-  const isActive = (id: string) => (isHome && active === id) || (isBook && id === "projets");
+  // « Photos » est actif sur la page Book
+  const isActive = (id: string) => (isHome && active === id) || (isBook && id === "photos");
   const activeTab = MOBILE_TABS.findIndex(({ id }) => isActive(id));
 
   function handleNavClick(e: React.MouseEvent, id: string) {
@@ -165,20 +176,30 @@ export default function Navigation() {
             }}
           />
 
-          {MOBILE_TABS.map(({ id, label, Icon }) => {
+          {MOBILE_TABS.map(({ id, label, Icon, href }) => {
             const current = isActive(id);
-            return (
+            const content = (
+              <>
+                <Icon active={current} />
+                <span className={`text-[11px] whitespace-nowrap ${current ? "font-medium" : "font-light"}`}>
+                  {label}
+                </span>
+              </>
+            );
+            const className = `${TAB_CLASS} transition-colors duration-300 ${current ? "text-ocre-dark" : "text-on-surface-variant"}`;
+            return href ? (
+              <Link key={id} href={href} aria-current={current ? "page" : undefined} className={className}>
+                {content}
+              </Link>
+            ) : (
               <a
                 key={id}
                 href={isHome ? `#${id}` : `/#${id}`}
                 onClick={(e) => handleNavClick(e, id)}
                 aria-current={current ? "location" : undefined}
-                className={`group flex flex-col items-center justify-center gap-1 transition-colors duration-300 active:bg-ocre/5 focus-visible:outline-none focus-visible:bg-ocre/10 ${
-                  current ? "text-ocre-dark" : "text-on-surface-variant"
-                }`}
+                className={className}
               >
-                <Icon active={current} />
-                <span className={`text-[11px] tracking-wide ${current ? "font-medium" : "font-light"}`}>{label}</span>
+                {content}
               </a>
             );
           })}
@@ -186,10 +207,10 @@ export default function Navigation() {
           <a
             href={PHONE.href}
             aria-label={`Appeler Porcher Menuiserie au ${PHONE.label}`}
-            className="group flex flex-col items-center justify-center gap-1 text-on-surface-variant active:bg-ocre/5 focus-visible:outline-none focus-visible:bg-ocre/10"
+            className={`${TAB_CLASS} text-on-surface-variant`}
           >
             <PhoneIcon />
-            <span className="text-[11px] tracking-wide font-light">Appeler</span>
+            <span className="text-[11px] whitespace-nowrap font-light">Appeler</span>
           </a>
         </div>
 
@@ -213,20 +234,21 @@ export default function Navigation() {
 // Icônes au trait, angles vifs comme le reste du site
 const ICON_CLASS = "w-[22px] h-[22px] transition-transform duration-300 group-active:scale-90";
 
-function ShelfIcon({ active }: { active: boolean }) {
-  return (
-    <svg className={ICON_CLASS} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-      <rect x="4" y="4" width="16" height="16" fill="currentColor" fillOpacity={active ? 0.15 : 0} className="transition-[fill-opacity] duration-300" />
-      <path d="M12 4v16M4 10h8M12 14h8" />
-    </svg>
-  );
-}
-
 function SquareIcon({ active }: { active: boolean }) {
   return (
     <svg className={ICON_CLASS} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
       <path d="M4 4h4v12h12v4H4z" fill="currentColor" fillOpacity={active ? 0.15 : 0} className="transition-[fill-opacity] duration-300" />
       <path d="M6 8h2M6 12h2M12 18v-2M16 18v-2" />
+    </svg>
+  );
+}
+
+function PhotoIcon({ active }: { active: boolean }) {
+  return (
+    <svg className={ICON_CLASS} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+      <rect x="3" y="5" width="18" height="14" fill="currentColor" fillOpacity={active ? 0.15 : 0} className="transition-[fill-opacity] duration-300" />
+      <circle cx="9" cy="10" r="1.5" />
+      <path d="M3 17l5-5 4 4 2.5-2.5L21 19" />
     </svg>
   );
 }

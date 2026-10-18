@@ -19,10 +19,10 @@ const LANDING_IMAGE_NAMES = ["1", "2", "3", "4", "5"] as const;
 // Métiers affichés dans la carte « Nos métiers » de la section Book
 const METIERS = [
   { name: "Agencement", detail: "Dressings, bibliothèques, cuisines" },
-  { name: "Menuiserie", detail: "Portes, escaliers, habillages bois" },
+  { name: "Menuiserie", detail: "Menuiseries extérieures, portes de garage" },
   { name: "Parquet", detail: "Pose, ponçage et finitions" },
   { name: "Cloison sèche", detail: "Cloisons, doublages, isolation" },
-  { name: "Faux plafond", detail: "Plafonds suspendus en plaque de plâtre" },
+  { name: "Faux plafond", detail: "Plafonds suspendus en plaque de plâtre, plafonds en dalles acoustiques" },
 ];
 
 type LandingImages =Record<(typeof LANDING_IMAGE_NAMES)[number], string>;
@@ -100,7 +100,7 @@ export default async function Home() {
           <div className="max-w-3xl">
             <h1 className="text-5xl min-[420px]:text-6xl md:text-8xl font-light text-on-surface leading-tight mb-4">
               <span className="sr-only">
-                Menuisier sur mesure — Porcher Menuiserie, Ille-et-Vilaine.{" "}
+                Menuisier sur mesure — Porcher Menuiserie, Bretagne et alentours.{" "}
               </span>
               <span aria-hidden="true">
                 L&apos;Art du <br />
@@ -169,8 +169,13 @@ export default async function Home() {
                 nos réalisations.
               </p>
             </div>
-            <Link href="/archives" className="text-ocre text-xs uppercase tracking-widest border-b border-ocre/20 pb-2 hover:border-ocre transition-colors">
-              Archives 2025 — Aujourd&apos;hui
+            <Link href="/archives" className="group inline-flex items-center gap-3 text-ocre text-xs uppercase tracking-widest border-b border-ocre/20 pb-2 hover:border-ocre transition-colors">
+              <svg className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" />
+                <circle cx="9" cy="10" r="1.5" />
+                <path d="M3 17l5-5 4 4 2.5-2.5L21 19" />
+              </svg>
+              Photos projets
             </Link>
           </Reveal>
 
