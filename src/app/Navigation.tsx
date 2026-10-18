@@ -25,7 +25,6 @@ type MobileTab = {
 };
 
 const MOBILE_TABS: MobileTab[] = [
-  { id: "projets", label: "Projets", Icon: ShelfIcon },
   { id: "photos", label: "Photos", Icon: PhotoIcon, href: BOOK_LINK.href },
   { id: "services", label: "Savoir-faire", Icon: SquareIcon },
 ];
@@ -166,11 +165,11 @@ export default function Navigation() {
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
       <div className="flex h-16">
-        <div className="relative grid flex-1 grid-cols-4">
+        <div className="relative grid flex-1 grid-cols-3">
           {/* Repère actif : glisse d'un onglet à l'autre */}
           <span
             aria-hidden="true"
-            className="absolute top-0 left-0 h-0.5 w-1/4 bg-ocre transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            className="absolute top-0 left-0 h-0.5 w-1/3 bg-ocre transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
             style={{
               transform: `translateX(${Math.max(activeTab, 0) * 100}%) scaleX(${activeTab < 0 ? 0 : 0.5})`,
               opacity: activeTab < 0 ? 0 : 1,
@@ -182,7 +181,7 @@ export default function Navigation() {
             const content = (
               <>
                 <Icon active={current} />
-                <span className={`text-[11px] max-[374px]:text-[10px] whitespace-nowrap ${current ? "font-medium" : "font-light"}`}>
+                <span className={`text-[11px] whitespace-nowrap ${current ? "font-medium" : "font-light"}`}>
                   {label}
                 </span>
               </>
@@ -211,7 +210,7 @@ export default function Navigation() {
             className={`${TAB_CLASS} text-on-surface-variant`}
           >
             <PhoneIcon />
-            <span className="text-[11px] max-[374px]:text-[10px] whitespace-nowrap font-light">Appeler</span>
+            <span className="text-[11px] whitespace-nowrap font-light">Appeler</span>
           </a>
         </div>
 
@@ -219,10 +218,10 @@ export default function Navigation() {
           href={isHome ? "#contact" : "/#contact"}
           onClick={(e) => handleNavClick(e, "contact")}
           aria-label="Demander un devis — accéder au formulaire de contact"
-          className="group flex items-center gap-1.5 bg-ocre px-4 text-on-primary text-[11px] uppercase tracking-[0.15em] font-medium transition-colors active:bg-ocre-dark focus-visible:outline-none focus-visible:bg-ocre-dark"
+          className="group flex items-center gap-2 bg-ocre px-5 text-on-primary text-[11px] uppercase tracking-[0.2em] font-medium transition-colors active:bg-ocre-dark focus-visible:outline-none focus-visible:bg-ocre-dark"
         >
           Devis
-          <svg className="w-4 h-4 max-[374px]:hidden transition-transform duration-300 group-active:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+          <svg className="w-4 h-4 transition-transform duration-300 group-active:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
             <path d="M4 12h15M13 6l6 6-6 6" />
           </svg>
         </a>
@@ -234,15 +233,6 @@ export default function Navigation() {
 
 // Icônes au trait, angles vifs comme le reste du site
 const ICON_CLASS = "w-[22px] h-[22px] transition-transform duration-300 group-active:scale-90";
-
-function ShelfIcon({ active }: { active: boolean }) {
-  return (
-    <svg className={ICON_CLASS} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-      <rect x="4" y="4" width="16" height="16" fill="currentColor" fillOpacity={active ? 0.15 : 0} className="transition-[fill-opacity] duration-300" />
-      <path d="M12 4v16M4 10h8M12 14h8" />
-    </svg>
-  );
-}
 
 function SquareIcon({ active }: { active: boolean }) {
   return (
