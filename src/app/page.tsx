@@ -100,7 +100,7 @@ export default async function Home() {
           <div className="max-w-3xl">
             <h1 className="text-5xl min-[420px]:text-6xl md:text-8xl font-light text-on-surface leading-tight mb-4">
               <span className="sr-only">
-                Menuisier sur mesure — Porcher Menuiserie, Ille-et-Vilaine.{" "}
+                Menuisier sur mesure — Porcher Menuiserie, Bretagne et alentours.{" "}
               </span>
               <span aria-hidden="true">
                 L&apos;Art du <br />
