@@ -110,7 +110,8 @@ export default function PolitiqueConfidentialite() {
             <section>
               <h2 className="text-xl font-serif text-on-surface mb-3">9. Cookies</h2>
               <p>
-                Ce site n&apos;utilise aucun cookie. Aucune donnée n&apos;est stockée sur votre appareil par notre site.
+                Ce site n&apos;utilise aucun cookie. Seul votre choix de thème (clair ou sombre), si vous le modifiez,
+                est enregistré dans le stockage local de votre navigateur : il sert uniquement à l&apos;affichage et n&apos;est jamais transmis.
                 Votre navigateur peut utiliser des cookies techniques pour son propre fonctionnement, mais cela ne relève pas de notre responsabilité.
               </p>
             </section>
