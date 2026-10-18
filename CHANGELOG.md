@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0](https://github.com/kevindumast/porchermenuiserie/compare/v1.2.1...v1.3.0) (2026-10-18)
+
+
+### Features
+
+* **hero:** logo original Porcher Menuiserie animé (motion design) ([34be4b5](https://github.com/kevindumast/porchermenuiserie/commit/34be4b5f1402369d904439a2cce66d327ef74799))
+* **nav:** barre mobile repensée — hiérarchie, icônes métier, onglet actif réel ([de18ca4](https://github.com/kevindumast/porchermenuiserie/commit/de18ca480c0459a6e00c53a13da3d0be2f0e9ba1))
+
 ## [1.2.1](https://github.com/kevindumast/porchermenuiserie/compare/v1.2.0...v1.2.1) (2026-10-17)
 
 
