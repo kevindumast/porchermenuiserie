@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/kevindumast/porchermenuiserie/compare/v1.4.0...v1.5.0) (2026-10-18)
+
+
+### Features
+
+* **nav:** accès direct aux photos des projets ([b5e342e](https://github.com/kevindumast/porchermenuiserie/commit/b5e342ea03717491ec72be41694de123fdee8f51))
+
 ## [1.4.0](https://github.com/kevindumast/porchermenuiserie/compare/v1.3.0...v1.4.0) (2026-10-18)
 
 
