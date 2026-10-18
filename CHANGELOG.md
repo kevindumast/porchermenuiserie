@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.0](https://github.com/kevindumast/porchermenuiserie/compare/v1.3.0...v1.4.0) (2026-10-18)
+
+
+### Features
+
+* **theme:** mode sombre sur tout le site ([497d5c3](https://github.com/kevindumast/porchermenuiserie/commit/497d5c3a2017fc3e48f98928e2d2d2dc92015d1a))
+* **theme:** mode sombre sur tout le site ([8ce52db](https://github.com/kevindumast/porchermenuiserie/commit/8ce52db546c18ef9e22627bf4c6706c674e997ed))
+
 ## [1.3.0](https://github.com/kevindumast/porchermenuiserie/compare/v1.2.1...v1.3.0) (2026-10-18)
 
 
