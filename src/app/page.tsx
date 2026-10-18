@@ -394,7 +394,7 @@ export default async function Home() {
               </h2>
             </Reveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-24 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-x-12 xl:gap-x-24 items-start">
               <Reveal className="md:col-span-4 bg-ocre p-8 text-on-primary">
                 <h3 className="text-xl font-serif italic mb-8">
                   Contact Direct
