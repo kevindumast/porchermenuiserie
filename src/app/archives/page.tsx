@@ -49,8 +49,7 @@ export default async function ArchivesPage() {
                 Le Book
               </span>
               <h1 className="text-3xl md:text-4xl font-light leading-tight">
-                Archives —{" "}
-                <span className="font-serif italic">2025 à aujourd&apos;hui</span>
+                Quelques <span className="font-serif italic">réalisations</span>
               </h1>
               <p className="text-on-surface-variant text-sm font-light mt-2">
                 {folders.length} projet{folders.length > 1 ? "s" : ""}
