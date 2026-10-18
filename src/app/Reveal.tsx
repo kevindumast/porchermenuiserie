@@ -31,6 +31,7 @@ export default function Reveal({
   return (
     <div
       ref={ref}
+      data-visible={visible}
       className={`transition duration-700 ease-out ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       } ${className}`}

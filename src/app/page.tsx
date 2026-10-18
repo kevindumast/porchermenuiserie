@@ -16,7 +16,16 @@ export const revalidate = 0;
 // Accepte n'importe quel format (.jpg, .png, .webp, etc.)
 const LANDING_IMAGE_NAMES = ["1", "2", "3", "4", "5"] as const;
 
-type LandingImages = Record<(typeof LANDING_IMAGE_NAMES)[number], string>;
+// Métiers affichés dans la carte « Nos métiers » de la section Book
+const METIERS = [
+  { name: "Agencement", detail: "Dressings, bibliothèques, cuisines" },
+  { name: "Menuiserie", detail: "Portes, escaliers, habillages bois" },
+  { name: "Parquet", detail: "Pose, ponçage et finitions" },
+  { name: "Cloison sèche", detail: "Cloisons, doublages, isolation" },
+  { name: "Faux plafond", detail: "Plafonds suspendus en plaque de plâtre" },
+];
+
+type LandingImages =Record<(typeof LANDING_IMAGE_NAMES)[number], string>;
 
 async function getLandingImages(): Promise<LandingImages> {
   // Liste tous les fichiers du dossier landing/
@@ -204,44 +213,54 @@ export default async function Home() {
               </div>
             </Reveal>
 
-            {/* Services List */}
-            <Reveal delay={300} className="md:col-span-4 flex flex-col gap-6">
-              <div className="aspect-square bg-beige-light p-10 flex flex-col justify-start gap-6">
-                <div>
-                  <span className="text-ocre uppercase tracking-[0.3em] text-xs block font-bold mb-3">
-                    Nos Métiers
-                  </span>
-                  <h3 className="text-2xl font-serif text-on-surface leading-tight whitespace-nowrap">
-                    Ce que nous faisons
-                  </h3>
-                  <div className="w-8 h-px bg-ocre/40 mt-4" aria-hidden="true" />
-                </div>
-                <ul className="space-y-3">
-                  {[
-                    "Agencement",
-                    "Menuiserie",
-                    "Parquet",
-                    "Cloison Sèche",
-                    "Faux Plafond",
-                  ].map((metier) => (
-                    <li
-                      key={metier}
-                      className="flex items-center gap-3 text-lg font-serif text-on-surface group cursor-default"
-                    >
+            {/* Métiers — index éditorial, les filets se tracent à l'apparition */}
+            <Reveal delay={300} className="group/reveal md:col-span-5 lg:col-span-4">
+              <div className="bg-beige-light p-8 lg:p-10">
+                <span className="text-ocre uppercase tracking-[0.3em] text-xs block font-bold mb-3">
+                  Nos métiers
+                </span>
+                <h3 className="text-2xl font-serif text-on-surface leading-tight mb-8">
+                  Un seul interlocuteur, <span className="italic">cinq&nbsp;métiers</span>
+                </h3>
+
+                <ol className="border-t border-ocre/20">
+                  {METIERS.map(({ name, detail }, i) => (
+                    <li key={name} className="relative grid grid-cols-[2rem_1fr] items-baseline gap-x-2 py-4">
+                      <span className="font-serif italic text-sm text-ocre tabular-nums" aria-hidden="true">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <div>
+                        <span className="block text-lg font-serif text-on-surface leading-snug">{name}</span>
+                        <span className="block text-xs font-light tracking-wide text-on-surface-variant mt-1">
+                          {detail}
+                        </span>
+                      </div>
                       <span
-                        className="w-1 h-1 bg-ocre rounded-full flex-shrink-0 motion-safe:group-hover:scale-150 transition-transform"
                         aria-hidden="true"
+                        className="absolute bottom-0 left-0 h-px w-full bg-ocre/20 origin-left scale-x-0 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-data-[visible=true]/reveal:scale-x-100"
+                        style={{ transitionDelay: `${500 + i * 90}ms` }}
                       />
-                      {metier}
                     </li>
                   ))}
-                </ul>
+                </ol>
+
+                <a
+                  href="#contact"
+                  className="group mt-8 inline-flex items-center gap-3 text-ocre-dark text-xs uppercase tracking-widest font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-beige-light"
+                >
+                  <span className="border-b border-ocre/30 group-hover:border-ocre transition-colors pb-1">
+                    Parlons de votre projet
+                  </span>
+                  <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                    <path d="M4 12h15M13 6l6 6-6 6" />
+                  </svg>
+                </a>
               </div>
             </Reveal>
 
             {/* Wide view */}
-            <Reveal className="md:col-span-8 -mt-12 md:-mt-24">
-              <div className="aspect-[16/9] md:aspect-[21/9] bg-blue-gray/5 overflow-hidden group relative">
+            <Reveal className="md:col-span-7 lg:col-span-8 -mt-12 md:-mt-24 md:self-stretch">
+              <div className="aspect-[16/9] md:aspect-auto md:h-full bg-blue-gray/5 overflow-hidden group relative">
                 <Image
                   alt="Agencement complet d'une pièce de vie — menuiserie bois et laiton"
                   className="w-full h-full object-cover motion-safe:group-hover:scale-105 transition-transform duration-[1500ms]"
