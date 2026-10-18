@@ -50,3 +50,13 @@ export function MailIcon(props: IconProps) {
     </Svg>
   );
 }
+
+export function LinkedInIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <circle cx="8" cy="7.8" r="1" fill="currentColor" stroke="none" />
+      <path d="M8 10.5V17M11.5 17v-6.5M11.5 13.2a2.7 2.7 0 0 1 5.4 0V17" />
+    </Svg>
+  );
+}

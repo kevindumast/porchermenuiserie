@@ -1,5 +1,9 @@
 import Link from "next/link";
 import { INSTAGRAM_URL } from "@/lib/social";
+import { LinkedInIcon } from "./icons";
+
+// Crédit du développeur du site (distinct des réseaux de l'entreprise)
+const DEVELOPER_LINKEDIN_URL = "https://www.linkedin.com/in/kevin-dumast-29aa5588/";
 
 export default function Footer() {
   return (
@@ -49,10 +53,24 @@ export default function Footer() {
             Instagram
           </a>
         </div>
+      </div>
 
-        <div className="type-caps text-on-surface-variant opacity-60">
+      {/* Barre du bas, sous un filet : copyright à gauche, crédit du site à droite */}
+      <div className="container mx-auto mt-12 pt-6 border-t border-ocre/15 flex flex-col md:flex-row justify-between items-center gap-3 text-center md:text-left type-caps text-on-surface-variant">
+        {/* 80 % : plus discret que les liens du dessus, mais lisible (contraste AA dans les deux thèmes) */}
+        <span className="opacity-80">
           © {new Date().getFullYear()} Porcher Menuiserie Agencement.
-        </div>
+        </span>
+        <a
+          className="group inline-flex items-center gap-2 whitespace-nowrap opacity-80 hover:opacity-100 hover:text-ocre focus-visible:opacity-100 focus-visible:text-ocre transition-[color,opacity]"
+          href={DEVELOPER_LINKEDIN_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Site réalisé par Kevin Dumast — profil LinkedIn (nouvel onglet)"
+        >
+          Site réalisé par Kevin Dumast
+          <LinkedInIcon className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
+        </a>
       </div>
     </footer>
   );
