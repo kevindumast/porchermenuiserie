@@ -156,7 +156,7 @@ export default function Navigation() {
         <a
           href={isHome ? "#contact" : "/#contact"}
           onClick={(e) => handleNavClick(e, "contact")}
-          className="hidden md:inline-block bg-ocre text-on-primary px-8 py-3 text-[10px] uppercase tracking-widest font-medium hover:bg-ocre-dark active:scale-95 transition-[background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+          className="hidden md:inline-block bg-ocre text-on-primary px-8 py-3 type-button hover:bg-ocre-dark active:scale-95 transition-[background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
           aria-label="Demander un devis — accéder au formulaire de contact"
         >
           Demander un devis
@@ -226,7 +226,7 @@ export default function Navigation() {
           href={isHome ? "#contact" : "/#contact"}
           onClick={(e) => handleNavClick(e, "contact")}
           aria-label="Demander un devis — accéder au formulaire de contact"
-          className="group flex items-center gap-2 bg-ocre px-5 text-on-primary text-[11px] uppercase tracking-[0.2em] font-medium transition-colors active:bg-ocre-dark focus-visible:outline-none focus-visible:bg-ocre-dark"
+          className="group flex items-center gap-2 bg-ocre px-5 text-on-primary type-caps transition-colors active:bg-ocre-dark focus-visible:outline-none focus-visible:bg-ocre-dark"
         >
           Devis
           <svg className="w-4 h-4 transition-transform duration-300 group-active:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">

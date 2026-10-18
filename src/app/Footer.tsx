@@ -14,7 +14,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-12 text-on-surface-variant text-[10px] uppercase tracking-[0.2em]">
+        <div className="flex flex-wrap justify-center gap-12 text-on-surface-variant type-caps">
           <a
             className="hover:text-ocre transition-colors"
             href="tel:0668133245"
@@ -50,7 +50,7 @@ export default function Footer() {
           </a>
         </div>
 
-        <div className="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant opacity-60">
+        <div className="type-caps text-on-surface-variant opacity-60">
           © {new Date().getFullYear()} Porcher Menuiserie Agencement.
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { MailIcon, PhoneIcon } from "./icons";
 
 export default function CopyableContact() {
   const [copied, setCopied] = useState<string | null>(null);
@@ -30,14 +31,12 @@ export default function CopyableContact() {
         onClick={() => copy("06 68 13 32 45", "phone")}
         className="w-full flex items-start gap-3 hover:opacity-70 transition-opacity group"
       >
-        <span className="material-symbols-outlined text-base font-thin flex-shrink-0" aria-hidden="true">
-          call
-        </span>
+        <PhoneIcon className="w-4 h-4 mt-0.5 flex-shrink-0" strokeWidth={1.25} />
         <div className="flex-1 text-left">
           <div className="text-xs font-light tracking-wide">
             06&nbsp;68&nbsp;13&nbsp;32&nbsp;45
           </div>
-          <div className="text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="type-caps opacity-0 group-hover:opacity-100 transition-opacity">
             {copied === "phone" ? "✓ Copié" : "Copier"}
           </div>
         </div>
@@ -47,14 +46,12 @@ export default function CopyableContact() {
         onClick={() => copy("porcher-menuiserie@outlook.fr", "email")}
         className="w-full flex items-start gap-3 hover:opacity-70 transition-opacity group"
       >
-        <span className="material-symbols-outlined text-base font-thin flex-shrink-0" aria-hidden="true">
-          mail
-        </span>
+        <MailIcon className="w-4 h-4 mt-0.5 flex-shrink-0" strokeWidth={1.25} />
         <div className="flex-1 text-left">
           <div className="text-xs font-light tracking-wide whitespace-nowrap">
             porcher-menuiserie@outlook.fr
           </div>
-          <div className="text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="type-caps opacity-0 group-hover:opacity-100 transition-opacity">
             {copied === "email" ? "✓ Copié" : "Copier"}
           </div>
         </div>
