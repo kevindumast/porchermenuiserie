@@ -129,6 +129,13 @@ p {
   animation: pm-logo-shimmer 4.8s ease-in-out infinite;
 }
 
+/* Barre mobile : monte doucement à l'arrivée */
+@keyframes pm-bar-in {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.pm-bar-in { animation: pm-bar-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both; }
+
 @media (prefers-reduced-motion: reduce) {
   * {
     transition-duration: 0.01ms !important;
@@ -141,7 +148,8 @@ p {
   .pm-logo-rise,
   .pm-logo-drop,
   .pm-logo-write,
-  .pm-logo-fade {
+  .pm-logo-fade,
+  .pm-bar-in {
     animation-delay: 0s !important;
   }
 
