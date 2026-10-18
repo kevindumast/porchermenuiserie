@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.7.0](https://github.com/kevindumast/porchermenuiserie/compare/v1.6.0...v1.7.0) (2026-10-18)
+
+
+### Features
+
+* **hero:** réorganisation — une action principale, preuves en socle ([a1b5ee8](https://github.com/kevindumast/porchermenuiserie/commit/a1b5ee8fdb2111732023cc2713fd2da1395dd633))
+* **hero:** titre sur une ligne dès 1280 px, deux chiffres clés ([a907ccb](https://github.com/kevindumast/porchermenuiserie/commit/a907ccb08277ccd9802a38993b4356b3d2dc8e78))
+
+
+### Bug Fixes
+
+* **contact:** supprime le défilement horizontal entre 768 et 1279 px ([33d094b](https://github.com/kevindumast/porchermenuiserie/commit/33d094b37235f8c8c5c9660b88943bb14298ab32))
+
 ## [1.6.0](https://github.com/kevindumast/porchermenuiserie/compare/v1.5.0...v1.6.0) (2026-10-18)
 
 
