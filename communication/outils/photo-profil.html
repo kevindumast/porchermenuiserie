@@ -1,0 +1,68 @@
+<!doctype html>
+<!--
+  Photo de profil Instagram — 1080 × 1080, logo du site sur fond ocre.
+  Instagram affiche la photo dans un rond inscrit dans le carré. Le nom en arc est
+  concentrique au soleil : centré sur le soleil, le logo suit le bord du rond et
+  s'arrête à 86 % du rayon, sans redimensionnement.
+
+  Rendu : voir communication/README.md (« Régénérer la photo de profil »).
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Photo de profil — Porcher Menuiserie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;900&display=block">
+<style>
+  /* Couleurs du logo Instagram actuel (texte crème sur ocre) : les teintes pâles
+     du logo du site deviennent ternes sur ce fond */
+  :root {
+    --fond: #C08C46;
+    --soleil: #FFDABE;
+    --lattes: #FFECBD;
+    --texte: #F4E7DD;
+  }
+  html, body { margin: 0; background: var(--fond); }
+  svg { display: block; width: 1080px; height: 1080px; }
+  .font-logo { font-family: "Playfair Display", serif; }
+</style>
+</head>
+<body>
+<svg id="logo" viewBox="0 0 200 200" fill="none" aria-label="Porcher Menuiserie Agencement"></svg>
+
+<script>
+  // Logo : même géométrie que src/app/HeroLogo.tsx, dans son état final
+  const CX = 100;
+  const HORIZON = 100;
+  const SUN_R = 44;
+  const SLAT_COUNT = 13;
+  const SLAT_STEP = 6.4;
+  const SLAT_WIDTH = 2.9;
+  const SLAT_GAP = 3.5;
+  const TEXT_R = 66;
+
+  const arcPoint = (deg) => {
+    const a = (deg * Math.PI) / 180;
+    return `${(CX + TEXT_R * Math.cos(a)).toFixed(2)} ${(HORIZON + TEXT_R * Math.sin(a)).toFixed(2)}`;
+  };
+  const TEXT_ARC = `M ${arcPoint(155)} A ${TEXT_R} ${TEXT_R} 0 1 1 ${arcPoint(25)}`;
+
+  const slats = Array.from({ length: SLAT_COUNT }, (_, i) => {
+    const offset = (i - (SLAT_COUNT - 1) / 2) * SLAT_STEP;
+    const bottom = HORIZON + Math.sqrt(SUN_R ** 2 - offset ** 2);
+    const top = HORIZON + SLAT_GAP;
+    return `<rect x="${CX + offset - SLAT_WIDTH / 2}" y="${top}" width="${SLAT_WIDTH}" height="${bottom - top}" />`;
+  }).join("");
+
+  document.getElementById("logo").innerHTML = `
+    <defs><path id="pmLogoArc" d="${TEXT_ARC}" /></defs>
+    <path fill="var(--soleil)" d="M ${CX - SUN_R} ${HORIZON} A ${SUN_R} ${SUN_R} 0 0 1 ${CX + SUN_R} ${HORIZON} Z" />
+    <g fill="var(--lattes)">${slats}</g>
+    <text class="font-logo" fill="var(--texte)" font-size="25" font-weight="900">
+      <textPath href="#pmLogoArc" startOffset="50%" text-anchor="middle" textLength="248" lengthAdjust="spacing">Porcher Menuiserie</textPath>
+    </text>
+    <text class="font-logo" fill="var(--texte)" x="${CX}" y="166" font-size="12" letter-spacing="0.6" text-anchor="middle">Agencement</text>`;
+</script>
+</body>
+</html>
