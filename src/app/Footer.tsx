@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { INSTAGRAM_URL } from "@/lib/social";
 
 export default function Footer() {
   return (
@@ -40,7 +41,7 @@ export default function Footer() {
           </Link>
           <a
             className="hover:text-ocre transition-colors"
-            href="https://www.instagram.com/porcher.menuiserie.agencement?igsh=NXh1cDltd3gxc2Vu"
+            href={INSTAGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Suivre Porcher Menuiserie sur Instagram"

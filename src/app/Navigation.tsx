@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ThemeToggle from "./ThemeToggle";
+import { INSTAGRAM_URL } from "@/lib/social";
 
 const NAV_ANCHORS = [
   { id: "projets", label: "Projets" },
@@ -139,9 +140,16 @@ export default function Navigation() {
             }`}
           />
         </Link>
+
+        {/* Lien externe, séparé des ancres du site par un filet */}
+        <div className="flex items-center gap-6 -ml-4 mb-2">
+          <span className="h-4 w-px bg-ocre/30" aria-hidden="true" />
+          <InstagramLink className="text-ocre hover:text-ocre-dark" />
+        </div>
       </div>
 
       <div className="flex items-center gap-4">
+        <InstagramLink className="md:hidden w-10 h-10 justify-center border border-ocre/30 text-ocre hover:border-ocre" />
         <ThemeToggle />
 
         {/* Sur mobile, le devis est porté par la barre du bas */}
@@ -228,6 +236,32 @@ export default function Navigation() {
       </div>
     </nav>
     </>
+  );
+}
+
+function InstagramLink({ className = "" }: { className?: string }) {
+  return (
+    <a
+      href={INSTAGRAM_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Suivre Porcher Menuiserie sur Instagram (nouvel onglet)"
+      title="Instagram"
+      className={`group flex items-center transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${className}`}
+    >
+      <svg
+        className="w-5 h-5 transition-transform duration-300 group-hover:scale-110 group-active:scale-90"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        aria-hidden="true"
+      >
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="0.9" fill="currentColor" stroke="none" />
+      </svg>
+    </a>
   );
 }
 
