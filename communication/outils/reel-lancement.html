@@ -1,6 +1,8 @@
 <!doctype html>
 <!--
-  Reel Instagram « lancement » — 1080 × 1920, 10 s en boucle.
+  Reel Instagram « lancement » — 1080 × 1920, 11 s en boucle.
+  La vidéo s'ouvre sur l'image finale (logo complet, au repos) : c'est la miniature
+  qu'affichent Instagram et les lecteurs avant la lecture. Puis tout s'efface et se construit.
   Ouvert dans un navigateur : aperçu en boucle (?theme=dark pour le thème sombre).
   Rendu vidéo : node communication/outils/rendu-video.mjs (voir communication/README.md).
 
@@ -198,7 +200,7 @@
     animation: pm-logo-shimmer 4.8s ease-in-out infinite;
   }
 
-  /* Le texte arrive une fois le logo posé, puis tout s'efface pour boucler */
+  /* Le texte arrive une fois le logo posé. L'effacement du début est piloté par le script. */
   @keyframes reel-rise {
     from { opacity: 0; transform: translateY(28px); }
     to { opacity: 1; transform: translateY(0); }
@@ -207,9 +209,6 @@
     from { transform: scaleX(0); }
     to { transform: scaleX(1); }
   }
-  @keyframes reel-out {
-    to { opacity: 0; }
-  }
 
   .eyebrow { animation: reel-rise 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both; }
   .tagline span { animation: reel-rise 1.1s cubic-bezier(0.22, 1, 0.36, 1) 2.7s both; }
@@ -217,7 +216,6 @@
   .subtitle { animation: reel-rise 1.1s cubic-bezier(0.22, 1, 0.36, 1) 3.7s both; }
   .rule { animation: reel-draw 0.9s cubic-bezier(0.65, 0, 0.35, 1) 4.2s both; }
   .url { animation: reel-rise 1.1s cubic-bezier(0.22, 1, 0.36, 1) 4.5s both; }
-  .content { animation: reel-out 0.9s ease-in 9.1s both; }
 </style>
 </head>
 <body>
@@ -238,7 +236,14 @@
 
 <script>
   // Durée de la boucle et instant de l'image de couverture, lus par rendu-video.mjs
-  window.REEL = { width: 1080, height: 1920, duration: 10, fps: 30, cover: 8 };
+  window.REEL = { width: 1080, height: 1920, duration: 11, fps: 30, cover: 0 };
+
+  // Début de la vidéo : image finale tenue (HOLD), puis effacement (FADE) avant l'animation.
+  // L'animation dure donc duration − HOLD − FADE ; tout doit y être au repos avant la fin
+  // (dernier reflet des lattes à 9,24 s, respiration du soleil à 9,5 s).
+  const HOLD = 0.8;
+  const FADE = 0.6;
+  const INTRO = HOLD + FADE;
 
   // Logo : même géométrie que src/app/HeroLogo.tsx
   const CX = 100;
@@ -302,17 +307,29 @@
     ),
   ).then(placeHalo);
 
-  // Place toutes les animations à l'instant t (en secondes). Pour la couverture (still),
-  // le reflet des lattes et la respiration du soleil sont figés au repos.
-  window.seek = async (t, { still = false } = {}) => {
+  // Place toutes les animations à l'instant t de la vidéo (en secondes).
+  // Après l'intro, l'animation part de 0 ; pendant l'intro, on montre sa fin, ce qui
+  // raccorde la boucle sans saut. Le reflet des lattes et la respiration du soleil
+  // ne font qu'un cycle puis restent au repos : la première image est le logo fixe.
+  // Pour la couverture (still), ils sont figés au repos.
+  const content = document.querySelector(".content");
+  const render = (t, still = false) => {
+    const local = (t >= INTRO ? t - INTRO : t + REEL.duration - INTRO) * 1000;
     for (const animation of document.getAnimations()) {
       if (still && /shimmer|breathe/.test(animation.animationName)) {
         animation.cancel();
         continue;
       }
       animation.pause();
-      animation.currentTime = t * 1000;
+      const { delay, duration, iterations } = animation.effect.getTiming();
+      animation.currentTime = iterations === Infinity ? Math.min(local, delay + duration) : local;
     }
+    const p = Math.min(Math.max((t - HOLD) / FADE, 0), 1);
+    content.style.opacity = t < INTRO ? String(1 - p * p) : "";
+  };
+
+  window.seek = async (t, { still = false } = {}) => {
+    render(t, still);
     await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
   };
 
@@ -322,12 +339,15 @@
     const fit = () => { stage.style.transform = `scale(${Math.min(innerWidth / REEL.width, innerHeight / REEL.height)})`; };
     fit();
     addEventListener("resize", fit);
-    setInterval(() => {
-      for (const animation of document.getAnimations()) {
-        animation.currentTime = 0;
-        animation.play();
-      }
-    }, REEL.duration * 1000);
+    // Même chronologie que la vidéo, recalculée à chaque image
+    window.ready.then(() => {
+      const start = performance.now();
+      const frame = (now) => {
+        render(((now - start) / 1000) % REEL.duration);
+        requestAnimationFrame(frame);
+      };
+      requestAnimationFrame(frame);
+    });
   }
 </script>
 </body>
