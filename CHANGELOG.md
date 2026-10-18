@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.0](https://github.com/kevindumast/porchermenuiserie/compare/v1.5.0...v1.6.0) (2026-10-18)
+
+
+### Features
+
+* **nav:** lien Instagram dans l'en-tête ([8dee2bb](https://github.com/kevindumast/porchermenuiserie/commit/8dee2bb24f7b1edc948132370f871dbdb7e7513e))
+* **nav:** lien Instagram dans l'en-tête ([ef62b15](https://github.com/kevindumast/porchermenuiserie/commit/ef62b1513d29525d5f5b36d93fda2f3b4ecf33ee))
+
 ## [1.5.0](https://github.com/kevindumast/porchermenuiserie/compare/v1.4.0...v1.5.0) (2026-10-18)
 
 
