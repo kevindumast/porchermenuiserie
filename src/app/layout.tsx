@@ -26,6 +26,8 @@ const manrope = Manrope({
   display: "swap",
 });
 
+const THEME_SCRIPT = `(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t}catch(e){}})()`;
+
 const LOCAL_BUSINESS_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
@@ -94,8 +96,11 @@ export default function RootLayout({
     <html
       className={`scroll-smooth ${notoSerif.variable} ${manrope.variable} ${playfair.variable}`}
       lang="fr"
+      suppressHydrationWarning
     >
       <head>
+        {/* Applique le thème avant le premier affichage (choix mémorisé, sinon réglage système) */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
         {/* Material Symbols — icon font variable, non supporté nativement par next/font */}
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"

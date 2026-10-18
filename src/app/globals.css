@@ -28,6 +28,37 @@
   --radius-xl: 0px;
 }
 
+/* Thème sombre piloté par data-theme sur <html> (résolu avant affichage dans layout.tsx) */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* L'atelier le soir : noyer fumé, crème, ocre éclairci en laiton */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-ocre: #C4A26A;
+  --color-ocre-dark: #D9BC88;
+  --color-beige-light: #1F1912;
+  --color-beige-medium: #3A3127;
+  --color-blue-gray: #2A2C2E;
+  --color-surface: #15110C;
+  --color-on-surface: #F2E8DA;
+  --color-on-surface-variant: #C2B4A1;
+  --color-primary: #C4A26A;
+  --color-on-primary: #15110C;
+  --color-outline: #B5A994;
+
+  /* Le logo retrouve ses teintes pâles d'origine sur fond sombre */
+  --color-logo-sun: #F2C9A8;
+  --color-logo-slat: #E8D49A;
+  --color-logo-ink: #E2D2A2;
+}
+
+/* Bascule de thème : révélation circulaire depuis le bouton */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
 ::selection {
   background-color: #A48654;
   color: #ffffff;
