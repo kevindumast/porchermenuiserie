@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.9.0](https://github.com/kevindumast/porchermenuiserie/compare/v1.8.0...v1.9.0) (2026-10-18)
+
+
+### Features
+
+* **seo:** image de partage Open Graph et checklist de MEP réutilisable ([0e22476](https://github.com/kevindumast/porchermenuiserie/commit/0e2247603462c98bdebe7dcf30c96e5549f257cd))
+* **seo:** image de partage Open Graph et checklist de MEP réutilisable ([12fffd3](https://github.com/kevindumast/porchermenuiserie/commit/12fffd3a0fc29a8a16b7188c85fa277efbb073cd))
+
+
+### Bug Fixes
+
+* **communication:** le Reel s'ouvre sur le logo complet, miniature no… ([19b605d](https://github.com/kevindumast/porchermenuiserie/commit/19b605d2f22f754a35d0c7eb4b1008e408840212))
+* **communication:** le Reel s'ouvre sur le logo complet, miniature non vide ([9ef1faa](https://github.com/kevindumast/porchermenuiserie/commit/9ef1faa77b71f7a9cc0e6eabad6b6b48e7727c3b))
+
 ## [1.8.0](https://github.com/kevindumast/porchermenuiserie/compare/v1.7.0...v1.8.0) (2026-10-18)
 
 
