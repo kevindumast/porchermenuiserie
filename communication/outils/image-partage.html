@@ -1,0 +1,162 @@
+<!doctype html>
+<!--
+  Image de partage (Open Graph) — 1200 × 630, servie en public/og-image.jpg.
+  C'est l'image de la carte d'aperçu quand le lien du site est collé sur LinkedIn,
+  WhatsApp, Facebook, Messenger… Le titre et l'adresse du site s'affichent en dessous.
+
+  Rendu, depuis Git Bash à la racine du dépôt (capture d'Edge sans fenêtre, puis JPEG) :
+
+    "/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --headless=new --disable-gpu \
+      --hide-scrollbars --force-color-profile=srgb --window-size=1200,630 --virtual-time-budget=8000 \
+      --screenshot="$(pwd -W)/og-image.png" "file:///$(pwd -W)/communication/outils/image-partage.html"
+    ffmpeg -y -i og-image.png -q:v 2 -pix_fmt yuvj444p public/og-image.jpg && rm og-image.png
+
+  Les réseaux gardent l'image en cache : après mise en ligne, forcer la mise à jour avec
+  le Post Inspector de LinkedIn et le Sharing Debugger de Facebook.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Image de partage — Porcher Menuiserie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gelasio:ital@1&family=Manrope:wght@300;600&family=Noto+Serif:wght@300&family=Playfair+Display:wght@400;900&display=block">
+<style>
+  /* Couleurs du site en thème clair (src/app/globals.css) */
+  :root {
+    --surface: #fff8f4;
+    --on-surface: #221a11;
+    --on-surface-variant: #4d463a;
+    --ocre: #A48654;
+    --ocre-dark: #8B7247;
+    --logo-sun: #F0C3A1;
+    --logo-slat: #E0C882;
+    --logo-ink: #BFA35F;
+    --halo: rgba(240, 195, 161, 0.42);
+  }
+
+  html, body { margin: 0; background: var(--surface); }
+
+  .stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    /* Compense la marge interne du logo pour centrer visuellement l'ensemble */
+    padding-right: 32px;
+    box-sizing: border-box;
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+
+  /* Légèrement abaissé : le nom en arc alourdit le haut du logo */
+  .logo { position: relative; flex: none; width: 450px; height: 450px; margin-top: 20px; }
+  .logo svg { position: relative; display: block; width: 100%; height: 100%; }
+  /* Halo du lever de soleil, centré sur le soleil */
+  .halo {
+    position: absolute;
+    left: 50%;
+    top: 41%;
+    width: 900px;
+    height: 900px;
+    margin: -450px 0 0 -450px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, var(--halo), transparent);
+  }
+
+  .texte { display: flex; flex-direction: column; align-items: flex-start; }
+
+  .eyebrow {
+    margin: 0;
+    font: 600 22px/1.6 Manrope, sans-serif;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ocre-dark);
+  }
+
+  .tagline {
+    margin: 10px 0 0 -4px;
+    font: 300 96px/1.1 "Noto Serif", serif;
+    letter-spacing: -0.01em;
+    color: var(--on-surface);
+  }
+  .tagline em {
+    font: italic 400 96px/1.1 Gelasio, Georgia, serif;
+    color: var(--ocre);
+  }
+
+  .subtitle {
+    margin: 22px 0 0;
+    font: 300 28px/1.5 Manrope, sans-serif;
+    color: var(--on-surface-variant);
+  }
+
+  .rule { display: block; width: 80px; height: 2px; margin-top: 32px; background: var(--ocre); }
+
+  .url {
+    margin: 24px 0 0;
+    font: 600 20px/1.5 Manrope, sans-serif;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ocre-dark);
+  }
+
+  .fill-logo-sun { fill: var(--logo-sun); }
+  .fill-logo-slat { fill: var(--logo-slat); }
+  .fill-logo-ink { fill: var(--logo-ink); }
+  .font-logo { font-family: "Playfair Display", serif; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="logo">
+    <div class="halo"></div>
+    <svg id="logo" viewBox="0 0 200 200" fill="none" aria-hidden="true"></svg>
+  </div>
+  <div class="texte">
+    <p class="eyebrow">Menuisier · Ille-et-Vilaine</p>
+    <h1 class="tagline">L’Art du <em>Geste</em></h1>
+    <p class="subtitle">Dressings, bibliothèques, cuisines, parquets —<br>sur mesure, de la conception à la pose.</p>
+    <span class="rule"></span>
+    <p class="url">porcher-menuiserie.com</p>
+  </div>
+</div>
+
+<script>
+  // Logo : même géométrie que src/app/HeroLogo.tsx, dans son état final
+  const CX = 100;
+  const HORIZON = 100;
+  const SUN_R = 44;
+  const SLAT_COUNT = 13;
+  const SLAT_STEP = 6.4;
+  const SLAT_WIDTH = 2.9;
+  const SLAT_GAP = 3.5;
+  const TEXT_R = 66;
+
+  const arcPoint = (deg) => {
+    const a = (deg * Math.PI) / 180;
+    return `${(CX + TEXT_R * Math.cos(a)).toFixed(2)} ${(HORIZON + TEXT_R * Math.sin(a)).toFixed(2)}`;
+  };
+  const TEXT_ARC = `M ${arcPoint(155)} A ${TEXT_R} ${TEXT_R} 0 1 1 ${arcPoint(25)}`;
+
+  const slats = Array.from({ length: SLAT_COUNT }, (_, i) => {
+    const offset = (i - (SLAT_COUNT - 1) / 2) * SLAT_STEP;
+    const bottom = HORIZON + Math.sqrt(SUN_R ** 2 - offset ** 2);
+    const top = HORIZON + SLAT_GAP;
+    return `<rect x="${CX + offset - SLAT_WIDTH / 2}" y="${top}" width="${SLAT_WIDTH}" height="${bottom - top}" />`;
+  }).join("");
+
+  document.getElementById("logo").innerHTML = `
+    <defs><path id="pmLogoArc" d="${TEXT_ARC}" /></defs>
+    <path class="fill-logo-sun" d="M ${CX - SUN_R} ${HORIZON} A ${SUN_R} ${SUN_R} 0 0 1 ${CX + SUN_R} ${HORIZON} Z" />
+    <g class="fill-logo-slat">${slats}</g>
+    <text class="fill-logo-ink font-logo" font-size="25" font-weight="900">
+      <textPath href="#pmLogoArc" startOffset="50%" text-anchor="middle" textLength="248" lengthAdjust="spacing">Porcher Menuiserie</textPath>
+    </text>
+    <text class="fill-logo-ink font-logo" x="${CX}" y="166" font-size="12" letter-spacing="0.6" text-anchor="middle">Agencement</text>`;
+</script>
+</body>
+</html>

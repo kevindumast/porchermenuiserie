@@ -25,6 +25,7 @@ export default function GalleryClient({
   const sentinelRef = useRef<HTMLDivElement>(null);
 
   const [lightbox, setLightbox] = useState<{
+    name: string;
     photos: Photo[];
     index: number;
   } | null>(null);
@@ -128,7 +129,7 @@ export default function GalleryClient({
                 {[hero, ...rest].map((image, i) => (
                   <button
                     key={image.public_id}
-                    onClick={() => setLightbox({ photos: project.images, index: i })}
+                    onClick={() => setLightbox({ name: project.name, photos: project.images, index: i })}
                     className="overflow-hidden group relative bg-beige-medium/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-ocre cursor-pointer rounded"
                     style={{ aspectRatio: "1" }}
                     aria-label={`Agrandir la photo ${i + 1} — ${project.name}`}
@@ -177,7 +178,7 @@ export default function GalleryClient({
           >
             <Image
               src={lightbox.photos[lightbox.index].secure_url}
-              alt={`Photo ${lightbox.index + 1}`}
+              alt={`${lightbox.name} — photo ${lightbox.index + 1} sur ${lightbox.photos.length}`}
               fill
               className="object-contain"
               sizes="100vw"
