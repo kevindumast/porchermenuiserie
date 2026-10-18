@@ -5,6 +5,7 @@ import ContactForm from "./ContactForm";
 import CopyableContact from "./CopyableContact";
 import Reveal from "./Reveal";
 import Counter from "./Counter";
+import HeroLogo from "./HeroLogo";
 import { supabase, PROJECTS_BUCKET } from "@/lib/supabase";
 import { BLUR_BEIGE_MEDIUM, BLUR_BLUE_GRAY } from "@/lib/blur";
 
@@ -83,49 +84,9 @@ export default async function Home() {
         </div>
 
         <div className="container mx-auto px-6 md:px-12 relative z-10">
-          {/* Sceau — une bibliothèque se trace puis s'assemble au chargement */}
-          <div
-            className="absolute right-6 top-0 w-32 h-32 min-[420px]:w-36 min-[420px]:h-36 sm:w-40 sm:h-40 md:right-12 md:w-52 md:h-52 lg:top-1/2 lg:-translate-y-1/2 lg:w-80 lg:h-80 xl:right-24 rounded-full bg-surface/80 backdrop-blur-sm"
-            aria-hidden="true"
-          >
-            <svg className="w-full h-full" viewBox="0 0 200 200" fill="none">
-              <defs>
-                <path id="sealTop" d="M 22,100 A 78,78 0 0 1 178,100" />
-                <path id="sealBottom" d="M 15,100 A 85,85 0 0 0 185,100" />
-              </defs>
-
-              {/* Bande du sceau */}
-              <g className="stroke-ocre" strokeWidth="1">
-                <circle className="pm-draw" cx="100" cy="100" r="95" pathLength={1} style={{ animationDelay: "0s", animationDuration: "1.4s" }} />
-                <circle className="pm-draw opacity-50" cx="100" cy="100" r="69" pathLength={1} style={{ animationDelay: "0.2s", animationDuration: "1.4s" }} />
-              </g>
-              <g className="pm-fade" style={{ animationDelay: "0.5s" }}>
-                <text className="fill-ocre-dark font-headline uppercase" fontSize="13" letterSpacing="3.5">
-                  <textPath href="#sealTop" startOffset="50%" textAnchor="middle">
-                    Porcher Menuiserie
-                  </textPath>
-                </text>
-                <text className="fill-ocre-dark font-label uppercase" fontSize="8.5" letterSpacing="4.5">
-                  <textPath href="#sealBottom" startOffset="50%" textAnchor="middle">
-                    Artisan agenceur
-                  </textPath>
-                </text>
-                <circle className="fill-ocre" cx="18" cy="100" r="1.6" />
-                <circle className="fill-ocre" cx="182" cy="100" r="1.6" />
-              </g>
-
-              {/* Bibliothèque : socle, montants, séparation, tablettes, puis plateau posé */}
-              <g className="stroke-ocre-dark" strokeLinecap="butt">
-                <path className="pm-draw" d="M 64 132 H 136" strokeWidth="2" pathLength={1} style={{ animationDelay: "0.7s" }} />
-                <path className="pm-draw" d="M 72 132 V 68" strokeWidth="1.75" pathLength={1} style={{ animationDelay: "1s" }} />
-                <path className="pm-draw" d="M 128 132 V 68" strokeWidth="1.75" pathLength={1} style={{ animationDelay: "1.1s" }} />
-                <path className="pm-draw" d="M 100 132 V 68" strokeWidth="1.25" pathLength={1} style={{ animationDelay: "1.35s" }} />
-                <path className="pm-draw" d="M 72 90 H 100" strokeWidth="1.25" pathLength={1} style={{ animationDelay: "1.6s", animationDuration: "0.4s" }} />
-                <path className="pm-draw" d="M 128 101 H 100" strokeWidth="1.25" pathLength={1} style={{ animationDelay: "1.75s", animationDuration: "0.4s" }} />
-                <path className="pm-draw" d="M 72 111 H 100" strokeWidth="1.25" pathLength={1} style={{ animationDelay: "1.9s", animationDuration: "0.4s" }} />
-                <path className="pm-drop" d="M 64 67 H 136" strokeWidth="2" style={{ animationDelay: "2.25s" }} />
-              </g>
-            </svg>
+          {/* Logo animé sur médaillon beige */}
+          <div className="absolute right-6 top-0 w-32 h-32 min-[420px]:w-36 min-[420px]:h-36 sm:w-40 sm:h-40 md:right-12 md:w-52 md:h-52 lg:top-1/2 lg:-translate-y-1/2 lg:w-80 lg:h-80 xl:right-24 rounded-full bg-surface/80 backdrop-blur-sm">
+            <HeroLogo className="w-full h-full" />
           </div>
           <div className="max-w-3xl">
             <h1 className="text-5xl min-[420px]:text-6xl md:text-8xl font-light text-on-surface leading-tight mb-4">

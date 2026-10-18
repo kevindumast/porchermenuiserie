@@ -13,9 +13,15 @@
   --color-on-primary: #ffffff;
   --color-outline: #7f7669;
 
+  /* Logo : teintes d'origine, légèrement soutenues pour ressortir sur le beige */
+  --color-logo-sun: #F0C3A1;
+  --color-logo-slat: #E0C882;
+  --color-logo-ink: #BFA35F;
+
   --font-headline: var(--font-noto-serif), serif;
   --font-body: var(--font-manrope), sans-serif;
   --font-label: var(--font-manrope), sans-serif;
+  --font-logo: var(--font-playfair), serif;
 
   --radius: 0px;
   --radius-lg: 0px;
@@ -70,6 +76,66 @@ p {
 .pm-drop { animation: pm-drop 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
 .pm-fade { animation: pm-fade 1s ease-out both; }
 
+/* Logo hero : lever de soleil, lattes-reflets, nom écrit le long de l'arc */
+@keyframes pm-logo-rise {
+  from { transform: translateY(48px); }
+  to { transform: translateY(0); }
+}
+
+@keyframes pm-logo-drop {
+  0% { transform: scaleY(0); opacity: 0; }
+  60% { opacity: 1; }
+  100% { transform: scaleY(1); opacity: 1; }
+}
+
+@keyframes pm-logo-write {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes pm-logo-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+@keyframes pm-logo-shimmer {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.82); }
+}
+
+.pm-logo-rise {
+  animation: pm-logo-rise 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+.pm-logo-drop {
+  transform-box: fill-box;
+  transform-origin: top;
+  animation: pm-logo-drop 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.pm-logo-write {
+  stroke-dasharray: 1 1;
+  animation: pm-logo-write 1.8s cubic-bezier(0.65, 0, 0.35, 1) 0.5s both;
+}
+.pm-logo-fade {
+  animation: pm-fade 1s ease-out 2s both;
+}
+.pm-logo-breathe {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: pm-logo-breathe 7s ease-in-out 2.5s infinite;
+}
+.pm-logo-shimmer {
+  transform-box: fill-box;
+  transform-origin: top;
+  animation: pm-logo-shimmer 4.8s ease-in-out infinite;
+}
+
+/* Barre mobile : monte doucement à l'arrivée */
+@keyframes pm-bar-in {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.pm-bar-in { animation: pm-bar-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both; }
+
 @media (prefers-reduced-motion: reduce) {
   * {
     transition-duration: 0.01ms !important;
@@ -78,8 +144,18 @@ p {
 
   .pm-draw,
   .pm-drop,
-  .pm-fade {
+  .pm-fade,
+  .pm-logo-rise,
+  .pm-logo-drop,
+  .pm-logo-write,
+  .pm-logo-fade,
+  .pm-bar-in {
     animation-delay: 0s !important;
+  }
+
+  .pm-logo-breathe,
+  .pm-logo-shimmer {
+    animation: none !important;
   }
 }
 

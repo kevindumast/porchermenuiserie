@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Serif, Manrope } from "next/font/google";
+import { Noto_Serif, Manrope, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Footer from "./Footer";
 
@@ -8,6 +8,14 @@ const notoSerif = Noto_Serif({
   weight: ["300", "400", "700"],
   style: ["normal", "italic"],
   variable: "--font-noto-serif",
+  display: "swap",
+});
+
+// Police du logo (lettrage très gras, contrasté)
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "900"],
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -84,7 +92,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      className={`scroll-smooth ${notoSerif.variable} ${manrope.variable}`}
+      className={`scroll-smooth ${notoSerif.variable} ${manrope.variable} ${playfair.variable}`}
       lang="fr"
     >
       <head>
