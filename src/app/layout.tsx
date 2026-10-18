@@ -1,13 +1,22 @@
 import type { Metadata } from "next";
-import { Noto_Serif, Manrope, Playfair_Display } from "next/font/google";
+import { Noto_Serif, Manrope, Playfair_Display, Gelasio } from "next/font/google";
 import "./globals.css";
 import Footer from "./Footer";
 
 const notoSerif = Noto_Serif({
   subsets: ["latin"],
-  weight: ["300", "400", "700"],
+  weight: ["300", "400"],
   style: ["normal", "italic"],
   variable: "--font-noto-serif",
+  display: "swap",
+});
+
+// Italique de l'accent « Geste » du hero (dessin équivalent à Georgia, identique sur tous les appareils)
+const gelasio = Gelasio({
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["italic"],
+  variable: "--font-gelasio",
   display: "swap",
 });
 
@@ -21,7 +30,7 @@ const playfair = Playfair_Display({
 
 const manrope = Manrope({
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600"],
+  weight: ["300", "400", "500", "600"],
   variable: "--font-manrope",
   display: "swap",
 });
@@ -94,18 +103,13 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      className={`scroll-smooth ${notoSerif.variable} ${manrope.variable} ${playfair.variable}`}
+      className={`scroll-smooth ${notoSerif.variable} ${manrope.variable} ${playfair.variable} ${gelasio.variable}`}
       lang="fr"
       suppressHydrationWarning
     >
       <head>
         {/* Applique le thème avant le premier affichage (choix mémorisé, sinon réglage système) */}
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
-        {/* Material Symbols — icon font variable, non supporté nativement par next/font */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-          rel="stylesheet"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

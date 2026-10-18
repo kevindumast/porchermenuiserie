@@ -98,7 +98,7 @@ export default async function Home() {
             <HeroLogo className="w-full h-full" />
           </div>
           <div className="max-w-3xl">
-            <p className="text-ocre uppercase tracking-[0.3em] text-[11px] font-bold mb-4" aria-hidden="true">
+            <p className="type-eyebrow text-ocre mb-4" aria-hidden="true">
               Menuisier · Bretagne et alentours
             </p>
             <h1 className="text-5xl min-[420px]:text-6xl md:text-8xl font-light text-on-surface leading-tight md:leading-[1.05] mb-6">
@@ -108,7 +108,7 @@ export default async function Home() {
               <span aria-hidden="true">
                 {/* Une ligne sur grand écran ; deux en dessous, à côté du médaillon */}
                 L&apos;Art du <br className="xl:hidden" />
-                <span className="italic font-serif">Geste</span>
+                <span className="italic font-accent">Geste</span>
               </span>
             </h1>
 
@@ -121,7 +121,7 @@ export default async function Home() {
             {/* Une action principale (devis), une secondaire (photos) */}
             <div className="flex flex-wrap items-center gap-x-8 gap-y-5">
               <a
-                className="bg-ocre text-on-primary px-10 py-5 text-xs uppercase tracking-widest font-bold hover:bg-ocre-dark active:scale-95 transition-[background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                className="bg-ocre text-on-primary px-10 py-5 type-button hover:bg-ocre-dark active:scale-95 transition-[background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                 href="#contact"
               >
                 Demander un devis
@@ -156,7 +156,7 @@ export default async function Home() {
                 { value: <><Counter to={150} />+</>, label: "réalisations" },
               ].map(({ value, label }) => (
                 <div key={label} className="flex flex-col-reverse justify-end">
-                  <dt className="mt-2 text-[11px] uppercase tracking-[0.2em] leading-relaxed text-on-surface-variant">
+                  <dt className="mt-2 type-caps leading-relaxed text-on-surface-variant">
                     {label}
                   </dt>
                   <dd className="font-serif text-4xl md:text-5xl font-light text-on-surface tabular-nums">
@@ -181,7 +181,7 @@ export default async function Home() {
                 nos réalisations.
               </p>
             </div>
-            <Link href="/archives" className="group inline-flex items-center gap-3 text-ocre text-xs uppercase tracking-widest border-b border-ocre/20 pb-2 hover:border-ocre transition-colors">
+            <Link href="/archives" className="group inline-flex items-center gap-3 text-ocre type-caps border-b border-ocre/20 pb-2 hover:border-ocre transition-colors">
               <svg className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
                 <rect x="3" y="5" width="18" height="14" />
                 <circle cx="9" cy="10" r="1.5" />
@@ -233,7 +233,7 @@ export default async function Home() {
             {/* Métiers — index éditorial, les filets se tracent à l'apparition */}
             <Reveal delay={300} className="group/reveal md:col-span-5 lg:col-span-4">
               <div className="bg-beige-light p-8 lg:p-10">
-                <span className="text-ocre uppercase tracking-[0.3em] text-xs block font-bold mb-3">
+                <span className="type-eyebrow text-ocre block mb-3">
                   Nos métiers
                 </span>
                 <h3 className="text-2xl font-serif text-on-surface leading-tight mb-8">
@@ -263,7 +263,7 @@ export default async function Home() {
 
                 <a
                   href="#contact"
-                  className="group mt-8 inline-flex items-center gap-3 text-ocre-dark text-xs uppercase tracking-widest font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-beige-light"
+                  className="group mt-8 inline-flex items-center gap-3 text-ocre-dark type-caps focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-beige-light"
                 >
                   <span className="border-b border-ocre/30 group-hover:border-ocre transition-colors pb-1">
                     Parlons de votre projet
@@ -317,7 +317,7 @@ export default async function Home() {
             </Reveal>
 
             <Reveal delay={150} className="flex flex-col gap-12">
-              <span className="text-ocre uppercase tracking-[0.4em] text-xs font-bold">
+              <span className="type-eyebrow text-ocre">
                 L&apos;expertise Porcher
               </span>
               <h2 className="text-5xl md:text-6xl font-light leading-tight">
@@ -339,7 +339,7 @@ export default async function Home() {
                   premier rendez-vous à la pose. Notre agencement sur mesure est
                   exactement ce qu&apos;on imaginait.&rdquo;
                 </p>
-                <span className="text-[11px] uppercase tracking-widest text-ocre font-medium">
+                <span className="type-caps text-ocre">
                   Ophélie &amp; Kévin D. — Ille-et-Vilaine
                 </span>
               </div>
@@ -353,7 +353,7 @@ export default async function Home() {
                     {["Chêne Massif", "Noyer", "Laiton"].map((mat) => (
                       <span
                         key={mat}
-                        className="border border-ocre/20 text-ocre text-[10px] px-3 py-1 uppercase tracking-wider"
+                        className="border border-ocre/20 text-ocre type-caps px-3 py-1"
                       >
                         {mat}
                       </span>
@@ -368,7 +368,7 @@ export default async function Home() {
                     {["Second Œuvre", "Sur Mesure"].map((exp) => (
                       <span
                         key={exp}
-                        className="border border-ocre/20 text-ocre text-[10px] px-3 py-1 uppercase tracking-wider"
+                        className="border border-ocre/20 text-ocre type-caps px-3 py-1"
                       >
                         {exp}
                       </span>
@@ -386,7 +386,7 @@ export default async function Home() {
         <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-5xl mx-auto">
             <Reveal className="text-center mb-24">
-              <span className="text-ocre uppercase tracking-[0.3em] text-xs font-bold mb-4 block">
+              <span className="type-eyebrow text-ocre mb-4 block">
                 Entrer en contact
               </span>
               <h2 className="text-5xl md:text-6xl font-light">
@@ -403,7 +403,7 @@ export default async function Home() {
                   <CopyableContact />
                 </div>
                 <div className="mt-10 pt-6 border-t border-on-primary/20">
-                  <span className="block text-[10px] uppercase tracking-widest opacity-70 mb-1">
+                  <span className="block type-caps opacity-70 mb-1">
                     Zone d&apos;intervention
                   </span>
                   <p className="font-light text-sm">

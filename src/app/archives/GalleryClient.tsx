@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Reveal from "../Reveal";
+import { ArrowLeftIcon, ArrowRightIcon, CloseIcon } from "../icons";
 import { BLUR_BEIGE_MEDIUM } from "@/lib/blur";
 import { loadProjectPhotos, type Photo, type ProjectFolder } from "./actions";
 
@@ -113,11 +114,11 @@ export default function GalleryClient({
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-4">
                   <div className="h-px w-6 bg-ocre/40" aria-hidden="true" />
-                  <h2 className="text-[11px] uppercase tracking-[0.3em] text-ocre font-bold">
+                  <h2 className="type-eyebrow text-ocre">
                     {project.name}
                   </h2>
                 </div>
-                <span className="text-[10px] uppercase tracking-widest text-on-surface-variant/50">
+                <span className="type-caps text-on-surface-variant/70">
                   {project.images.length} photo{project.images.length > 1 ? "s" : ""}
                 </span>
               </div>
@@ -156,7 +157,7 @@ export default function GalleryClient({
       {queue.length > 0 && (
         <div ref={sentinelRef} className="flex justify-center py-12">
           {loadingNext && (
-            <span className="text-[11px] uppercase tracking-widest text-on-surface-variant/50">
+            <span className="type-caps text-on-surface-variant/70">
               Chargement…
             </span>
           )}
@@ -190,7 +191,7 @@ export default function GalleryClient({
             className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors"
             aria-label="Fermer"
           >
-            <span className="material-symbols-outlined text-3xl">close</span>
+            <CloseIcon className="w-8 h-8" strokeWidth={1.25} />
           </button>
 
           {/* Précédent */}
@@ -201,7 +202,7 @@ export default function GalleryClient({
                 className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors"
                 aria-label="Photo précédente"
               >
-                <span className="material-symbols-outlined text-4xl">arrow_back</span>
+                <ArrowLeftIcon className="w-9 h-9" strokeWidth={1.25} />
               </button>
 
               <button
@@ -209,13 +210,13 @@ export default function GalleryClient({
                 className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors"
                 aria-label="Photo suivante"
               >
-                <span className="material-symbols-outlined text-4xl">arrow_forward</span>
+                <ArrowRightIcon className="w-9 h-9" strokeWidth={1.25} />
               </button>
             </>
           )}
 
           {/* Compteur */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/50 text-xs uppercase tracking-widest">
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/60 type-caps">
             {lightbox.index + 1} / {lightbox.photos.length}
           </div>
         </div>

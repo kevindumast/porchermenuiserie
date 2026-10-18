@@ -6,7 +6,7 @@ export default function MentionsLegales() {
       <Navigation />
       <div className="min-h-screen bg-surface py-12 px-4 sm:px-6 lg:px-8 pt-32">
         <div className="max-w-3xl mx-auto">
-          <span className="text-ocre uppercase tracking-[0.3em] text-xs font-bold mb-3 block">
+          <span className="type-eyebrow text-ocre mb-3 block">
             Informations légales
           </span>
           <h1 className="text-4xl font-light text-on-surface mb-12">Mentions Légales</h1>
@@ -75,7 +75,7 @@ export default function MentionsLegales() {
               </p>
             </section>
 
-            <p className="text-[11px] uppercase tracking-widest text-on-surface-variant/60 pt-4 border-t border-ocre/20">
+            <p className="type-caps text-on-surface-variant/70 pt-4 border-t border-ocre/20">
               Dernière mise à jour : mai 2026
             </p>
           </div>
