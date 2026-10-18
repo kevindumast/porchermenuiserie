@@ -8,7 +8,9 @@ Premier post du compte : le logo animé (le soleil se lève, le nom s'écrit), p
 | `reel-dark.mp4` | Story du même jour, ou second post plus tard |
 | `couverture-light.png` / `couverture-dark.png` | Couverture du Reel |
 
-Format 1080 × 1920 (9:16), 10 s en boucle, sans son. Le contenu reste visible dans la grille du profil (recadrée en 3:4) et au-dessus de la légende du Reel.
+Format 1080 × 1920 (9:16), 11 s en boucle, sans son. Le contenu reste visible dans la grille du profil (recadrée en 3:4) et au-dessus de la légende du Reel.
+
+La vidéo s'ouvre sur le logo complet, fixe, qui s'efface après un instant pour laisser place à l'animation. La miniature n'est donc jamais vide, même sans couverture choisie (aperçu avant lecture, partage en message).
 
 ---
 

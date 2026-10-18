@@ -53,6 +53,8 @@ Pour un aperçu en direct, ouvrir le gabarit HTML dans un navigateur (`?theme=da
 
 Pour un nouveau Reel animé, dupliquer `reel-lancement.html` et modifier les textes. La durée, le format et l'instant de la couverture se règlent dans `window.REEL`, en bas du fichier.
 
+La première image d'une vidéo sert de miniature (aperçu Instagram avant lecture, partage en message, lecteurs vidéo). Le Reel s'ouvre donc sur son image finale : il la tient un instant (`HOLD`), s'efface (`FADE`), puis l'animation se joue et se termine sur cette même image, ce qui raccorde la boucle sans saut.
+
 ## Régénérer la photo de profil
 
 Image fixe : une capture d'Edge (ou de Chrome, mêmes options) sans fenêtre suffit, depuis Git Bash à la racine du dépôt.
