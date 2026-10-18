@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const NAV_ANCHORS = [
   { id: "projets", label: "Projets" },
@@ -129,15 +130,19 @@ export default function Navigation() {
         </Link>
       </div>
 
-      {/* Sur mobile, le devis est porté par la barre du bas */}
-      <a
-        href={isHome ? "#contact" : "/#contact"}
-        onClick={(e) => handleNavClick(e, "contact")}
-        className="hidden md:inline-block bg-ocre text-on-primary px-8 py-3 text-[10px] uppercase tracking-widest font-medium hover:bg-ocre-dark active:scale-95 transition-[background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
-        aria-label="Demander un devis — accéder au formulaire de contact"
-      >
-        Demander un devis
-      </a>
+      <div className="flex items-center gap-4">
+        <ThemeToggle />
+
+        {/* Sur mobile, le devis est porté par la barre du bas */}
+        <a
+          href={isHome ? "#contact" : "/#contact"}
+          onClick={(e) => handleNavClick(e, "contact")}
+          className="hidden md:inline-block bg-ocre text-on-primary px-8 py-3 text-[10px] uppercase tracking-widest font-medium hover:bg-ocre-dark active:scale-95 transition-[background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+          aria-label="Demander un devis — accéder au formulaire de contact"
+        >
+          Demander un devis
+        </a>
+      </div>
     </nav>
 
     {/* Barre mobile : navigation à gauche, action principale à droite */}

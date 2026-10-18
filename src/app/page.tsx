@@ -366,7 +366,7 @@ export default async function Home() {
                 <div className="space-y-5">
                   <CopyableContact />
                 </div>
-                <div className="mt-10 pt-6 border-t border-white/20">
+                <div className="mt-10 pt-6 border-t border-on-primary/20">
                   <span className="block text-[10px] uppercase tracking-widest opacity-70 mb-1">
                     Zone d&apos;intervention
                   </span>
