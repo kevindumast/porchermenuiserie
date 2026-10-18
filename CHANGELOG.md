@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.8.0](https://github.com/kevindumast/porchermenuiserie/compare/v1.7.0...v1.8.0) (2026-10-18)
+
+
+### Features
+
+* **footer:** crédit du site avec lien LinkedIn, dans une barre du bas ([0aa6d6a](https://github.com/kevindumast/porchermenuiserie/commit/0aa6d6afeb4eec3fa2ac04d97b0c50fef6270f85))
+* **footer:** crédit du site avec lien LinkedIn, dans une barre du bas ([ce510c6](https://github.com/kevindumast/porchermenuiserie/commit/ce510c68d315c3e360f48c7b9c1e1e1ce0cee8e3))
+
 ## [1.7.0](https://github.com/kevindumast/porchermenuiserie/compare/v1.6.0...v1.7.0) (2026-10-18)
 
 
