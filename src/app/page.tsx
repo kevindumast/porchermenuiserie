@@ -22,7 +22,7 @@ const METIERS = [
   { name: "Menuiserie", detail: "Portes, escaliers, habillages bois" },
   { name: "Parquet", detail: "Pose, ponçage et finitions" },
   { name: "Cloison sèche", detail: "Cloisons, doublages, isolation" },
-  { name: "Faux plafond", detail: "Plafonds suspendus en plaque de plâtre" },
+  { name: "Faux plafond", detail: "Plafonds suspendus en plaque de plâtre, plafonds en dalles acoustiques" },
 ];
 
 type LandingImages =Record<(typeof LANDING_IMAGE_NAMES)[number], string>;
