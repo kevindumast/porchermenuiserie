@@ -40,6 +40,8 @@ Checklist réutilisable pour mettre en ligne un site vitrine : Next.js (App Rout
 - [ ] Icônes et manifeste : `icon.tsx`, `apple-icon.tsx`, `manifest.ts`
 - [ ] Page 404 personnalisée en français (`src/app/not-found.tsx`) — sinon Next.js affiche sa page par défaut, en anglais
 - [ ] Pages alimentées par une base ou un stockage en ISR (`revalidate`), pas rendues à chaque requête
+- [ ] **Images `next/image` sur des URLs stables** : pas d'URL signée Supabase (`createSignedUrl`), dont le token change à chaque génération. Vercel ne reconnaît pas l'image en cache et la retransforme à chaque visite, ce qui épuise le quota *Image Transformations* (5 000 par mois en Hobby). Utiliser `getPublicUrl` sur un bucket public, versionné par `?v=<updated_at>` pour qu'une photo remplacée soit rafraîchie, et régler `images.minimumCacheTTL` (31 jours ici) dans `next.config.ts`
+- [ ] `sizes` renseigné sur chaque `<Image fill>`, d'après la largeur réelle dans la grille. Sans lui, l'image est traitée en `100vw` et Vercel génère des versions trop grandes
 
 ## 4. Légal et RGPD (obligatoire en France)
 
@@ -74,6 +76,7 @@ Base : la section « Mentions légales et conformité » de `CLAUDE.md`.
 - [ ] **HTTPS** : certificat émis automatiquement par Vercel ; vérifier que `http://` redirige vers `https://`
 - [ ] **Email du formulaire (Resend)** : vérifier le domaine dans Resend (enregistrements SPF et DKIM à ajouter chez OVH) et envoyer depuis une adresse du domaine (`contact@…`). L'expéditeur de test `onboarding@resend.dev` ne délivre qu'à l'adresse du compte Resend, et finit plus souvent en spam
 - [ ] **Réponse directe** : `replyTo` = email du visiteur, pour que « Répondre » lui écrive
+- [ ] **Bucket Supabase des photos en public** (Storage → bucket → ⋯ → Edit bucket → Public bucket). Le réglage se fait par bucket, pas par dossier : n'y mettre que des photos destinées au site, et garder les fichiers privés (pièces jointes de devis…) dans un autre bucket
 - [ ] **Supabase gratuit** : un projet sans activité pendant 7 jours est mis en pause. Prévoir une tâche planifiée qui l'interroge chaque jour (`vercel.json` + `src/app/api/cron/keep-alive`)
 
 ## 7. Tests en production
@@ -83,6 +86,7 @@ Base : la section « Mentions légales et conformité » de `CLAUDE.md`.
 - [ ] [PageSpeed Insights](https://pagespeed.web.dev/), mobile et ordinateur : LCP < 2,5 s, INP < 200 ms, CLS < 0,1
 - [ ] [Rich Results Test](https://search.google.com/test/rich-results) sur les données structurées
 - [ ] Une URL inexistante renvoie la page 404, avec le code 404
+- [ ] Vercel → Usage → *Image Optimization* quelques jours après la mise en ligne : après un pic initial (chaque photo transformée une fois par largeur), *Image Transformations* doit rester presque à plat. S'il monte avec les visites, une URL d'image change à chaque requête
 - [ ] `/sitemap.xml` et `/robots.txt` en ligne, avec les bonnes URL
 - [ ] Aperçu de partage : [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) et [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/). Ils forcent aussi la mise à jour de l'aperçu gardé en cache
 - [ ] Ouvrir le site depuis un réseau d'entreprise : un domaine récent peut y être bloqué comme « non catégorisé » (c'était le cas de Porcher Menuiserie derrière Cisco Umbrella). Demander une catégorisation sur le [Reputation Center de Cisco Talos](https://talosintelligence.com/reputation_center)
