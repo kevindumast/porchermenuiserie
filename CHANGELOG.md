@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.9.1](https://github.com/kevindumast/porchermenuiserie/compare/v1.9.0...v1.9.1) (2026-10-20)
+
+
+### Bug Fixes
+
+* **a11y:** contrastes et lisibilité du hero, ocre lisible sur tout le site ([9f89183](https://github.com/kevindumast/porchermenuiserie/commit/9f891836cf1738e5c36786da5a54ff9449e58aaa))
+* **a11y:** contrastes et lisibilité du hero, ocre lisible sur tout le site ([9fee4bf](https://github.com/kevindumast/porchermenuiserie/commit/9fee4bf8187537a5d15d500313b2aa6c2e97fa7a))
+
 ## [1.9.0](https://github.com/kevindumast/porchermenuiserie/compare/v1.8.0...v1.9.0) (2026-10-18)
 
 
