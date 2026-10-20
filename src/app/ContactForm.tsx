@@ -3,6 +3,11 @@
 import { useRef, useState } from "react";
 import { sendDevisEmail } from "./actions/sendEmail";
 
+// Libellé visible au-dessus du champ ; le placeholder ne sert plus que d'exemple
+const LABEL_CLASS = "type-caps text-on-surface-variant";
+const FIELD_CLASS =
+  "w-full bg-transparent border-0 border-b border-ocre/30 py-3 px-0 focus:ring-0 focus:border-ocre-dark transition-colors text-lg placeholder:text-on-surface-variant/80";
+
 export default function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -25,53 +30,55 @@ export default function ContactForm() {
   }
 
   return (
-    <form ref={formRef} className="grid grid-cols-1 gap-12" onSubmit={handleSubmit}>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+    // id="devis" : cible des boutons « Devis », sous la nav fixe grâce au scroll-mt
+    <form id="devis" ref={formRef} className="grid grid-cols-1 gap-10 scroll-mt-32" onSubmit={handleSubmit}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <div className="flex flex-col gap-1">
-          <label htmlFor="name" className="sr-only">Votre nom</label>
+          <label htmlFor="name" className={LABEL_CLASS}>Votre nom</label>
           <input
             id="name"
             name="name"
             autoComplete="name"
             required
-            className="w-full bg-transparent border-0 border-b border-ocre/30 py-4 px-0 focus:ring-0 focus:border-ocre transition-colors font-light text-lg placeholder:text-outline/40"
-            placeholder="Votre Nom"
+            className={FIELD_CLASS}
             type="text"
           />
         </div>
         <div className="flex flex-col gap-1">
-          <label htmlFor="email" className="sr-only">Votre email</label>
+          <label htmlFor="email" className={LABEL_CLASS}>Votre email</label>
           <input
             id="email"
             name="email"
             autoComplete="email"
             required
-            className="w-full bg-transparent border-0 border-b border-ocre/30 py-4 px-0 focus:ring-0 focus:border-ocre transition-colors font-light text-lg placeholder:text-outline/40"
-            placeholder="Email"
+            className={FIELD_CLASS}
+            placeholder="nom@exemple.fr"
             type="email"
           />
         </div>
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="projet" className="sr-only">Type de projet</label>
+        <label htmlFor="projet" className={LABEL_CLASS}>
+          Type de projet <span className="normal-case tracking-normal">(facultatif)</span>
+        </label>
         <input
           id="projet"
           name="projet"
-          className="w-full bg-transparent border-0 border-b border-ocre/30 py-4 px-0 focus:ring-0 focus:border-ocre transition-colors font-light text-lg placeholder:text-outline/40"
-          placeholder="Type de projet (Cuisine, Parquet, Cloison…)"
+          className={FIELD_CLASS}
+          placeholder="Cuisine, parquet, cloison…"
           type="text"
         />
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="message" className="sr-only">Votre message</label>
+        <label htmlFor="message" className={LABEL_CLASS}>Votre projet en quelques mots</label>
         <textarea
           id="message"
           name="message"
           required
-          className="w-full bg-transparent border-0 border-b border-ocre/30 py-4 px-0 focus:ring-0 focus:border-ocre transition-colors font-light text-lg placeholder:text-outline/40 resize-none"
-          placeholder="Votre message…"
+          className={`${FIELD_CLASS} resize-none`}
+          placeholder="Pièce, dimensions, délais souhaités…"
           rows={4}
         />
       </div>
@@ -85,16 +92,19 @@ export default function ContactForm() {
           {status === "loading" ? "Envoi en cours…" : "Envoyer ma demande"}
         </button>
 
-        {status === "success" && (
-          <p className="mt-4 text-sm text-ocre-dark tracking-wide">
-            Message envoyé ! Nous vous répondrons sous 48 h.
-          </p>
-        )}
-        {status === "error" && (
-          <p className="mt-4 text-sm text-red-700 dark:text-red-400 tracking-wide">{errorMsg}</p>
-        )}
+        {/* Annoncé aux lecteurs d'écran à chaque changement d'état */}
+        <div role="status" aria-live="polite">
+          {status === "success" && (
+            <p className="mt-4 text-sm text-ocre-dark tracking-wide">
+              Message envoyé ! Nous vous répondrons sous 48 h.
+            </p>
+          )}
+          {status === "error" && (
+            <p className="mt-4 text-sm text-red-700 dark:text-red-400 tracking-wide">{errorMsg}</p>
+          )}
+        </div>
         {status === "idle" && (
-          <p className="mt-4 text-[11px] text-on-surface-variant/60 tracking-wide">
+          <p className="mt-4 text-xs text-on-surface-variant tracking-wide">
             Réponse sous 48&nbsp;h · Devis gratuit et sans engagement
           </p>
         )}

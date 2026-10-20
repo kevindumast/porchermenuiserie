@@ -123,7 +123,7 @@ export default async function Home() {
             <div className="flex flex-wrap items-center gap-x-8 gap-y-5">
               <a
                 className="bg-ocre-dark text-on-primary px-10 py-5 type-button hover:bg-on-surface active:scale-95 transition-[background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre-dark focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
-                href="#contact"
+                href="#devis"
               >
                 Demander un devis
               </a>
@@ -266,7 +266,7 @@ export default async function Home() {
                 </ol>
 
                 <a
-                  href="#contact"
+                  href="#devis"
                   className="group mt-8 inline-flex items-center gap-3 text-ocre-dark type-caps focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre-dark focus-visible:ring-offset-2 focus-visible:ring-offset-beige-light"
                 >
                   <span className="border-b border-ocre/30 group-hover:border-ocre transition-colors pb-1">
@@ -416,7 +416,7 @@ export default async function Home() {
                 </div>
               </Reveal>
 
-              <Reveal delay={150} className="md:col-span-8">
+              <Reveal delay={150} className="md:col-span-8 max-md:order-first">
                 <ContactForm />
               </Reveal>
             </div>
