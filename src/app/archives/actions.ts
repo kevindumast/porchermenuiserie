@@ -11,8 +11,6 @@ export type Photo = {
 
 export type ProjectFolder = { slug: string; name: string };
 
-const SIGNED_URL_TTL = 60 * 60 * 24 * 7; // 7 jours
-
 export async function getProjectFolders(): Promise<ProjectFolder[]> {
   const { data: files, error } = await supabase.storage
     .from(PROJECTS_BUCKET)
@@ -44,26 +42,17 @@ export async function loadProjectPhotos(slug: string): Promise<Photo[]> {
   const imageFiles = files.filter((f) => f.metadata?.mimetype?.startsWith("image/"));
   if (imageFiles.length === 0) return [];
 
-  const paths = imageFiles.map((f) => `projects/${slug}/${f.name}`);
-
-  // Un seul aller-retour réseau pour toutes les photos du projet,
-  // au lieu d'un createSignedUrl séquentiel par photo (très lent).
-  const { data: signed, error: signError } = await supabase.storage
-    .from(PROJECTS_BUCKET)
-    .createSignedUrls(paths, SIGNED_URL_TTL);
-
-  if (signError || !signed) return [];
-
-  return imageFiles
-    .map((file, i) => {
-      const entry = signed[i];
-      if (!entry?.signedUrl) return null;
-      return {
-        public_id: paths[i],
-        secure_url: entry.signedUrl,
-        width: file.metadata?.width || 400,
-        height: file.metadata?.height || 400,
-      };
-    })
-    .filter((p): p is Photo => p !== null);
+  // URLs publiques stables : Vercel ne retransforme une image que si son URL change.
+  // Le paramètre v change quand le fichier est remplacé, ce qui invalide le cache.
+  return imageFiles.map((file) => {
+    const path = `projects/${slug}/${file.name}`;
+    const { data } = supabase.storage.from(PROJECTS_BUCKET).getPublicUrl(path);
+    const version = file.updated_at ? `?v=${Date.parse(file.updated_at)}` : "";
+    return {
+      public_id: path,
+      secure_url: `${data.publicUrl}${version}`,
+      width: file.metadata?.width || 400,
+      height: file.metadata?.height || 400,
+    };
+  });
 }

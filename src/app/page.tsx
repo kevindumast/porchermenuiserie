@@ -9,7 +9,7 @@ import HeroLogo from "./HeroLogo";
 import { supabase, PROJECTS_BUCKET } from "@/lib/supabase";
 import { BLUR_BEIGE_MEDIUM, BLUR_BLUE_GRAY } from "@/lib/blur";
 
-// Pas de cache - regenère à chaque visite pour récupérer les images fraîches
+// Pas de cache - regenère à chaque visite pour détecter les images remplacées
 export const revalidate = 0;
 
 // Noms des images attendues dans le dossier landing/ du bucket
@@ -39,30 +39,26 @@ async function getLandingImages(): Promise<LandingImages> {
   }
 
   // Crée un map des fichiers par nom (sans extension)
-  const fileMap = new Map<string, string>();
+  const fileMap = new Map<string, (typeof files)[number]>();
   for (const file of files) {
     if (file.metadata?.mimetype?.startsWith("image/")) {
       const nameWithoutExt = file.name.split(".")[0];
-      fileMap.set(nameWithoutExt, file.name);
+      fileMap.set(nameWithoutExt, file);
     }
   }
 
-  // Génère les URLs signées pour chaque image
+  // URLs publiques stables : Vercel ne retransforme une image que si son URL change.
+  // Le paramètre v change quand le fichier est remplacé, ce qui invalide le cache.
   const images: Partial<LandingImages> = {};
 
   for (const imageName of LANDING_IMAGE_NAMES) {
-    const filename = fileMap.get(imageName);
-    if (filename) {
-      const { data, error } = await supabase.storage
+    const file = fileMap.get(imageName);
+    if (file) {
+      const { data } = supabase.storage
         .from(PROJECTS_BUCKET)
-        .createSignedUrl(`landing/${filename}`, 60 * 60 * 24 * 7);
-
-      if (data?.signedUrl) {
-        images[imageName] = data.signedUrl;
-      } else {
-        console.warn(`Erreur URL signée pour landing/${filename}:`, error);
-        images[imageName] = "";
-      }
+        .getPublicUrl(`landing/${file.name}`);
+      const version = file.updated_at ? `?v=${Date.parse(file.updated_at)}` : "";
+      images[imageName] = `${data.publicUrl}${version}`;
     } else {
       console.warn(`Image "${imageName}" introuvable dans le dossier landing/`);
       images[imageName] = "";
@@ -207,6 +203,7 @@ export default async function Home() {
                     className="w-full h-full object-cover motion-safe:group-hover:scale-105 transition-transform duration-[1500ms]"
                     src={img["2"]}
                     fill
+                    sizes="(max-width: 768px) 100vw, 60vw"
                     placeholder="blur"
                     blurDataURL={BLUR_BEIGE_MEDIUM}
                   />
@@ -223,6 +220,7 @@ export default async function Home() {
                     className="w-full h-full object-cover motion-safe:group-hover:scale-110 transition-transform duration-[1500ms]"
                     src={img["3"]}
                     fill
+                    sizes="(max-width: 768px) 100vw, 40vw"
                     placeholder="blur"
                     blurDataURL={BLUR_BLUE_GRAY}
                   />
@@ -294,6 +292,7 @@ export default async function Home() {
                     className="w-full h-full object-cover motion-safe:group-hover:scale-105 transition-transform duration-[1500ms]"
                     src={img["4"]}
                     fill
+                    sizes="(max-width: 768px) 100vw, 66vw"
                     placeholder="blur"
                     blurDataURL={BLUR_BLUE_GRAY}
                   />
@@ -317,6 +316,7 @@ export default async function Home() {
                     className="object-cover shadow-2xl"
                     src={img["5"]}
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     placeholder="blur"
                     blurDataURL={BLUR_BEIGE_MEDIUM}
                   />
