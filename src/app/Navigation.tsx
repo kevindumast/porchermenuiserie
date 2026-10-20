@@ -154,8 +154,8 @@ export default function Navigation() {
 
         {/* Sur mobile, le devis est porté par la barre du bas */}
         <a
-          href={isHome ? "#contact" : "/#contact"}
-          onClick={(e) => handleNavClick(e, "contact")}
+          href={isHome ? "#devis" : "/#devis"}
+          onClick={(e) => handleNavClick(e, "devis")}
           className="hidden md:inline-block bg-ocre-dark text-on-primary px-8 py-3 type-button hover:bg-on-surface active:scale-95 transition-[background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre-dark focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
           aria-label="Demander un devis — accéder au formulaire de contact"
         >
@@ -189,7 +189,7 @@ export default function Navigation() {
             const content = (
               <>
                 <Icon active={current} />
-                <span className={`text-[11px] whitespace-nowrap ${current ? "font-medium" : "font-light"}`}>
+                <span className={`text-xs whitespace-nowrap ${current ? "font-semibold" : "font-normal"}`}>
                   {label}
                 </span>
               </>
@@ -218,13 +218,13 @@ export default function Navigation() {
             className={`${TAB_CLASS} text-on-surface-variant`}
           >
             <PhoneIcon />
-            <span className="text-[11px] whitespace-nowrap font-light">Appeler</span>
+            <span className="text-xs whitespace-nowrap">Appeler</span>
           </a>
         </div>
 
         <a
-          href={isHome ? "#contact" : "/#contact"}
-          onClick={(e) => handleNavClick(e, "contact")}
+          href={isHome ? "#devis" : "/#devis"}
+          onClick={(e) => handleNavClick(e, "devis")}
           aria-label="Demander un devis — accéder au formulaire de contact"
           className="group flex items-center gap-2 bg-ocre-dark px-5 text-on-primary type-caps transition-colors active:bg-on-surface focus-visible:outline-none focus-visible:bg-on-surface"
         >
