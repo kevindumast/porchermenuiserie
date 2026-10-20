@@ -115,7 +115,7 @@ export default function GalleryClient({
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-4">
                   <div className="h-px w-6 bg-ocre/40" aria-hidden="true" />
-                  <h2 className="type-eyebrow text-ocre">
+                  <h2 className="type-eyebrow text-ocre-dark">
                     {project.name}
                   </h2>
                 </div>
@@ -130,7 +130,7 @@ export default function GalleryClient({
                   <button
                     key={image.public_id}
                     onClick={() => setLightbox({ name: project.name, photos: project.images, index: i })}
-                    className="overflow-hidden group relative bg-beige-medium/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-ocre cursor-pointer rounded"
+                    className="overflow-hidden group relative bg-beige-medium/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-ocre-dark cursor-pointer rounded"
                     style={{ aspectRatio: "1" }}
                     aria-label={`Agrandir la photo ${i + 1} — ${project.name}`}
                   >

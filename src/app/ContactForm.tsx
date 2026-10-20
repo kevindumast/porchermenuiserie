@@ -78,7 +78,7 @@ export default function ContactForm() {
 
       <div>
         <button
-          className="bg-ocre text-on-primary px-12 py-5 type-button hover:bg-ocre-dark active:scale-95 transition-[background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-surface disabled:opacity-50"
+          className="bg-ocre-dark text-on-primary px-12 py-5 type-button hover:bg-on-surface active:scale-95 transition-[background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre-dark focus-visible:ring-offset-2 focus-visible:ring-offset-surface disabled:opacity-50"
           type="submit"
           disabled={status === "loading"}
         >
@@ -86,12 +86,12 @@ export default function ContactForm() {
         </button>
 
         {status === "success" && (
-          <p className="mt-4 text-sm text-ocre tracking-wide">
+          <p className="mt-4 text-sm text-ocre-dark tracking-wide">
             Message envoyé ! Nous vous répondrons sous 48 h.
           </p>
         )}
         {status === "error" && (
-          <p className="mt-4 text-sm text-red-500 tracking-wide">{errorMsg}</p>
+          <p className="mt-4 text-sm text-red-700 dark:text-red-400 tracking-wide">{errorMsg}</p>
         )}
         {status === "idle" && (
           <p className="mt-4 text-[11px] text-on-surface-variant/60 tracking-wide">

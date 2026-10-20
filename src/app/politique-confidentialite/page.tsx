@@ -6,7 +6,7 @@ export default function PolitiqueConfidentialite() {
       <Navigation />
       <div className="min-h-screen bg-surface py-12 px-4 sm:px-6 lg:px-8 pt-32">
         <div className="max-w-3xl mx-auto">
-          <span className="type-eyebrow text-ocre mb-3 block">
+          <span className="type-eyebrow text-ocre-dark mb-3 block">
             Vos données
           </span>
           <h1 className="text-4xl font-light text-on-surface mb-12">Politique de Confidentialité</h1>
@@ -17,8 +17,8 @@ export default function PolitiqueConfidentialite() {
               <p>
                 <strong className="text-on-surface font-medium">Entreprise :</strong> Porcher Menuiserie<br />
                 <strong className="text-on-surface font-medium">Gérant :</strong> Porcher Aurélien<br />
-                <strong className="text-on-surface font-medium">Email :</strong> <a href="mailto:porcher-menuiserie@outlook.fr" className="text-ocre hover:underline">porcher-menuiserie@outlook.fr</a><br />
-                <strong className="text-on-surface font-medium">Téléphone :</strong> <a href="tel:0668133245" className="text-ocre hover:underline">06 68 13 32 45</a>
+                <strong className="text-on-surface font-medium">Email :</strong> <a href="mailto:porcher-menuiserie@outlook.fr" className="text-ocre-dark underline underline-offset-4 decoration-ocre/50 hover:decoration-ocre-dark">porcher-menuiserie@outlook.fr</a><br />
+                <strong className="text-on-surface font-medium">Téléphone :</strong> <a href="tel:0668133245" className="text-ocre-dark underline underline-offset-4 decoration-ocre/50 hover:decoration-ocre-dark">06 68 13 32 45</a>
               </p>
             </section>
 
@@ -103,7 +103,7 @@ export default function PolitiqueConfidentialite() {
                 <li><strong className="text-on-surface font-medium">Droit d&apos;opposition :</strong> Vous opposer au traitement de vos données</li>
               </ul>
               <p className="mt-4">
-                Pour exercer ces droits, contactez-nous à : <a href="mailto:porcher-menuiserie@outlook.fr" className="text-ocre hover:underline">porcher-menuiserie@outlook.fr</a>
+                Pour exercer ces droits, contactez-nous à : <a href="mailto:porcher-menuiserie@outlook.fr" className="text-ocre-dark underline underline-offset-4 decoration-ocre/50 hover:decoration-ocre-dark">porcher-menuiserie@outlook.fr</a>
               </p>
             </section>
 
@@ -131,8 +131,8 @@ export default function PolitiqueConfidentialite() {
                 de vos données personnelles, veuillez nous contacter :
               </p>
               <p className="mt-3">
-                <strong className="text-on-surface font-medium">Email :</strong> <a href="mailto:porcher-menuiserie@outlook.fr" className="text-ocre hover:underline">porcher-menuiserie@outlook.fr</a><br />
-                <strong className="text-on-surface font-medium">Téléphone :</strong> <a href="tel:0668133245" className="text-ocre hover:underline">06 68 13 32 45</a>
+                <strong className="text-on-surface font-medium">Email :</strong> <a href="mailto:porcher-menuiserie@outlook.fr" className="text-ocre-dark underline underline-offset-4 decoration-ocre/50 hover:decoration-ocre-dark">porcher-menuiserie@outlook.fr</a><br />
+                <strong className="text-on-surface font-medium">Téléphone :</strong> <a href="tel:0668133245" className="text-ocre-dark underline underline-offset-4 decoration-ocre/50 hover:decoration-ocre-dark">06 68 13 32 45</a>
               </p>
             </section>
 

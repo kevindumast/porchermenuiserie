@@ -46,7 +46,7 @@ export default async function ArchivesPage() {
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
             <div>
-              <span className="type-eyebrow text-ocre mb-3 block">
+              <span className="type-eyebrow text-ocre-dark mb-3 block">
                 Le Book
               </span>
               <h1 className="text-3xl md:text-4xl font-light leading-tight">
@@ -55,7 +55,7 @@ export default async function ArchivesPage() {
             </div>
             <Link
               href="/"
-              className="self-start md:self-auto flex items-center gap-2 text-on-surface-variant type-caps hover:text-ocre transition-colors"
+              className="self-start md:self-auto flex items-center gap-2 text-on-surface-variant type-caps hover:text-ocre-dark transition-colors"
             >
               <ArrowLeftIcon />
               Retour

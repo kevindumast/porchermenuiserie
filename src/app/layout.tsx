@@ -118,7 +118,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className="bg-surface text-on-surface selection:bg-ocre/20 selection:text-ocre"
+        className="bg-surface text-on-surface selection:bg-ocre/20 selection:text-ocre-dark"
         suppressHydrationWarning
       >
         <div className="flex flex-col min-h-screen">
