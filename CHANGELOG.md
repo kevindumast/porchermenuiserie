@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.1](https://github.com/kevindumast/porchermenuiserie/compare/v1.10.0...v1.10.1) (2026-10-20)
+
+
+### Performance Improvements
+
+* **images:** URLs Supabase publiques pour réduire les transformations Vercel ([707ea27](https://github.com/kevindumast/porchermenuiserie/commit/707ea27bb7583c5b008ad7be7bc32d4ca02ad87b))
+
 ## [1.10.0](https://github.com/kevindumast/porchermenuiserie/compare/v1.9.1...v1.10.0) (2026-10-20)
 
 
