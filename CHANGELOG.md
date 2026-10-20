@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.10.0](https://github.com/kevindumast/porchermenuiserie/compare/v1.9.1...v1.10.0) (2026-10-20)
+
+
+### Features
+
+* **contact:** boutons Devis vers le formulaire, libellés visibles ([abff561](https://github.com/kevindumast/porchermenuiserie/commit/abff561aae22a5f3e3b494e8b21748af4a85ab3b))
+* **contact:** les boutons Devis mènent droit au formulaire, libellés visibles ([6051e55](https://github.com/kevindumast/porchermenuiserie/commit/6051e55741d1d993a4857def33be274b77aa7dad))
+
+
+### Bug Fixes
+
+* **accueil:** ne pas rendre une photo dont l'URL Supabase est vide ([9abd90f](https://github.com/kevindumast/porchermenuiserie/commit/9abd90fa920e21ba6cadba4b71fd91e2548ba28d))
+
 ## [1.9.1](https://github.com/kevindumast/porchermenuiserie/compare/v1.9.0...v1.9.1) (2026-10-20)
 
 
