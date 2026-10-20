@@ -81,14 +81,16 @@ export default async function Home() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center pt-24 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image
-            alt="Intérieur haut de gamme en bois massif réalisé par Porcher Menuiserie"
-            className="w-full h-full object-cover"
-            src={img["1"]}
-            fill
-            sizes="100vw"
-            priority
-          />
+          {img["1"] && (
+            <Image
+              alt="Intérieur haut de gamme en bois massif réalisé par Porcher Menuiserie"
+              className="w-full h-full object-cover"
+              src={img["1"]}
+              fill
+              sizes="100vw"
+              priority
+            />
+          )}
           {/* Voile uni tant que le texte occupe toute la largeur ; au-delà, la photo respire à droite */}
           <div className="absolute inset-0 bg-beige-light/90 lg:bg-transparent lg:bg-gradient-to-r lg:from-beige-light/95 lg:from-40% lg:via-beige-light/80 lg:via-60% lg:to-transparent" />
         </div>
@@ -199,28 +201,32 @@ export default async function Home() {
             {/* Main Piece */}
             <Reveal className="md:col-span-7 flex flex-col gap-6">
               <div className="aspect-[4/5] bg-beige-medium/10 overflow-hidden group relative">
-                <Image
-                  alt="Bibliothèque sur mesure en chêne massif — Projet Héritage"
-                  className="w-full h-full object-cover motion-safe:group-hover:scale-105 transition-transform duration-[1500ms]"
-                  src={img["2"]}
-                  fill
-                  placeholder="blur"
-                  blurDataURL={BLUR_BEIGE_MEDIUM}
-                />
+                {img["2"] && (
+                  <Image
+                    alt="Bibliothèque sur mesure en chêne massif — Projet Héritage"
+                    className="w-full h-full object-cover motion-safe:group-hover:scale-105 transition-transform duration-[1500ms]"
+                    src={img["2"]}
+                    fill
+                    placeholder="blur"
+                    blurDataURL={BLUR_BEIGE_MEDIUM}
+                  />
+                )}
               </div>
             </Reveal>
 
             {/* Detail & Text */}
             <Reveal delay={150} className="md:col-span-5 md:pt-32 flex flex-col gap-16">
               <div className="aspect-square bg-blue-gray/10 overflow-hidden group relative">
-                <Image
-                  alt="Détail de finition menuiserie — assemblage tenon-mortaise en noyer"
-                  className="w-full h-full object-cover motion-safe:group-hover:scale-110 transition-transform duration-[1500ms]"
-                  src={img["3"]}
-                  fill
-                  placeholder="blur"
-                  blurDataURL={BLUR_BLUE_GRAY}
-                />
+                {img["3"] && (
+                  <Image
+                    alt="Détail de finition menuiserie — assemblage tenon-mortaise en noyer"
+                    className="w-full h-full object-cover motion-safe:group-hover:scale-110 transition-transform duration-[1500ms]"
+                    src={img["3"]}
+                    fill
+                    placeholder="blur"
+                    blurDataURL={BLUR_BLUE_GRAY}
+                  />
+                )}
               </div>
               <div className="pr-12">
                 <h3 className="text-3xl font-light mb-6">
@@ -282,14 +288,16 @@ export default async function Home() {
             {/* Wide view */}
             <Reveal className="md:col-span-7 lg:col-span-8 -mt-12 md:-mt-24 md:self-stretch">
               <div className="aspect-[16/9] md:aspect-auto md:h-full bg-blue-gray/5 overflow-hidden group relative">
-                <Image
-                  alt="Agencement complet d'une pièce de vie — menuiserie bois et laiton"
-                  className="w-full h-full object-cover motion-safe:group-hover:scale-105 transition-transform duration-[1500ms]"
-                  src={img["4"]}
-                  fill
-                  placeholder="blur"
-                  blurDataURL={BLUR_BLUE_GRAY}
-                />
+                {img["4"] && (
+                  <Image
+                    alt="Agencement complet d'une pièce de vie — menuiserie bois et laiton"
+                    className="w-full h-full object-cover motion-safe:group-hover:scale-105 transition-transform duration-[1500ms]"
+                    src={img["4"]}
+                    fill
+                    placeholder="blur"
+                    blurDataURL={BLUR_BLUE_GRAY}
+                  />
+                )}
               </div>
             </Reveal>
           </div>
@@ -303,14 +311,16 @@ export default async function Home() {
             <Reveal className="relative">
               <div className="absolute -top-12 -left-12 w-48 h-48 bg-ocre/10 -z-10" aria-hidden="true" />
               <div className="relative w-full h-[600px]">
-                <Image
-                  alt="Artisan menuisier en atelier, travaillant le chêne massif à la main"
-                  className="object-cover shadow-2xl"
-                  src={img["5"]}
-                  fill
-                  placeholder="blur"
-                  blurDataURL={BLUR_BEIGE_MEDIUM}
-                />
+                {img["5"] && (
+                  <Image
+                    alt="Artisan menuisier en atelier, travaillant le chêne massif à la main"
+                    className="object-cover shadow-2xl"
+                    src={img["5"]}
+                    fill
+                    placeholder="blur"
+                    blurDataURL={BLUR_BEIGE_MEDIUM}
+                  />
+                )}
               </div>
               <div className="absolute -bottom-8 -left-6 md:-left-8 p-8 md:p-12 bg-surface max-w-[16rem] md:max-w-xs border border-beige-medium">
                 <blockquote className="text-3xl md:text-4xl font-serif text-ocre italic">
