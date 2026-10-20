@@ -6,7 +6,7 @@ export default function MentionsLegales() {
       <Navigation />
       <div className="min-h-screen bg-surface py-12 px-4 sm:px-6 lg:px-8 pt-32">
         <div className="max-w-3xl mx-auto">
-          <span className="type-eyebrow text-ocre mb-3 block">
+          <span className="type-eyebrow text-ocre-dark mb-3 block">
             Informations légales
           </span>
           <h1 className="text-4xl font-light text-on-surface mb-12">Mentions Légales</h1>
@@ -18,8 +18,8 @@ export default function MentionsLegales() {
                 <strong className="text-on-surface font-medium">Entreprise :</strong> Porcher Menuiserie<br />
                 <strong className="text-on-surface font-medium">Gérant :</strong> Porcher Aurélien<br />
                 <strong className="text-on-surface font-medium">Adresse :</strong> 3 LE PATIS NOEL, 35580 SAINT-SENOUX<br />
-                <strong className="text-on-surface font-medium">Téléphone :</strong> <a href="tel:0668133245" className="text-ocre hover:underline">06 68 13 32 45</a><br />
-                <strong className="text-on-surface font-medium">Email :</strong> <a href="mailto:porcher-menuiserie@outlook.fr" className="text-ocre hover:underline">porcher-menuiserie@outlook.fr</a>
+                <strong className="text-on-surface font-medium">Téléphone :</strong> <a href="tel:0668133245" className="text-ocre-dark underline underline-offset-4 decoration-ocre/50 hover:decoration-ocre-dark">06 68 13 32 45</a><br />
+                <strong className="text-on-surface font-medium">Email :</strong> <a href="mailto:porcher-menuiserie@outlook.fr" className="text-ocre-dark underline underline-offset-4 decoration-ocre/50 hover:decoration-ocre-dark">porcher-menuiserie@outlook.fr</a>
               </p>
             </section>
 
@@ -38,7 +38,7 @@ export default function MentionsLegales() {
               <p>
                 <strong className="text-on-surface font-medium">Nom :</strong> Vercel Inc.<br />
                 <strong className="text-on-surface font-medium">Adresse :</strong> 440 N Barranca Ave, Covina, CA 91723, États-Unis<br />
-                <strong className="text-on-surface font-medium">Site web :</strong> <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="text-ocre hover:underline">https://vercel.com</a>
+                <strong className="text-on-surface font-medium">Site web :</strong> <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="text-ocre-dark underline underline-offset-4 decoration-ocre/50 hover:decoration-ocre-dark">https://vercel.com</a>
               </p>
             </section>
 
@@ -63,7 +63,7 @@ export default function MentionsLegales() {
               <h2 className="text-xl font-serif text-on-surface mb-3">6. Données personnelles</h2>
               <p>
                 Pour toute question relative au traitement de vos données personnelles, veuillez consulter notre
-                <a href="/politique-confidentialite" className="text-ocre hover:underline"> politique de confidentialité</a>.
+                <a href="/politique-confidentialite" className="text-ocre-dark underline underline-offset-4 decoration-ocre/50 hover:decoration-ocre-dark"> politique de confidentialité</a>.
               </p>
             </section>
 
@@ -71,7 +71,7 @@ export default function MentionsLegales() {
               <h2 className="text-xl font-serif text-on-surface mb-3">7. Contact</h2>
               <p>
                 Pour toute question ou réclamation, vous pouvez nous contacter à l&apos;adresse email suivante :<br />
-                <a href="mailto:porcher-menuiserie@outlook.fr" className="text-ocre hover:underline">porcher-menuiserie@outlook.fr</a>
+                <a href="mailto:porcher-menuiserie@outlook.fr" className="text-ocre-dark underline underline-offset-4 decoration-ocre/50 hover:decoration-ocre-dark">porcher-menuiserie@outlook.fr</a>
               </p>
             </section>
 

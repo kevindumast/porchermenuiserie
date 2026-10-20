@@ -31,7 +31,7 @@ const MOBILE_TABS: MobileTab[] = [
 ];
 
 const TAB_CLASS =
-  "group flex flex-col items-center justify-center gap-1 active:bg-ocre/5 focus-visible:outline-none focus-visible:bg-ocre/10";
+  "group flex flex-col items-center justify-center gap-1 active:bg-ocre/5 focus-visible:outline-none focus-visible:bg-ocre/10 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ocre-dark";
 
 export default function Navigation() {
   const [active, setActive] = useState("");
@@ -110,7 +110,7 @@ export default function Navigation() {
           >
             <span
               className={`transition-colors duration-300 ${
-                isHome && active === id ? "text-ocre" : "text-on-surface-variant group-hover:text-ocre"
+                isHome && active === id ? "text-ocre-dark" : "text-on-surface-variant group-hover:text-ocre-dark"
               }`}
             >
               {label}
@@ -129,7 +129,7 @@ export default function Navigation() {
         >
           <span
             className={`transition-colors duration-300 ${
-              isBook ? "text-ocre" : "text-on-surface-variant group-hover:text-ocre"
+              isBook ? "text-ocre-dark" : "text-on-surface-variant group-hover:text-ocre-dark"
             }`}
           >
             {BOOK_LINK.label}
@@ -144,19 +144,19 @@ export default function Navigation() {
         {/* Lien externe, séparé des ancres du site par un filet */}
         <div className="flex items-center gap-6 -ml-4 mb-2">
           <span className="h-4 w-px bg-ocre/30" aria-hidden="true" />
-          <InstagramLink className="text-ocre hover:text-ocre-dark" />
+          <InstagramLink className="text-ocre-dark hover:text-on-surface" />
         </div>
       </div>
 
       <div className="flex items-center gap-4">
-        <InstagramLink className="md:hidden w-10 h-10 justify-center border border-ocre/30 text-ocre hover:border-ocre" />
+        <InstagramLink className="md:hidden w-10 h-10 justify-center border border-ocre/30 text-ocre-dark hover:border-ocre" />
         <ThemeToggle />
 
         {/* Sur mobile, le devis est porté par la barre du bas */}
         <a
           href={isHome ? "#contact" : "/#contact"}
           onClick={(e) => handleNavClick(e, "contact")}
-          className="hidden md:inline-block bg-ocre text-on-primary px-8 py-3 type-button hover:bg-ocre-dark active:scale-95 transition-[background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+          className="hidden md:inline-block bg-ocre-dark text-on-primary px-8 py-3 type-button hover:bg-on-surface active:scale-95 transition-[background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre-dark focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
           aria-label="Demander un devis — accéder au formulaire de contact"
         >
           Demander un devis
@@ -226,7 +226,7 @@ export default function Navigation() {
           href={isHome ? "#contact" : "/#contact"}
           onClick={(e) => handleNavClick(e, "contact")}
           aria-label="Demander un devis — accéder au formulaire de contact"
-          className="group flex items-center gap-2 bg-ocre px-5 text-on-primary type-caps transition-colors active:bg-ocre-dark focus-visible:outline-none focus-visible:bg-ocre-dark"
+          className="group flex items-center gap-2 bg-ocre-dark px-5 text-on-primary type-caps transition-colors active:bg-on-surface focus-visible:outline-none focus-visible:bg-on-surface"
         >
           Devis
           <svg className="w-4 h-4 transition-transform duration-300 group-active:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -247,7 +247,7 @@ function InstagramLink({ className = "" }: { className?: string }) {
       rel="noopener noreferrer"
       aria-label="Suivre Porcher Menuiserie sur Instagram (nouvel onglet)"
       title="Instagram"
-      className={`group flex items-center transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${className}`}
+      className={`group flex items-center transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre-dark focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${className}`}
     >
       <svg
         className="w-5 h-5 transition-transform duration-300 group-hover:scale-110 group-active:scale-90"

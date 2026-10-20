@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 @theme {
+  /* ocre : décor seulement (filets, fonds teintés, logo, grande citation sur crème).
+     Tout ce qui se lit ou s'actionne — texte, icônes, focus, boutons — en ocre-dark (≥ 4,5:1 sur beige et crème) */
   --color-ocre: #A48654;
-  --color-ocre-dark: #8B7247;
+  --color-ocre-dark: #6E5834;
   --color-beige-light: #F3E4D5;
   --color-beige-medium: #DCDBC9;
   --color-blue-gray: #CAD4DE;
@@ -71,10 +73,10 @@
 /* Petits textes en capitales : trois styles seulement */
 @utility type-eyebrow {
   /* Sur-titre de section : « Nos métiers », « Entrer en contact »… */
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.6;
   font-weight: 600;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
 }
 

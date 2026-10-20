@@ -63,7 +63,7 @@ export default function ThemeToggle({ className = "" }: { className?: string }) 
       onClick={toggle}
       aria-label="Basculer entre thème clair et thème sombre"
       title="Thème clair / sombre"
-      className={`group relative w-10 h-10 flex items-center justify-center border border-ocre/30 text-ocre hover:border-ocre transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${className}`}
+      className={`group relative w-10 h-10 flex items-center justify-center border border-ocre/30 text-ocre-dark hover:border-ocre transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre-dark focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${className}`}
     >
       {/* Lune en clair, soleil en sombre */}
       <svg

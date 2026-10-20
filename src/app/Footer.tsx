@@ -20,31 +20,31 @@ export default function Footer() {
 
         <div className="flex flex-wrap justify-center gap-12 text-on-surface-variant type-caps">
           <a
-            className="hover:text-ocre transition-colors"
+            className="hover:text-ocre-dark transition-colors"
             href="tel:0668133245"
           >
             06 68 13 32 45
           </a>
           <a
-            className="hover:text-ocre transition-colors"
+            className="hover:text-ocre-dark transition-colors"
             href="mailto:porcher-menuiserie@outlook.fr"
           >
             porcher-menuiserie@outlook.fr
           </a>
           <Link
-            className="hover:text-ocre transition-colors"
+            className="hover:text-ocre-dark transition-colors"
             href="/mentions-legales"
           >
             Mentions légales
           </Link>
           <Link
-            className="hover:text-ocre transition-colors"
+            className="hover:text-ocre-dark transition-colors"
             href="/politique-confidentialite"
           >
             Confidentialité
           </Link>
           <a
-            className="hover:text-ocre transition-colors"
+            className="hover:text-ocre-dark transition-colors"
             href={INSTAGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
@@ -62,7 +62,7 @@ export default function Footer() {
           © {new Date().getFullYear()} Porcher Menuiserie Agencement.
         </span>
         <a
-          className="group inline-flex items-center gap-2 whitespace-nowrap opacity-80 hover:opacity-100 hover:text-ocre focus-visible:opacity-100 focus-visible:text-ocre transition-[color,opacity]"
+          className="group inline-flex items-center gap-2 whitespace-nowrap opacity-80 hover:opacity-100 hover:text-ocre-dark focus-visible:opacity-100 focus-visible:text-ocre-dark transition-[color,opacity]"
           href={DEVELOPER_LINKEDIN_URL}
           target="_blank"
           rel="noopener noreferrer"

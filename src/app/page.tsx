@@ -89,7 +89,8 @@ export default async function Home() {
             sizes="100vw"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-beige-light/90 via-beige-light/60 to-transparent" />
+          {/* Voile uni tant que le texte occupe toute la largeur ; au-delà, la photo respire à droite */}
+          <div className="absolute inset-0 bg-beige-light/90 lg:bg-transparent lg:bg-gradient-to-r lg:from-beige-light/95 lg:from-40% lg:via-beige-light/80 lg:via-60% lg:to-transparent" />
         </div>
 
         <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -98,7 +99,7 @@ export default async function Home() {
             <HeroLogo className="w-full h-full" />
           </div>
           <div className="max-w-3xl">
-            <p className="type-eyebrow text-ocre mb-4" aria-hidden="true">
+            <p className="type-eyebrow text-ocre-dark mb-4" aria-hidden="true">
               Menuisier · Bretagne et alentours
             </p>
             <h1 className="text-5xl min-[420px]:text-6xl md:text-8xl font-light text-on-surface leading-tight md:leading-[1.05] mb-6">
@@ -113,7 +114,7 @@ export default async function Home() {
             </h1>
 
             {/* Hero subtitle — Jobs To Be Done */}
-            <p className="text-base md:text-lg text-on-surface-variant font-light tracking-wide mb-8 max-w-md">
+            <p className="text-base md:text-lg text-on-surface-variant mb-8 max-w-md">
               Menuiserie sur mesure, agencement intérieur et second&nbsp;œuvre —
               de la conception à la pose.
             </p>
@@ -121,16 +122,16 @@ export default async function Home() {
             {/* Une action principale (devis), une secondaire (photos) */}
             <div className="flex flex-wrap items-center gap-x-8 gap-y-5">
               <a
-                className="bg-ocre text-on-primary px-10 py-5 type-button hover:bg-ocre-dark active:scale-95 transition-[background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                className="bg-ocre-dark text-on-primary px-10 py-5 type-button hover:bg-on-surface active:scale-95 transition-[background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre-dark focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                 href="#contact"
               >
                 Demander un devis
               </a>
               <Link
-                className="group flex items-center gap-3 text-ocre-dark font-medium tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                className="group flex items-center gap-3 min-h-11 text-ocre-dark font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre-dark focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                 href="/archives"
               >
-                <span className="border-b border-ocre/30 group-hover:border-ocre transition-colors pb-1">
+                <span className="border-b border-ocre group-hover:border-ocre-dark transition-colors pb-1">
                   Voir les réalisations
                 </span>
                 <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -139,13 +140,16 @@ export default async function Home() {
               </Link>
             </div>
 
-            <p className="mt-6 text-sm font-light text-on-surface-variant">
+            {/* Zone tactile de 44 px, soulignement porté par le span pour rester collé au texte */}
+            <p className="mt-3 text-base text-on-surface-variant">
               ou appelez le{" "}
               <a
                 href="tel:+33668133245"
-                className="text-ocre-dark font-normal tracking-wider border-b border-ocre/30 hover:border-ocre transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre"
+                className="group inline-flex items-center min-h-11 text-ocre-dark font-medium tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre-dark"
               >
-                06&nbsp;68&nbsp;13&nbsp;32&nbsp;45
+                <span className="border-b border-ocre group-hover:border-ocre-dark transition-colors">
+                  06&nbsp;68&nbsp;13&nbsp;32&nbsp;45
+                </span>
               </a>
             </p>
 
@@ -181,7 +185,7 @@ export default async function Home() {
                 nos réalisations.
               </p>
             </div>
-            <Link href="/archives" className="group inline-flex items-center gap-3 text-ocre type-caps border-b border-ocre/20 pb-2 hover:border-ocre transition-colors">
+            <Link href="/archives" className="group inline-flex items-center gap-3 text-ocre-dark type-caps border-b border-ocre/20 pb-2 hover:border-ocre transition-colors">
               <svg className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
                 <rect x="3" y="5" width="18" height="14" />
                 <circle cx="9" cy="10" r="1.5" />
@@ -233,7 +237,7 @@ export default async function Home() {
             {/* Métiers — index éditorial, les filets se tracent à l'apparition */}
             <Reveal delay={300} className="group/reveal md:col-span-5 lg:col-span-4">
               <div className="bg-beige-light p-8 lg:p-10">
-                <span className="type-eyebrow text-ocre block mb-3">
+                <span className="type-eyebrow text-ocre-dark block mb-3">
                   Nos métiers
                 </span>
                 <h3 className="text-2xl font-serif text-on-surface leading-tight mb-8">
@@ -243,7 +247,7 @@ export default async function Home() {
                 <ol className="border-t border-ocre/20">
                   {METIERS.map(({ name, detail }, i) => (
                     <li key={name} className="relative grid grid-cols-[2rem_1fr] items-baseline gap-x-2 py-4">
-                      <span className="font-serif italic text-sm text-ocre tabular-nums" aria-hidden="true">
+                      <span className="font-serif italic text-sm text-ocre-dark tabular-nums" aria-hidden="true">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       <div>
@@ -263,7 +267,7 @@ export default async function Home() {
 
                 <a
                   href="#contact"
-                  className="group mt-8 inline-flex items-center gap-3 text-ocre-dark type-caps focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre focus-visible:ring-offset-2 focus-visible:ring-offset-beige-light"
+                  className="group mt-8 inline-flex items-center gap-3 text-ocre-dark type-caps focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocre-dark focus-visible:ring-offset-2 focus-visible:ring-offset-beige-light"
                 >
                   <span className="border-b border-ocre/30 group-hover:border-ocre transition-colors pb-1">
                     Parlons de votre projet
@@ -317,7 +321,7 @@ export default async function Home() {
             </Reveal>
 
             <Reveal delay={150} className="flex flex-col gap-12">
-              <span className="type-eyebrow text-ocre">
+              <span className="type-eyebrow text-ocre-dark">
                 L&apos;expertise Porcher
               </span>
               <h2 className="text-5xl md:text-6xl font-light leading-tight">
@@ -339,21 +343,21 @@ export default async function Home() {
                   premier rendez-vous à la pose. Notre agencement sur mesure est
                   exactement ce qu&apos;on imaginait.&rdquo;
                 </p>
-                <span className="type-caps text-ocre">
+                <span className="type-caps text-ocre-dark">
                   Ophélie &amp; Kévin D. — Ille-et-Vilaine
                 </span>
               </div>
 
               <div className="grid grid-cols-2 gap-12 pt-4">
                 <div>
-                  <span className="block text-2xl font-serif mb-4 text-ocre">
+                  <span className="block text-2xl font-serif mb-4 text-ocre-dark">
                     Matières
                   </span>
                   <div className="flex flex-wrap gap-2">
                     {["Chêne Massif", "Noyer", "Laiton"].map((mat) => (
                       <span
                         key={mat}
-                        className="border border-ocre/20 text-ocre type-caps px-3 py-1"
+                        className="border border-ocre/20 text-ocre-dark type-caps px-3 py-1"
                       >
                         {mat}
                       </span>
@@ -361,14 +365,14 @@ export default async function Home() {
                   </div>
                 </div>
                 <div>
-                  <span className="block text-2xl font-serif mb-4 text-ocre">
+                  <span className="block text-2xl font-serif mb-4 text-ocre-dark">
                     Expertise
                   </span>
                   <div className="flex flex-wrap gap-2">
                     {["Second Œuvre", "Sur Mesure"].map((exp) => (
                       <span
                         key={exp}
-                        className="border border-ocre/20 text-ocre type-caps px-3 py-1"
+                        className="border border-ocre/20 text-ocre-dark type-caps px-3 py-1"
                       >
                         {exp}
                       </span>
@@ -386,7 +390,7 @@ export default async function Home() {
         <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-5xl mx-auto">
             <Reveal className="text-center mb-24">
-              <span className="type-eyebrow text-ocre mb-4 block">
+              <span className="type-eyebrow text-ocre-dark mb-4 block">
                 Entrer en contact
               </span>
               <h2 className="text-5xl md:text-6xl font-light">
@@ -395,7 +399,7 @@ export default async function Home() {
             </Reveal>
 
             <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-x-12 xl:gap-x-24 items-start">
-              <Reveal className="md:col-span-4 bg-ocre p-8 text-on-primary">
+              <Reveal className="md:col-span-4 bg-ocre-dark p-8 text-on-primary">
                 <h3 className="text-xl font-serif italic mb-8">
                   Contact Direct
                 </h3>
@@ -403,7 +407,7 @@ export default async function Home() {
                   <CopyableContact />
                 </div>
                 <div className="mt-10 pt-6 border-t border-on-primary/20">
-                  <span className="block type-caps opacity-70 mb-1">
+                  <span className="block type-caps opacity-80 mb-1">
                     Zone d&apos;intervention
                   </span>
                   <p className="font-light text-sm">
