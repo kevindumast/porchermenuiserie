@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.10.2](https://github.com/kevindumast/porchermenuiserie/compare/v1.10.1...v1.10.2) (2026-11-01)
+
+
+### Performance Improvements
+
+* **images:** une seule qualité et moins de largeurs générées ([00f5476](https://github.com/kevindumast/porchermenuiserie/commit/00f5476ef4bc2d7e8445d858ca775fb59dc8a544))
+* **images:** une seule qualité et moins de largeurs générées ([889617a](https://github.com/kevindumast/porchermenuiserie/commit/889617a2a4823b4a8dc7972cafd32adb55fb2482))
+
 ## [1.10.1](https://github.com/kevindumast/porchermenuiserie/compare/v1.10.0...v1.10.1) (2026-10-20)
 
 
