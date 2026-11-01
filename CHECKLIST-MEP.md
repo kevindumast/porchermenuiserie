@@ -41,6 +41,7 @@ Checklist réutilisable pour mettre en ligne un site vitrine : Next.js (App Rout
 - [ ] Page 404 personnalisée en français (`src/app/not-found.tsx`) — sinon Next.js affiche sa page par défaut, en anglais
 - [ ] Pages alimentées par une base ou un stockage en ISR (`revalidate`), pas rendues à chaque requête
 - [ ] **Images `next/image` sur des URLs stables** : pas d'URL signée Supabase (`createSignedUrl`), dont le token change à chaque génération. Vercel ne reconnaît pas l'image en cache et la retransforme à chaque visite, ce qui épuise le quota *Image Transformations* (5 000 par mois en Hobby). Utiliser `getPublicUrl` sur un bucket public, versionné par `?v=<updated_at>` pour qu'une photo remplacée soit rafraîchie, et régler `images.minimumCacheTTL` (31 jours ici) dans `next.config.ts`
+- [ ] **Limiter les variantes d'images** dans `next.config.ts` : `qualities: [75]` (sinon n'importe qui peut appeler `/_next/image` avec chaque `q` de 1 à 100, et chaque appel compte comme une transformation), et `deviceSizes` sans 2048 ni 3840 pour un site vitrine. Laisser `formats` par défaut (WebP seul) : ajouter l'AVIF double les transformations
 - [ ] `sizes` renseigné sur chaque `<Image fill>`, d'après la largeur réelle dans la grille. Sans lui, l'image est traitée en `100vw` et Vercel génère des versions trop grandes
 
 ## 4. Légal et RGPD (obligatoire en France)
