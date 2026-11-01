@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
     // Les URLs des photos sont stables (versionnées par ?v=), on peut garder
     // les versions optimisées longtemps et éviter des retransformations.
     minimumCacheTTL: 60 * 60 * 24 * 31,
+    // Une seule qualité autorisée : sinon chaque ?q= demandé à /_next/image
+    // compte comme une transformation de plus.
+    qualities: [75],
+    // Sans 2048 ni 3840 : moins de variantes par photo, assez net pour un site vitrine.
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     remotePatterns: [
       {
         protocol: "https",
