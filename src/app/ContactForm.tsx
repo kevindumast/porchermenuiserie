@@ -58,17 +58,34 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-1">
-        <label htmlFor="projet" className={LABEL_CLASS}>
-          Type de projet <span className="normal-case tracking-normal">(facultatif)</span>
-        </label>
-        <input
-          id="projet"
-          name="projet"
-          className={FIELD_CLASS}
-          placeholder="Cuisine, parquet, cloison…"
-          type="text"
-        />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="flex flex-col gap-1">
+          <label htmlFor="phone" className={LABEL_CLASS}>Votre téléphone</label>
+          <input
+            id="phone"
+            name="phone"
+            autoComplete="tel"
+            inputMode="tel"
+            required
+            pattern="\+?[0-9][0-9 .]{8,18}"
+            title="Numéro de téléphone (ex. 06 12 34 56 78)"
+            className={FIELD_CLASS}
+            placeholder="06 12 34 56 78"
+            type="tel"
+          />
+        </div>
+        <div className="flex flex-col gap-1">
+          <label htmlFor="projet" className={LABEL_CLASS}>
+            Type de projet <span className="normal-case tracking-normal">(facultatif)</span>
+          </label>
+          <input
+            id="projet"
+            name="projet"
+            className={FIELD_CLASS}
+            placeholder="Cuisine, parquet, cloison…"
+            type="text"
+          />
+        </div>
       </div>
 
       <div className="flex flex-col gap-1">

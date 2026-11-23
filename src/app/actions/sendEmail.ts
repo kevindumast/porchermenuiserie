@@ -7,11 +7,18 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function sendDevisEmail(formData: FormData) {
   const name = formData.get("name") as string;
   const email = formData.get("email") as string;
+  const phone = ((formData.get("phone") as string) || "").trim();
   const projet = formData.get("projet") as string;
   const message = formData.get("message") as string;
 
-  if (!name || !email || !message) {
+  if (!name || !email || !phone || !message) {
     return { success: false, error: "Champs obligatoires manquants." };
+  }
+
+  // Lien tel: sans espaces ni points (ex. "06 12 34 56 78" → "0612345678")
+  const phoneHref = phone.replace(/[^\d+]/g, "");
+  if (phoneHref.replace(/\D/g, "").length < 10) {
+    return { success: false, error: "Numéro de téléphone invalide." };
   }
 
   try {
@@ -84,6 +91,15 @@ export async function sendDevisEmail(formData: FormData) {
 
                 <tr>
                   <td style="padding:24px 0;border-bottom:1px solid #F3E4D5;">
+                    <p style="margin:0 0 4px 0;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#A48654;">Téléphone</p>
+                    <p style="margin:0;font-size:18px;font-weight:300;color:#221a11;">
+                      <a href="tel:${phoneHref}" style="color:#A48654;text-decoration:none;">${phone}</a>
+                    </p>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="padding:24px 0;border-bottom:1px solid #F3E4D5;">
                     <p style="margin:0 0 4px 0;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#A48654;">Type de projet</p>
                     <p style="margin:0;font-size:18px;font-weight:300;color:#221a11;">${projet || "Non précisé"}</p>
                   </td>
@@ -105,6 +121,9 @@ export async function sendDevisEmail(formData: FormData) {
             <td style="padding:0 48px 48px 48px;">
               <a href="mailto:${email}" style="display:inline-block;background-color:#A48654;color:#ffffff;text-decoration:none;padding:16px 32px;font-size:11px;letter-spacing:0.25em;text-transform:uppercase;font-weight:700;">
                 Répondre au client
+              </a>
+              <a href="tel:${phoneHref}" style="display:inline-block;border:1px solid #A48654;color:#A48654;text-decoration:none;padding:15px 32px;font-size:11px;letter-spacing:0.25em;text-transform:uppercase;font-weight:700;margin-top:8px;">
+                Appeler le client
               </a>
             </td>
           </tr>
